@@ -69,7 +69,6 @@
             this.PlayBtn.Text = "PLAY";
             this.PlayBtn.UseVisualStyleBackColor = false;
             this.PlayBtn.Click += new System.EventHandler(this.PlayBtn_Click_1);
-            this.PlayBtn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PlayBtn_KeyPress);
             // 
             // Form1
             // 

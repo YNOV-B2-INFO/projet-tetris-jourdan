@@ -38,24 +38,14 @@ namespace WindowsFormsApp1
             //this.Close();
         }
 
+        private void Form1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            e.IsInputKey = true;
+        }
+
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
             Console.WriteLine(e.KeyChar);
-        }
-
-        private void PlayBtn_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            Console.WriteLine(e.KeyChar);
-        }
-
-        private void QuitBtn_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-
-        }
-
-        private void Form1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            Console.WriteLine(e.Control);
         }
     }
 }
