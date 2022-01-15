@@ -13,7 +13,7 @@ namespace WindowsFormsApp1
     public partial class Form1 : Form
     {
 
-        
+        // C:\Users\louis\Documents\GitHub\projet-tetris-jourdan\WindowsFormsApp1\data\L.png
         public Form1()
         {
             this.KeyPreview = true;
@@ -54,6 +54,11 @@ namespace WindowsFormsApp1
             if (keyData == Keys.Up)
             {
                 Console.WriteLine("You pressed Up arrow key");
+                Bitmap image1 = new Bitmap(@"C:\Users\louis\Documents\GitHub\projet-tetris-jourdan\WindowsFormsApp1\data\L.png", true);
+
+                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                // Set the PictureBox to display the image.
+                pictureBox1.Image = image1;
                 return true;
             }
             //capture down arrow key
@@ -75,6 +80,11 @@ namespace WindowsFormsApp1
                 return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

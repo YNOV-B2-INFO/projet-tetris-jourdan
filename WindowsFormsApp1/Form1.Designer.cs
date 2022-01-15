@@ -32,6 +32,8 @@
             this.QuitBtn = new System.Windows.Forms.Button();
             this.OptionBtn = new System.Windows.Forms.Button();
             this.PlayBtn = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // QuitBtn
@@ -70,12 +72,22 @@
             this.PlayBtn.UseVisualStyleBackColor = false;
             this.PlayBtn.Click += new System.EventHandler(this.PlayBtn_Click_1);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(12, 71);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(320, 608);
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(462, 751);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.PlayBtn);
             this.Controls.Add(this.OptionBtn);
             this.Controls.Add(this.QuitBtn);
@@ -84,6 +96,7 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -92,6 +105,7 @@
         private System.Windows.Forms.Button QuitBtn;
         private System.Windows.Forms.Button OptionBtn;
         private System.Windows.Forms.Button PlayBtn;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
