@@ -12,8 +12,11 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
+
+        
         public Form1()
         {
+            this.KeyPreview = true;
             InitializeComponent();
         }
 
@@ -24,28 +27,54 @@ namespace WindowsFormsApp1
 
         private void PlayBtn_Click_1(object sender, EventArgs e)
         {
-            Console.WriteLine("play");
+            Console.WriteLine("You pressed PLAY btn");
         }
 
         private void OptionBtn_Click_1(object sender, EventArgs e)
         {
-            //this.Hide();
+            Console.WriteLine("You pressed OPTION btn");
 
         }
 
         private void QuitBtn_Click(object sender, EventArgs e)
         {
-            //this.Close();
+            this.Close();
         }
 
-        private void Form1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            e.IsInputKey = true;
-        }
 
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Console.WriteLine(e.KeyChar);
+            //retrieve the chars here 
+        }
+
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            //capture up arrow key
+            if (keyData == Keys.Up)
+            {
+                Console.WriteLine("You pressed Up arrow key");
+                return true;
+            }
+            //capture down arrow key
+            if (keyData == Keys.Down)
+            {
+                Console.WriteLine("You pressed Down arrow key");
+                return true;
+            }
+            //capture left arrow key
+            if (keyData == Keys.Left)
+            {
+                Console.WriteLine("You pressed Left arrow key");
+                return true;
+            }
+            //capture right arrow key
+            if (keyData == Keys.Right)
+            {
+                Console.WriteLine("You pressed Right arrow key");
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }
