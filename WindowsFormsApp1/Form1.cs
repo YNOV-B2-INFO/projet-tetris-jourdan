@@ -55,9 +55,10 @@ namespace WindowsFormsApp1
             {
                 Console.WriteLine("You pressed Up arrow key");
                 Bitmap image1 = new Bitmap(@"C:\Users\louis\Documents\GitHub\projet-tetris-jourdan\WindowsFormsApp1\data\L.png", true);
+               
+                Graphics GFX = Graphics.FromImage(image1);
 
-                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-                // Set the PictureBox to display the image.
+                GFX.FillRectangle(Brushes.Red, 0, 0, 100, 100);
                 pictureBox1.Image = image1;
                 return true;
             }
