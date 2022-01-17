@@ -79,6 +79,7 @@
             this.Controls.Add(this.PlayBtn);
             this.Controls.Add(this.OptionBtn);
             this.Controls.Add(this.QuitBtn);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Form1";
