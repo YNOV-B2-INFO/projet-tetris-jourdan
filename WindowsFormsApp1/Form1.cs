@@ -1,4 +1,5 @@
 ﻿using System;
+using static System.Drawing.Image;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media.Imaging;
 
 namespace WindowsFormsApp1
 {
@@ -54,12 +56,19 @@ namespace WindowsFormsApp1
             if (keyData == Keys.Up)
             {
                 Console.WriteLine("You pressed Up arrow key");
-                Bitmap image1 = new Bitmap(@"C:\Users\louis\Documents\GitHub\projet-tetris-jourdan\WindowsFormsApp1\data\L.png", true);
-               
-                Graphics GFX = Graphics.FromImage(image1);
 
-                GFX.FillRectangle(Brushes.Red, 0, 0, 100, 100);
-                pictureBox1.Image = image1;
+            
+                PictureBox t = new PictureBox
+                {
+                    Image = Properties.Resources.T,
+                    SizeMode = PictureBoxSizeMode.StretchImage,
+                    Size = new Size(90, 90),
+                    Location = new Point(0, 0),
+                    //BackColor = Color.White
+                };
+                pictureBox1.Controls.Add(t);
+                
+
                 return true;
             }
             //capture down arrow key
