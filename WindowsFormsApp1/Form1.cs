@@ -15,77 +15,130 @@ namespace WindowsFormsApp1
 { 
     public partial class Form1 : Form
     {
-
-        // C:\Users\louis\Documents\GitHub\projet-tetris-jourdan\WindowsFormsApp1\data\L.png
+        bool isPlaying = false;
         public Form1()
         {
             this.KeyPreview = true;
             InitializeComponent();
         }
 
+        private void Run()
+        {
+            int[,] grid = new int[20, 10];
+            List<Pieces> allPieces = new List<Pieces>();
+            Utils utils = new Utils();
+            utils.Create_Piece(grid, allPieces);
+            utils.displayGrid(grid);
+
+            
+            
+
+            Bitmap bmp = new Bitmap(32, 32);
+            Graphics g = Graphics.FromImage(bmp);
+            foreach (var piece in grid)
+            {
+                switch (piece)
+                {
+                    case 1:
+                        SolidBrush bRed = new SolidBrush(Color.Red);
+                        for (int i = 0; i < grid.GetLength(0); i++)
+                        {
+                            for (int j = 0; j < grid.GetLength(1); j++)
+                            {
+                                g.FillRectangle(bRed, new Rectangle(i * 32, j * 32, 32, 32));
+                                pictureBox1.Controls.Add(g);
+                            }
+                        }
+                        break;
+                    case 2:
+                        SolidBrush bWhite = new SolidBrush(Color.White);
+                        for (int i = 0; i < grid.GetLength(0); i++)
+                        {
+                            for (int j = 0; j < grid.GetLength(1); j++)
+                            {
+                                g.FillRectangle(bWhite, new Rectangle(i * 32, j * 32, 32, 32));
+                                pictureBox1.Controls.Add(g);
+                            }
+                        }
+                        break;
+                    case 3:
+                        SolidBrush bBlue = new SolidBrush(Color.Blue);
+                        for (int i = 0; i < grid.GetLength(0); i++)
+                        {
+                            for (int j = 0; j < grid.GetLength(1); j++)
+                            {
+                                g.FillRectangle(bBlue, new Rectangle(i * 32, j * 32, 32, 32));
+                                pictureBox1.Controls.Add(g);
+                            }
+                        }
+                        break;
+                    case 4:
+                        SolidBrush bPurple = new SolidBrush(Color.Purple);
+                        for (int i = 0; i < grid.GetLength(0); i++)
+                        {
+                            for (int j = 0; j < grid.GetLength(1); j++)
+                            {
+                                g.FillRectangle(bPurple, new Rectangle(i * 32, j * 32, 32, 32));
+                                pictureBox1.Controls.Add(g);
+
+                            }
+                        }
+                        break;
+                    case 5:
+                        SolidBrush bPink = new SolidBrush(Color.Pink);
+                        for (int i = 0; i < grid.GetLength(0); i++)
+                        {
+                            for (int j = 0; j < grid.GetLength(1); j++)
+                            {
+                                g.FillRectangle(bPink, new Rectangle(i * 32, j * 32, 32, 32));
+                                pictureBox1.Controls.Add(g);
+
+                            }
+                        }
+                        break;
+                    default:
+                        SolidBrush bTransparent = new SolidBrush(Color.Transparent);
+                        for (int i = 0; i < grid.GetLength(0); i++)
+                        {
+                            for (int j = 0; j < grid.GetLength(1); j++)
+                            {
+                                g.FillRectangle(bTransparent, new Rectangle(i * 32, j * 32, 32, 32));
+                                pictureBox1.Controls.Add(g);
+
+                            }
+                        }
+                        break;
+                }
+            }
+
+/*           for (int i = 0; i < 500; i += 20)
+             {
+                allPieces[allPieces.Count() - 1].goDown();
+                Thread.Sleep(500);
+                t.Refresh();
+            }
+*/
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void Create_Piece(int [,] grid, List<Piece> allPieces)
-        {
-            Random rand = new Random();
-            int pieceNumber = rand.Next(1,5);
-            int position = rand.Next(0, 9);
-            switch (pieceNumber)
-            {
-                case 0:
-                    allPieces.Add(new One());
-                    break;
-                case 1:
-                    allPieces.Add(new L());
-                    break;
-                case 2:
-                    allPieces.Add(new R());
-                    break;
-                case 3:
-                    allPieces.Add(new S());
-                    break;
-                case 4:
-                    allPieces.Add(new T());
-                    break;
-                default:
-                    break;
-            }
-            int[,] coordinates = allPieces[allPieces.Count() - 1].CreatePiece(position);
-            displayPiece(coordinates, grid, pieceNumber);
-        }
-
-        private void displayPiece(int[,] coordinates, int[,] grid, int pieceNumber)
-        {
-            for (int i = 0; i < coordinates.GetLength(0); i++)
-            {
-                int x = coordinates[i, 0];
-                int y = coordinates[i, 1];
-
-                grid[x, y] = pieceNumber;
-            }
-        }
-
-        private void displayGrid(int[,] grid)
-        {
-            for (int i = 0; i < grid.GetLength(0); i++)
-            {
-                for (int j = 0; j < grid.GetLength(1); j++)
-                {
-                    Console.Write(grid[i, j] + " ");
-                }
-                Console.WriteLine();
-            }
-        }
+        
 
         private void PlayBtn_Click_1(object sender, EventArgs e)
         {
-            int[,] grid = new int[20, 10];
-            List<Piece> allPieces = new List<Piece>();
-            Create_Piece(grid, allPieces);
-            displayGrid(grid);
+            switch (isPlaying)
+            {
+                case true:
+                    isPlaying = false;
+                    break;
+
+                case false:
+                    isPlaying = true;
+                    Run();
+                    break;
+            }
         }
 
         private void OptionBtn_Click_1(object sender, EventArgs e)
@@ -99,12 +152,10 @@ namespace WindowsFormsApp1
             this.Close();
         }
 
-
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
             //retrieve the chars here 
         }
-
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -112,25 +163,6 @@ namespace WindowsFormsApp1
             if (keyData == Keys.Up)
             {
                 Console.WriteLine("You pressed Up arrow key");
-
-            
-                PictureBox t = new PictureBox
-                {
-                    Image = Properties.Resources.T,
-                    SizeMode = PictureBoxSizeMode.StretchImage,
-                    Size = new Size(90, 90),
-                    Location = new Point(0, 0),
-                    //BackColor = Color.White
-                };
-                pictureBox1.Controls.Add(t);
-
-                for (int i = 0; i < 500; i+= 20)
-                {
-                    t.Location = new Point(0, i);
-                    Thread.Sleep(500);
-                    t.Refresh();
-                }
-                
 
                 return true;
             }
