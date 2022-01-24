@@ -20,3 +20,14 @@ C:\Users\louis\Documents\GitHub\projet-tetris-jourdan\WindowsFormsApp1\obj\Debug
 C:\Users\louis\Documents\GitHub\projet-tetris-jourdan\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
 C:\Users\louis\Documents\GitHub\projet-tetris-jourdan\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 C:\Users\louis\Documents\GitHub\projet-tetris-jourdan\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+C:\Users\Dinville\Desktop\projet-tetris-jourdan\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
+C:\Users\Dinville\Desktop\projet-tetris-jourdan\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
+C:\Users\Dinville\Desktop\projet-tetris-jourdan\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
+C:\Users\Dinville\Desktop\projet-tetris-jourdan\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.AssemblyReference.cache
+C:\Users\Dinville\Desktop\projet-tetris-jourdan\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.SuggestedBindingRedirects.cache
+C:\Users\Dinville\Desktop\projet-tetris-jourdan\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources
+C:\Users\Dinville\Desktop\projet-tetris-jourdan\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+C:\Users\Dinville\Desktop\projet-tetris-jourdan\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.cache
+C:\Users\Dinville\Desktop\projet-tetris-jourdan\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
+C:\Users\Dinville\Desktop\projet-tetris-jourdan\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
+C:\Users\Dinville\Desktop\projet-tetris-jourdan\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
