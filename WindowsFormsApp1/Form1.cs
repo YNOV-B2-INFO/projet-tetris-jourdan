@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using static System.Drawing.Image;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -67,6 +68,13 @@ namespace WindowsFormsApp1
                     //BackColor = Color.White
                 };
                 pictureBox1.Controls.Add(t);
+
+                for (int i = 0; i < 500; i+= 20)
+                {
+                    t.Location = new Point(0, i);
+                    Thread.Sleep(500);
+                    t.Refresh();
+                }
                 
 
                 return true;
