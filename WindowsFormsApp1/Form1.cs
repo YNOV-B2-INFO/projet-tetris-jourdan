@@ -27,11 +27,25 @@ namespace WindowsFormsApp1
         {
 
         }
-
+        private int[,] Create_Piece(int [,] grid)
+        {
+            Random rand = new Random();
+           int pieceNumber = rand.Next(1,5);
+            switch (pieceNumber)
+            {
+                case 1 :
+                    int position = rand.Next(0, 9);
+                    grid[position, 0] = 1;
+                    break;
+                default:
+                    break;
+            }
+            return grid;
+        }
         private void PlayBtn_Click_1(object sender, EventArgs e)
         {
             int[,] grid = new int[30, 10];
-           
+            grid = Create_Piece(grid);
                 for (int i = 0; i < grid.GetLength(0); i++)
                 {
                     for (int j = 0; j < grid.GetLength(1); j++)
