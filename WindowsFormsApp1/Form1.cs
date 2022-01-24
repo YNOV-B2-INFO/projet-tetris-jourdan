@@ -13,6 +13,40 @@ using System.Windows.Media.Imaging;
 
 namespace WindowsFormsApp1
 {
+
+    public  class Piece
+    {
+
+    }
+
+    public class One : Piece
+    {
+
+    }
+
+    public partial class L : Piece
+    {
+
+    }
+
+    public partial class R : Piece
+    {
+
+    }
+
+    public partial class S : Piece
+    {
+
+    }
+
+    public partial class T : Piece
+    {
+
+    }
+
+
+
+
     public partial class Form1 : Form
     {
 
@@ -27,25 +61,51 @@ namespace WindowsFormsApp1
         {
 
         }
-        private int[,] Create_Piece(int [,] grid)
+        private void Create_Piece(int [,] grid)
         {
             Random rand = new Random();
-           int pieceNumber = rand.Next(1,5);
+            int pieceNumber = rand.Next(1,5);
+            int position = rand.Next(0, 9);
             switch (pieceNumber)
             {
-                case 1 :
-                    int position = rand.Next(0, 9);
-                    grid[position, 0] = 1;
+                case 1:
+                    grid[0, position] = 1;
+                    grid[1, position] = 1;
+                    grid[2, position] = 1;
+                    grid[3, position] = 1;
+                    break;
+                case 2:
+                    grid[0, position] = 2;
+                    grid[1, position] = 2;
+                    grid[2, position] = 2;
+                    grid[2, position+1] = 2;
+                    break;
+                case 3:
+                    grid[0, position] = 3;
+                    grid[0, position+1] = 3;
+                    grid[1, position] = 3;
+                    grid[1, position+1] = 3;
+                    break;
+                case 4:
+                    grid[0, position+1] = 4;
+                    grid[0, position+2] = 4;
+                    grid[1, position] = 4;
+                    grid[1, position+1] = 4;
+                    break;
+                case 5:
+                    grid[1, position + 1] = 5;
+                    grid[0, position] = 5;
+                    grid[0, position + 1] = 5;
+                    grid[0, position + 2] = 5;
                     break;
                 default:
                     break;
             }
-            return grid;
         }
         private void PlayBtn_Click_1(object sender, EventArgs e)
         {
-            int[,] grid = new int[30, 10];
-            grid = Create_Piece(grid);
+            int[,] grid = new int[20, 10];
+            Create_Piece(grid);
                 for (int i = 0; i < grid.GetLength(0); i++)
                 {
                     for (int j = 0; j < grid.GetLength(1); j++)
@@ -54,8 +114,13 @@ namespace WindowsFormsApp1
                     }
                     Console.WriteLine();
                 }
-            
-            Console.WriteLine("You pressed PLAY btn");
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+
         }
 
         private void OptionBtn_Click_1(object sender, EventArgs e)
