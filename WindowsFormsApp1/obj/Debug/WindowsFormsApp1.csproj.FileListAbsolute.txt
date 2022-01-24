@@ -36,9 +36,9 @@ C:\Users\romai\source\repos\projet-tetris-jourdan\WindowsFormsApp1\bin\Debug\Win
 C:\Users\romai\source\repos\projet-tetris-jourdan\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
 C:\Users\romai\source\repos\projet-tetris-jourdan\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.AssemblyReference.cache
 C:\Users\romai\source\repos\projet-tetris-jourdan\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.SuggestedBindingRedirects.cache
-C:\Users\romai\source\repos\projet-tetris-jourdan\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources
 C:\Users\romai\source\repos\projet-tetris-jourdan\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
 C:\Users\romai\source\repos\projet-tetris-jourdan\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.cache
 C:\Users\romai\source\repos\projet-tetris-jourdan\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
 C:\Users\romai\source\repos\projet-tetris-jourdan\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 C:\Users\romai\source\repos\projet-tetris-jourdan\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+C:\Users\romai\source\repos\projet-tetris-jourdan\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources

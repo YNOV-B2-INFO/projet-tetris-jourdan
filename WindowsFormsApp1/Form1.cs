@@ -12,41 +12,7 @@ using System.Windows.Forms;
 using System.Windows.Media.Imaging;
 
 namespace WindowsFormsApp1
-{
-
-    public  class Piece
-    {
-
-    }
-
-    public class One : Piece
-    {
-
-    }
-
-    public partial class L : Piece
-    {
-
-    }
-
-    public partial class R : Piece
-    {
-
-    }
-
-    public partial class S : Piece
-    {
-
-    }
-
-    public partial class T : Piece
-    {
-
-    }
-
-
-
-
+{ 
     public partial class Form1 : Form
     {
 
@@ -61,66 +27,65 @@ namespace WindowsFormsApp1
         {
 
         }
-        private void Create_Piece(int [,] grid)
+
+        private void Create_Piece(int [,] grid, List<Piece> allPieces)
         {
             Random rand = new Random();
             int pieceNumber = rand.Next(1,5);
             int position = rand.Next(0, 9);
             switch (pieceNumber)
             {
+                case 0:
+                    allPieces.Add(new One());
+                    break;
                 case 1:
-                    grid[0, position] = 1;
-                    grid[1, position] = 1;
-                    grid[2, position] = 1;
-                    grid[3, position] = 1;
+                    allPieces.Add(new L());
                     break;
                 case 2:
-                    grid[0, position] = 2;
-                    grid[1, position] = 2;
-                    grid[2, position] = 2;
-                    grid[2, position+1] = 2;
+                    allPieces.Add(new R());
                     break;
                 case 3:
-                    grid[0, position] = 3;
-                    grid[0, position+1] = 3;
-                    grid[1, position] = 3;
-                    grid[1, position+1] = 3;
+                    allPieces.Add(new S());
                     break;
                 case 4:
-                    grid[0, position+1] = 4;
-                    grid[0, position+2] = 4;
-                    grid[1, position] = 4;
-                    grid[1, position+1] = 4;
-                    break;
-                case 5:
-                    grid[1, position + 1] = 5;
-                    grid[0, position] = 5;
-                    grid[0, position + 1] = 5;
-                    grid[0, position + 2] = 5;
+                    allPieces.Add(new T());
                     break;
                 default:
                     break;
             }
+            int[,] coordinates = allPieces[allPieces.Count() - 1].CreatePiece(position);
+            displayPiece(coordinates, grid, pieceNumber);
         }
+
+        private void displayPiece(int[,] coordinates, int[,] grid, int pieceNumber)
+        {
+            for (int i = 0; i < coordinates.GetLength(0); i++)
+            {
+                int x = coordinates[i, 0];
+                int y = coordinates[i, 1];
+
+                grid[x, y] = pieceNumber;
+            }
+        }
+
+        private void displayGrid(int[,] grid)
+        {
+            for (int i = 0; i < grid.GetLength(0); i++)
+            {
+                for (int j = 0; j < grid.GetLength(1); j++)
+                {
+                    Console.Write(grid[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+        }
+
         private void PlayBtn_Click_1(object sender, EventArgs e)
         {
             int[,] grid = new int[20, 10];
-            Create_Piece(grid);
-                for (int i = 0; i < grid.GetLength(0); i++)
-                {
-                    for (int j = 0; j < grid.GetLength(1); j++)
-                    {
-                        Console.Write(grid[i,j] + " ");
-                    }
-                    Console.WriteLine();
-                }
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-
+            List<Piece> allPieces = new List<Piece>();
+            Create_Piece(grid, allPieces);
+            displayGrid(grid);
         }
 
         private void OptionBtn_Click_1(object sender, EventArgs e)
