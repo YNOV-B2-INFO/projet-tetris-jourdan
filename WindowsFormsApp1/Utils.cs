@@ -59,5 +59,30 @@ namespace WindowsFormsApp1
                 Console.WriteLine();
             }
         }
+
+        public System.Drawing.SolidBrush GenerateBrush()
+        {
+            Random random = new Random();
+            int nbr = random.Next(1, 4);
+
+
+            System.Drawing.SolidBrush myBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Transparent);
+            switch (nbr)
+            {
+                case 1:
+                    myBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Red);
+                    break;
+                case 2:
+                    myBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);
+                    break;
+                case 3:
+                    myBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Blue);
+                    break;
+                case 4:
+                    myBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Green);
+                    break;
+            }
+            return myBrush;
+        }
     }
 }

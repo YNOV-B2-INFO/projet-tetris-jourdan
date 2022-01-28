@@ -15,7 +15,6 @@ namespace WindowsFormsApp1
 { 
     public partial class Form1 : Form
     {
-        bool isPlaying = false;
         public Form1()
         {
             this.KeyPreview = true;
@@ -24,92 +23,7 @@ namespace WindowsFormsApp1
 
         private void Run()
         {
-            int[,] grid = new int[20, 10];
-            List<Pieces> allPieces = new List<Pieces>();
-            Utils utils = new Utils();
-            utils.Create_Piece(grid, allPieces);
-            utils.displayGrid(grid);
-
             
-            
-
-            Bitmap bmp = new Bitmap(32, 32);
-            Graphics g = Graphics.FromImage(bmp);
-            foreach (var piece in grid)
-            {
-                switch (piece)
-                {
-                    case 1:
-                        SolidBrush bRed = new SolidBrush(Color.Red);
-                        for (int i = 0; i < grid.GetLength(0); i++)
-                        {
-                            for (int j = 0; j < grid.GetLength(1); j++)
-                            {
-                                g.FillRectangle(bRed, new Rectangle(i * 32, j * 32, 32, 32));
-                                pictureBox1.Controls.Add(g);
-                            }
-                        }
-                        break;
-                    case 2:
-                        SolidBrush bWhite = new SolidBrush(Color.White);
-                        for (int i = 0; i < grid.GetLength(0); i++)
-                        {
-                            for (int j = 0; j < grid.GetLength(1); j++)
-                            {
-                                g.FillRectangle(bWhite, new Rectangle(i * 32, j * 32, 32, 32));
-                                pictureBox1.Controls.Add(g);
-                            }
-                        }
-                        break;
-                    case 3:
-                        SolidBrush bBlue = new SolidBrush(Color.Blue);
-                        for (int i = 0; i < grid.GetLength(0); i++)
-                        {
-                            for (int j = 0; j < grid.GetLength(1); j++)
-                            {
-                                g.FillRectangle(bBlue, new Rectangle(i * 32, j * 32, 32, 32));
-                                pictureBox1.Controls.Add(g);
-                            }
-                        }
-                        break;
-                    case 4:
-                        SolidBrush bPurple = new SolidBrush(Color.Purple);
-                        for (int i = 0; i < grid.GetLength(0); i++)
-                        {
-                            for (int j = 0; j < grid.GetLength(1); j++)
-                            {
-                                g.FillRectangle(bPurple, new Rectangle(i * 32, j * 32, 32, 32));
-                                pictureBox1.Controls.Add(g);
-
-                            }
-                        }
-                        break;
-                    case 5:
-                        SolidBrush bPink = new SolidBrush(Color.Pink);
-                        for (int i = 0; i < grid.GetLength(0); i++)
-                        {
-                            for (int j = 0; j < grid.GetLength(1); j++)
-                            {
-                                g.FillRectangle(bPink, new Rectangle(i * 32, j * 32, 32, 32));
-                                pictureBox1.Controls.Add(g);
-
-                            }
-                        }
-                        break;
-                    default:
-                        SolidBrush bTransparent = new SolidBrush(Color.Transparent);
-                        for (int i = 0; i < grid.GetLength(0); i++)
-                        {
-                            for (int j = 0; j < grid.GetLength(1); j++)
-                            {
-                                g.FillRectangle(bTransparent, new Rectangle(i * 32, j * 32, 32, 32));
-                                pictureBox1.Controls.Add(g);
-
-                            }
-                        }
-                        break;
-                }
-            }
 
 /*           for (int i = 0; i < 500; i += 20)
              {
@@ -128,17 +42,7 @@ namespace WindowsFormsApp1
 
         private void PlayBtn_Click_1(object sender, EventArgs e)
         {
-            switch (isPlaying)
-            {
-                case true:
-                    isPlaying = false;
-                    break;
-
-                case false:
-                    isPlaying = true;
-                    Run();
-                    break;
-            }
+            Run();
         }
 
         private void OptionBtn_Click_1(object sender, EventArgs e)
@@ -189,7 +93,26 @@ namespace WindowsFormsApp1
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {            
+            Console.WriteLine("test");
+            int[,] grid = new int[20, 10];
+            List<Pieces> allPieces = new List<Pieces>();
+            Utils utils = new Utils();
+            utils.Create_Piece(grid, allPieces);
+            utils.displayGrid(grid);
+
+            int[,] coordinates = allPieces[0].coordinates;
+            System.Drawing.SolidBrush myBrush = utils.GenerateBrush();
+
+
+            for (int i = 0; i < coordinates.GetLength(0); i++)
+            {
+                e.Graphics.FillRectangle(myBrush, coordinates[i, 1] * 32, coordinates[i, 0] * 32, 32, 32);
+            }
         }
     }
 }
