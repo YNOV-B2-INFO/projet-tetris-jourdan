@@ -98,21 +98,17 @@ namespace WindowsFormsApp1
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {            
-            Console.WriteLine("test");
             int[,] grid = new int[20, 10];
-            List<Pieces> allPieces = new List<Pieces>();
+            Random rand = new Random();
+            int position = rand.Next(0, 9);
+
+
             Utils utils = new Utils();
-            utils.Create_Piece(grid, allPieces);
+            Pieces currentPiece = utils.CreatePieceObject();
+            currentPiece.CreateCoordinates(position);
+            utils.AddPieceInGrid(currentPiece, grid);
             utils.DisplayGrid(grid);
-
-            int[,] coordinates = allPieces[0].coordinates;
-            System.Drawing.SolidBrush myBrush = utils.GenerateBrush();
-
-
-            for (int i = 0; i < coordinates.GetLength(0); i++)
-            {
-                e.Graphics.FillRectangle(myBrush, coordinates[i, 1] * 32, coordinates[i, 0] * 32, 32, 32);
-            }
+            utils.DisplayPieceGraphics(currentPiece, e);
         }
     }
 }

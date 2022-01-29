@@ -3,42 +3,57 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System;
+using System.Threading;
+using static System.Drawing.Image;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Windows.Media.Imaging;
 
 namespace WindowsFormsApp1
 {
     internal class Utils
     {
-        public void Create_Piece(int[,] grid, List<Pieces> allPieces)
+        public Pieces CreatePieceObject()
         {
+            Pieces currentPiece = null;
             Random rand = new Random();
             int pieceNumber = rand.Next(1, 5);
-            int position = rand.Next(0, 9);
             switch (pieceNumber)
             {
                 case 0:
-                    allPieces.Add(new One());
+                    currentPiece = new One();
                     break;
                 case 1:
-                    allPieces.Add(new L());
+                    currentPiece = new L();
                     break;
                 case 2:
-                    allPieces.Add(new R());
+                    currentPiece = new R();
                     break;
                 case 3:
-                    allPieces.Add(new S());
+                    currentPiece = new S();
                     break;
                 case 4:
-                    allPieces.Add(new T());
+                    currentPiece = new T();
                     break;
                 default:
                     break;
             }
-            int[,] coordinates = allPieces[allPieces.Count() - 1].CreatePiece(position);
-            DisplayPiece(coordinates, grid, pieceNumber);
+            currentPiece.pieceNumber = pieceNumber;
+            return currentPiece;
         }
 
-        private void DisplayPiece(int[,] coordinates, int[,] grid, int pieceNumber)
+        public void AddPieceInGrid(Pieces currentPiece, int[,] grid)
         {
+            int[,] coordinates = currentPiece.coordinates;
+            int pieceNumber = currentPiece.pieceNumber;
+
             for (int i = 0; i < coordinates.GetLength(0); i++)
             {
                 int x = coordinates[i, 0];
@@ -60,7 +75,17 @@ namespace WindowsFormsApp1
             }
         }
 
-        public System.Drawing.SolidBrush GenerateBrush()
+        public void DisplayPieceGraphics(Pieces currentPiece, PaintEventArgs e)
+        {
+            int[,] coordinates = currentPiece.coordinates;
+            System.Drawing.SolidBrush myBrush = GenerateBrush();
+            for (int i = 0; i < coordinates.GetLength(0); i++)
+            {
+                e.Graphics.FillRectangle(myBrush, coordinates[i, 1] * 32, coordinates[i, 0] * 32, 32, 32);
+            }
+        }
+
+        private System.Drawing.SolidBrush GenerateBrush()
         {
             Random random = new Random();
             int nbr = random.Next(1, 4);

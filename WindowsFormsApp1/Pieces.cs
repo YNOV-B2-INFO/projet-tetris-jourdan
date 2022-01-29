@@ -8,8 +8,9 @@ namespace WindowsFormsApp1
 {
     public abstract class Pieces
     {
-        public abstract int[,] CreatePiece(int x);
+        public abstract void CreateCoordinates(int x);
         public int[,] coordinates;
+        public int pieceNumber;
 
         public void goDown()
         {
@@ -22,48 +23,43 @@ namespace WindowsFormsApp1
 
     public class One : Pieces
     {
-        public override int[,] CreatePiece(int x)
+        public override void CreateCoordinates(int x)
         {
             coordinates = new int[,] { { 0, x }, { 1, x }, { 2, x }, { 3, x } };
-            return coordinates;
         }
 
     }
 
     public class L : Pieces
     {
-        public override int[,] CreatePiece(int x)
+        public override void CreateCoordinates(int x)
         {
             coordinates = new int[,] { { 0, x }, { 1, x }, { 2, x }, { 2, x + 1 } };
-            return coordinates;
         }
     }
 
     public class R : Pieces
     {
-        public override int[,] CreatePiece(int x)
+        public override void CreateCoordinates(int x)
         {
             coordinates = new int[,] { { 0, x }, { 0, x + 1 }, { 1, x }, { 1, x + 1 } };
-            return coordinates;
         }
     }
 
     public class S : Pieces
     {
-        public override int[,] CreatePiece(int x)
+        public override void CreateCoordinates(int x)
         {
             coordinates = new int[,] { { 0, x + 1 }, { 0, x + 2 }, { 1, x }, { 1, x + 1 } };
-            return coordinates;
         }
 
     }
 
     public class T : Pieces
     {
-        public override int[,] CreatePiece(int x)
+        public override void CreateCoordinates(int x)
         {
             coordinates = new int[,] { { 1, x + 1 }, { 0, x }, { 0, x + 1 }, { 0, x + 2 } };
-            return coordinates;
         }
         
     }
