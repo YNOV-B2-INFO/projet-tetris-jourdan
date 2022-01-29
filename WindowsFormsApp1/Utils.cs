@@ -34,10 +34,10 @@ namespace WindowsFormsApp1
                     break;
             }
             int[,] coordinates = allPieces[allPieces.Count() - 1].CreatePiece(position);
-            displayPiece(coordinates, grid, pieceNumber);
+            DisplayPiece(coordinates, grid, pieceNumber);
         }
 
-        private void displayPiece(int[,] coordinates, int[,] grid, int pieceNumber)
+        private void DisplayPiece(int[,] coordinates, int[,] grid, int pieceNumber)
         {
             for (int i = 0; i < coordinates.GetLength(0); i++)
             {
@@ -48,7 +48,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        public void displayGrid(int[,] grid)
+        public void DisplayGrid(int[,] grid)
         {
             for (int i = 0; i < grid.GetLength(0); i++)
             {

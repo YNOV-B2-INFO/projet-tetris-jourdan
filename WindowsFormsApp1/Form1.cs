@@ -103,7 +103,7 @@ namespace WindowsFormsApp1
             List<Pieces> allPieces = new List<Pieces>();
             Utils utils = new Utils();
             utils.Create_Piece(grid, allPieces);
-            utils.displayGrid(grid);
+            utils.DisplayGrid(grid);
 
             int[,] coordinates = allPieces[0].coordinates;
             System.Drawing.SolidBrush myBrush = utils.GenerateBrush();
