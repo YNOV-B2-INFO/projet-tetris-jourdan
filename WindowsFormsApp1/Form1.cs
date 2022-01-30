@@ -84,6 +84,7 @@ namespace WindowsFormsApp1
             if (keyData == Keys.Down)
             {
                 Console.WriteLine("You pressed Down arrow key");
+                timer1.Interval -= 450;
                 return true;
             }
             //capture left arrow key
