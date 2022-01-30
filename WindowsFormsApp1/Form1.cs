@@ -15,24 +15,33 @@ namespace WindowsFormsApp1
 { 
     public partial class Form1 : Form
     {
+        public Pieces currentPiece;
+        Utils utils = new Utils();
+
         public Form1()
         {
             this.KeyPreview = true;
             InitializeComponent();
         }
 
-        private void Run()
+        private async void Run()
         {
-            
+            int[,] grid = new int[20, 10];
+            Random rand = new Random();
+            int position = rand.Next(0, 9);
 
-/*           for (int i = 0; i < 500; i += 20)
-             {
-                allPieces[allPieces.Count() - 1].goDown();
-                Thread.Sleep(500);
-                t.Refresh();
-            }
-*/
+
+            
+            currentPiece = utils.CreatePieceObject();
+            currentPiece.CreateCoordinates(position, utils.GenerateBrush());
+            utils.AddPieceInGrid(currentPiece, grid);
+            //utils.DisplayGrid(grid)
+            
         }
+
+        
+
+
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -43,6 +52,8 @@ namespace WindowsFormsApp1
         private void PlayBtn_Click_1(object sender, EventArgs e)
         {
             Run();
+            timer1.Start();
+
         }
 
         private void OptionBtn_Click_1(object sender, EventArgs e)
@@ -67,7 +78,6 @@ namespace WindowsFormsApp1
             if (keyData == Keys.Up)
             {
                 Console.WriteLine("You pressed Up arrow key");
-
                 return true;
             }
             //capture down arrow key
@@ -80,35 +90,41 @@ namespace WindowsFormsApp1
             if (keyData == Keys.Left)
             {
                 Console.WriteLine("You pressed Left arrow key");
+                currentPiece.GoLeft();
+
                 return true;
             }
             //capture right arrow key
             if (keyData == Keys.Right)
             {
                 Console.WriteLine("You pressed Right arrow key");
+                currentPiece.GoRight();
                 return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {            
+            
+        }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
         {
 
         }
 
-        private void Form1_Paint(object sender, PaintEventArgs e)
-        {            
-            int[,] grid = new int[20, 10];
-            Random rand = new Random();
-            int position = rand.Next(0, 9);
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
 
+        }
 
-            Utils utils = new Utils();
-            Pieces currentPiece = utils.CreatePieceObject();
-            currentPiece.CreateCoordinates(position);
-            utils.AddPieceInGrid(currentPiece, grid);
-            utils.DisplayGrid(grid);
-            utils.DisplayPieceGraphics(currentPiece, e);
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            utils.DisplayPieceGraphics(currentPiece, pictureBox1);
+            currentPiece.GoDown();
+            this.Refresh();
         }
     }
 }

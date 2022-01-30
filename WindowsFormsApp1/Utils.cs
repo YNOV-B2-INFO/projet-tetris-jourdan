@@ -75,17 +75,22 @@ namespace WindowsFormsApp1
             }
         }
 
-        public void DisplayPieceGraphics(Pieces currentPiece, PaintEventArgs e)
+        public void DisplayPieceGraphics(Pieces currentPiece, PictureBox pictureBox1)
         {
+            Bitmap draw = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            Graphics canvas = Graphics.FromImage(draw);
             int[,] coordinates = currentPiece.coordinates;
-            System.Drawing.SolidBrush myBrush = GenerateBrush();
+            System.Drawing.SolidBrush myBrush = currentPiece.color;
+
+
             for (int i = 0; i < coordinates.GetLength(0); i++)
             {
-                e.Graphics.FillRectangle(myBrush, coordinates[i, 1] * 32, coordinates[i, 0] * 32, 32, 32);
+                canvas.FillRectangle(myBrush, coordinates[i, 1] * 32, coordinates[i, 0] * 32, 32, 32);
+                pictureBox1.Image = draw;
             }
         }
 
-        private System.Drawing.SolidBrush GenerateBrush()
+        public System.Drawing.SolidBrush GenerateBrush()
         {
             Random random = new Random();
             int nbr = random.Next(1, 4);
