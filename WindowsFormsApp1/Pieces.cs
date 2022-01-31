@@ -13,27 +13,72 @@ namespace WindowsFormsApp1
         public int pieceNumber;
         public System.Drawing.SolidBrush color;
 
-        public void GoDown()
+        private bool PossibleGoDown()
         {
             for (int i = 0; i < coordinates.GetLength(0); i++)
             {
-                coordinates[i, 0] += 1;
+                if (coordinates[i, 0] + 1 > 20)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private bool PossibleGoRight()
+        {
+            for (int i = 0; i < coordinates.GetLength(0); i++)
+            {
+                if (coordinates[i, 1] + 1 > 9)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private bool PossibleGoLeft()
+        {
+            for (int i = 0; i < coordinates.GetLength(0); i++)
+            {
+                if (coordinates[i, 1] - 1 < 0)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public void GoDown()
+        {
+            if (PossibleGoDown())
+            {
+                for (int i = 0; i < coordinates.GetLength(0); i++)
+                {
+                    coordinates[i, 0] += 1;
+                }
             }
         }
 
         public void GoRight()
         {
-            for (int i = 0; i < coordinates.GetLength(0); i++)
+            if (PossibleGoRight())
             {
-                coordinates[i, 1] += 1;
+                for (int i = 0; i < coordinates.GetLength(0); i++)
+                {
+                    coordinates[i, 1] += 1;
+                }
             }
         }
 
         public void GoLeft()
         {
-            for (int i = 0; i < coordinates.GetLength(0); i++)
+            if (PossibleGoLeft())
             {
-                coordinates[i, 1] -= 1;
+                for (int i = 0; i < coordinates.GetLength(0); i++)
+                {
+                    coordinates[i, 1] -= 1;
+                }
             }
         }
     }
