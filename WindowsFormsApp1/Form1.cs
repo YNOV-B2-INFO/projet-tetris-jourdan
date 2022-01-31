@@ -15,8 +15,12 @@ namespace WindowsFormsApp1
 { 
     public partial class Form1 : Form
     {
-        public Pieces currentPiece;
+        private Pieces currentPiece;
+        private bool runing = false;
+        private bool playedOnce = false;
+
         Utils utils = new Utils();
+
 
         public Form1()
         {
@@ -51,8 +55,22 @@ namespace WindowsFormsApp1
 
         private void PlayBtn_Click_1(object sender, EventArgs e)
         {
-            Run();
-            timer1.Start();
+            if (!playedOnce)
+            {
+                Run();
+                playedOnce = true;
+            }
+
+            if (!runing)
+            {
+                timer1.Start();
+                runing = true;
+            }
+            else
+            {
+                timer1.Stop();
+                runing = false;
+            }
 
         }
 
