@@ -101,22 +101,21 @@ namespace WindowsFormsApp1
             //capture down arrow key
             if (keyData == Keys.Down)
             {
-                Console.WriteLine("You pressed Down arrow key");
-                timer1.Interval -= 450;
+                if (timer1.Interval - 450 > 0)
+                {
+                    timer1.Interval -= 450;
+                }
                 return true;
             }
             //capture left arrow key
             if (keyData == Keys.Left)
             {
-                Console.WriteLine("You pressed Left arrow key");
                 currentPiece.GoLeft();
-
                 return true;
             }
             //capture right arrow key
             if (keyData == Keys.Right)
             {
-                Console.WriteLine("You pressed Right arrow key");
                 currentPiece.GoRight();
                 return true;
             }
