@@ -67,21 +67,17 @@ namespace WindowsFormsApp1
         {
             int[,] coordinates = currentPiece.coordinates;
             int pieceNumber = currentPiece.pieceNumber;
-
-            for (int i = 0; i < currentPiece.prevCoordinates.GetLength(0); i++)
-            {
-                int x = currentPiece.prevCoordinates[i, 0];
-                int y = currentPiece.prevCoordinates[i, 1];
-
-                grid[x, y] = 0;
-            }
-
+            
             for (int i = 0; i < coordinates.GetLength(0); i++)
             {
                 int x = coordinates[i, 0];
                 int y = coordinates[i, 1];
-
-                grid[x, y] = pieceNumber;
+                Console.WriteLine("x : " + x);
+                Console.WriteLine("y : " + y);
+                if (y < 20)
+                {
+                    grid[x, y] = pieceNumber;
+                }
             }
         }
         

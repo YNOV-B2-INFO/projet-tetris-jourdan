@@ -18,7 +18,7 @@ namespace WindowsFormsApp1
         private Pieces currentPiece;
         private bool runing = false;
         private bool playedOnce = false;
-        int[,] grid = new int[20, 10];
+        int[,] grid = new int[10, 20];
 
         Utils utils = new Utils();
 
@@ -100,13 +100,23 @@ namespace WindowsFormsApp1
             //capture left arrow key
             if (keyData == Keys.Left)
             {
+                utils.DisplayGridGraphics(currentPiece, grid, pictureBox1);
+                currentPiece.prevCoordinates = currentPiece.coordinates;
+                utils.RemovePrevCoordinates(currentPiece, grid);
                 currentPiece.GoLeft();
+                utils.UpdateGrid(currentPiece, grid);
+                this.Refresh();
                 return true;
             }
             //capture right arrow key
             if (keyData == Keys.Right)
             {
+                utils.DisplayGridGraphics(currentPiece, grid, pictureBox1);
+                currentPiece.prevCoordinates = currentPiece.coordinates;
+                utils.RemovePrevCoordinates(currentPiece, grid);
                 currentPiece.GoRight();
+                utils.UpdateGrid(currentPiece, grid);
+                this.Refresh();
                 return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
@@ -129,12 +139,16 @@ namespace WindowsFormsApp1
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
+            refresh(); 
+        }
+
+        private void refresh()
+        {
             utils.DisplayGridGraphics(currentPiece, grid, pictureBox1);
             currentPiece.prevCoordinates = currentPiece.coordinates;
-            currentPiece.DisplayPrevCoordinates();
             utils.RemovePrevCoordinates(currentPiece, grid);
             currentPiece.GoDown();
-            currentPiece.DisplayCoordinates();
+            Console.WriteLine("CA RENTRE");
             utils.UpdateGrid(currentPiece, grid);
             this.Refresh();
         }
