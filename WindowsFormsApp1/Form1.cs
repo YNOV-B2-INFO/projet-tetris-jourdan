@@ -144,16 +144,20 @@ namespace WindowsFormsApp1
 
         private void refresh()
         {
-            utils.DisplayGridGraphics(currentPiece, grid, pictureBox1);
-            currentPiece.prevCoordinates = currentPiece.coordinates;
             if (!currentPiece.PossibleGoDown())
             {
                 Run();
             }
+            else
+            {
+            utils.DisplayGridGraphics(currentPiece, grid, pictureBox1);
+            currentPiece.prevCoordinates = currentPiece.coordinates;
+            
             utils.RemovePrevCoordinates(currentPiece, grid);
             currentPiece.GoDown();
             utils.UpdateGrid(currentPiece, grid);
             this.Refresh();
+            }
         }
     }
 }
