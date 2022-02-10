@@ -39,11 +39,11 @@ namespace WindowsFormsApp1
             }
         }
 
-        private bool PossibleGoDown()
+        public bool PossibleGoDown()
         {
             for (int i = 0; i < coordinates.GetLength(0); i++)
             {
-                if (coordinates[i, 1] + 1 > 20)
+                if (coordinates[i, 1] + 1 >= 20)
                 {
                     return false;
                 }
@@ -83,7 +83,7 @@ namespace WindowsFormsApp1
                 {
                     coordinates[i, 1] += 1;
                 }
-            }
+            } 
         }
 
         public void GoRight()

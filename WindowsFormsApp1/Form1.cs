@@ -146,9 +146,12 @@ namespace WindowsFormsApp1
         {
             utils.DisplayGridGraphics(currentPiece, grid, pictureBox1);
             currentPiece.prevCoordinates = currentPiece.coordinates;
+            if (!currentPiece.PossibleGoDown())
+            {
+                Run();
+            }
             utils.RemovePrevCoordinates(currentPiece, grid);
             currentPiece.GoDown();
-            Console.WriteLine("CA RENTRE");
             utils.UpdateGrid(currentPiece, grid);
             this.Refresh();
         }

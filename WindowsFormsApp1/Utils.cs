@@ -84,17 +84,11 @@ namespace WindowsFormsApp1
         public void RemovePrevCoordinates(Pieces currentPiece, int[,] grid)
         {
             int[,] prevCoordinates = currentPiece.prevCoordinates;
-
-
             for (int i = 0; i < prevCoordinates.GetLength(0); i++)
             {
                 int x = prevCoordinates[i, 0];
                 int y = prevCoordinates[i, 1];
-
-                if (y < 19)
-                {
-                    grid[x, y] = 0;
-                }
+                 grid[x, y] = 0;
             }
         }
 
