@@ -66,13 +66,12 @@ namespace WindowsFormsApp1
         public void UpdateGrid(Pieces currentPiece, int[,] grid)
         {
             int[,] coordinates = currentPiece.coordinates;
-            int[,] prevCoordinates = currentPiece.prevCoordinates;
             int pieceNumber = currentPiece.pieceNumber;
 
-            for (int i = 0; i < prevCoordinates.GetLength(0); i++)
+            for (int i = 0; i < currentPiece.prevCoordinates.GetLength(0); i++)
             {
-                int x = prevCoordinates[i, 0];
-                int y = prevCoordinates[i, 1];
+                int x = currentPiece.prevCoordinates[i, 0];
+                int y = currentPiece.prevCoordinates[i, 1];
 
                 grid[x, y] = 0;
             }
@@ -83,6 +82,20 @@ namespace WindowsFormsApp1
                 int y = coordinates[i, 1];
 
                 grid[x, y] = pieceNumber;
+            }
+        }
+        
+        public void RemovePrevCoordinates(Pieces currentPiece, int[,] grid)
+        {
+            int[,] prevCoordinates = currentPiece.prevCoordinates;
+
+
+            for (int i = 0; i < prevCoordinates.GetLength(0); i++)
+            {
+                int x = prevCoordinates[i, 0];
+                int y = prevCoordinates[i, 1];
+
+                grid[x, y] = 0;
             }
         }
 
@@ -97,23 +110,6 @@ namespace WindowsFormsApp1
                 Console.WriteLine();
             }
         }
-
-        public void DisplayPieceGraphics(Pieces currentPiece, PictureBox pictureBox1)
-        {
-            Bitmap draw = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            Graphics canvas = Graphics.FromImage(draw);
-            int[,] coordinates = currentPiece.coordinates;
-            System.Drawing.SolidBrush myBrush = currentPiece.color;
-
-
-            for (int i = 0; i < coordinates.GetLength(0); i++)
-            {
-                canvas.FillRectangle(myBrush, coordinates[i, 1] * 32, coordinates[i, 0] * 32, 32, 32);
-                pictureBox1.Image = draw;
-            }
-        }
-
-
 
         public void DisplayGridGraphics(Pieces currentPiece, int[,] grid, PictureBox pictureBox1)
         {
@@ -135,8 +131,6 @@ namespace WindowsFormsApp1
 
             
         }
-
-
 
         public System.Drawing.SolidBrush GenerateBrush()
         {

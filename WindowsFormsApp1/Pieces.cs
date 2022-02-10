@@ -9,8 +9,8 @@ namespace WindowsFormsApp1
     public abstract class Pieces
     {
         public abstract void CreateCoordinates(int x, System.Drawing.SolidBrush color);
-        public int[,] coordinates;
         public int[,] prevCoordinates;
+        public int[,] coordinates;
 
         public int pieceNumber;
         public System.Drawing.SolidBrush color;
@@ -79,14 +79,10 @@ namespace WindowsFormsApp1
         {
             if (PossibleGoDown())
             {
-                prevCoordinates = this.coordinates;
-                this.DisplayPrevCoordinates();
-
                 for (int i = 0; i < coordinates.GetLength(0); i++)
                 {
                     coordinates[i, 0] += 1;
                 }
-                this.DisplayCoordinates();
             }
         }
 
@@ -94,7 +90,6 @@ namespace WindowsFormsApp1
         {
             if (PossibleGoRight())
             {
-                prevCoordinates = coordinates;
                 for (int i = 0; i < coordinates.GetLength(0); i++)
                 {
                     coordinates[i, 1] += 1;
@@ -106,7 +101,6 @@ namespace WindowsFormsApp1
         {
             if (PossibleGoLeft())
             {
-                prevCoordinates = coordinates;
                 for (int i = 0; i < coordinates.GetLength(0); i++)
                 {
                     coordinates[i, 1] -= 1;

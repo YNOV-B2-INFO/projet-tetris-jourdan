@@ -31,17 +31,12 @@ namespace WindowsFormsApp1
 
         private async void Run()
         {
-            
             Random rand = new Random();
             int position = rand.Next(0, 9);
 
-
-            
             currentPiece = utils.CreatePieceObject();
             currentPiece.CreateCoordinates(position, utils.GenerateBrush());
             utils.AddPieceInGrid(currentPiece, grid);
-            //utils.DisplayGrid(grid)
-            
         }
 
         
@@ -141,13 +136,24 @@ namespace WindowsFormsApp1
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //utils.DisplayPieceGraphics(currentPiece, pictureBox1);
             utils.DisplayGridGraphics(currentPiece, grid, pictureBox1);
+
+
+
+            currentPiece.prevCoordinates = currentPiece.coordinates;
+
+
+
+
+
+
+            currentPiece.DisplayPrevCoordinates();
+            utils.RemovePrevCoordinates(currentPiece, grid);
             currentPiece.GoDown();
-            //currentPiece.DisplayPrevCoordinates();
-            //currentPiece.DisplayCoordinates();
+            currentPiece.DisplayPrevCoordinates();
+
+
             utils.UpdateGrid(currentPiece, grid);
-            Console.WriteLine(currentPiece.coordinates);
             this.Refresh();
         }
     }
