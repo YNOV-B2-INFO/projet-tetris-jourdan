@@ -43,7 +43,7 @@ namespace WindowsFormsApp1
         {
             for (int i = 0; i < coordinates.GetLength(0); i++)
             {
-                if (coordinates[i, 0] + 1 > 20)
+                if (coordinates[i, 1] + 1 > 20)
                 {
                     return false;
                 }
@@ -55,7 +55,7 @@ namespace WindowsFormsApp1
         {
             for (int i = 0; i < coordinates.GetLength(0); i++)
             {
-                if (coordinates[i, 1] + 1 > 9)
+                if (coordinates[i, 0] + 1 > 9)
                 {
                     return false;
                 }
@@ -67,7 +67,7 @@ namespace WindowsFormsApp1
         {
             for (int i = 0; i < coordinates.GetLength(0); i++)
             {
-                if (coordinates[i, 1] - 1 < 0)
+                if (coordinates[i, 0] - 1 < 0)
                 {
                     return false;
                 }
@@ -81,7 +81,7 @@ namespace WindowsFormsApp1
             {
                 for (int i = 0; i < coordinates.GetLength(0); i++)
                 {
-                    coordinates[i, 0] += 1;
+                    coordinates[i, 1] += 1;
                 }
             }
         }
@@ -92,7 +92,7 @@ namespace WindowsFormsApp1
             {
                 for (int i = 0; i < coordinates.GetLength(0); i++)
                 {
-                    coordinates[i, 1] += 1;
+                    coordinates[i, 0] += 1;
                 }
             }
         }
@@ -103,7 +103,7 @@ namespace WindowsFormsApp1
             {
                 for (int i = 0; i < coordinates.GetLength(0); i++)
                 {
-                    coordinates[i, 1] -= 1;
+                    coordinates[i, 0] -= 1;
                 }
             }
         }
@@ -123,7 +123,7 @@ namespace WindowsFormsApp1
     {
         public override void CreateCoordinates(int x, System.Drawing.SolidBrush color)
         {
-            coordinates = new int[,] { { x, 0 }, { x, 1 }, { x, 2 }, { x + 1, 3} };
+            coordinates = new int[,] { { x, 0 }, { x, 1 }, { x, 2 }, { x + 1, 2} };
             this.color = color;
         }
     }
@@ -132,7 +132,7 @@ namespace WindowsFormsApp1
     {
         public override void CreateCoordinates(int x, System.Drawing.SolidBrush color)
         {
-            coordinates = new int[,] { { x, 0 }, { x + 1, 1 }, { x, 1 }, { x + 1, 1 } };
+            coordinates = new int[,] { { x, 0 }, { x + 1, 1 }, { x, 1 }, { x + 1, 0 } };
             this.color = color;
         }
     }
@@ -141,7 +141,7 @@ namespace WindowsFormsApp1
     {
         public override void CreateCoordinates(int x, System.Drawing.SolidBrush color)
         {
-            coordinates = new int[,] { { x + 1, 0 }, { x + 2 , 1 }, { x, 1 }, { x + 1, 1 } };
+            coordinates = new int[,] { { x, 0 }, { x , 1 }, { x + 1, 1 }, { x + 2, 1 } };
             this.color = color;
         }
 
@@ -151,7 +151,7 @@ namespace WindowsFormsApp1
     {
         public override void CreateCoordinates(int x, System.Drawing.SolidBrush color)
         {
-            coordinates = new int[,] { { x + 1, 1 }, { x, 0 }, { x + 1 , 0 }, { x + 2, 0 } };
+            coordinates = new int[,] { { x + 1, 0 }, { x, 1 }, { x + 1 , 1}, { x + 2, 1 } };
             this.color = color;
         }
         

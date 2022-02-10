@@ -91,7 +91,10 @@ namespace WindowsFormsApp1
                 int x = prevCoordinates[i, 0];
                 int y = prevCoordinates[i, 1];
 
-                grid[x, y] = 0;
+                if (y < 19)
+                {
+                    grid[x, y] = 0;
+                }
             }
         }
 
@@ -101,7 +104,7 @@ namespace WindowsFormsApp1
             {
                 for (int j = 0; j < grid.GetLength(1); j++)
                 {
-                    Console.Write(grid[i, j] + " ");
+                    Console.Write(grid[j, i] + " ");
                 }
                 Console.WriteLine();
             }
@@ -118,7 +121,7 @@ namespace WindowsFormsApp1
                 {
                     if (grid[i,j] != 0)
                     {
-                        canvas.FillRectangle(myBrush, j * 32, i * 32, 32, 32);
+                        canvas.FillRectangle(myBrush, i * 32, j * 32, 32, 32);
                     }
                 }
             }
