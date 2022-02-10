@@ -8,8 +8,10 @@ namespace WindowsFormsApp1
 {
     public abstract class Pieces
     {
-        public abstract void CreateCoordinates(int x, System.Drawing.SolidBrush color);
-        public int[,] coordinates;
+        public abstract void CreateCoordinates(int x, int y, System.Drawing.SolidBrush color);
+        public int[][,] coordinates;
+        public int[,] currentCoordinates;
+
         public int pieceNumber;
         public System.Drawing.SolidBrush color;
 
@@ -17,7 +19,7 @@ namespace WindowsFormsApp1
         {
             for (int i = 0; i < coordinates.GetLength(0); i++)
             {
-                if (coordinates[i, 0] + 1 > 20)
+                if (currentCoordinates[i, 0] + 1 > 20)
                 {
                     return false;
                 }
@@ -29,7 +31,7 @@ namespace WindowsFormsApp1
         {
             for (int i = 0; i < coordinates.GetLength(0); i++)
             {
-                if (coordinates[i, 1] + 1 > 9)
+                if (currentCoordinates[i, 1] + 1 > 9)
                 {
                     return false;
                 }
@@ -41,7 +43,7 @@ namespace WindowsFormsApp1
         {
             for (int i = 0; i < coordinates.GetLength(0); i++)
             {
-                if (coordinates[i, 1] - 1 < 0)
+                if (currentCoordinates[i, 1] - 1 < 0)
                 {
                     return false;
                 }
@@ -55,7 +57,7 @@ namespace WindowsFormsApp1
             {
                 for (int i = 0; i < coordinates.GetLength(0); i++)
                 {
-                    coordinates[i, 0] += 1;
+                    currentCoordinates[i, 0] += 1;
                 }
             }
         }
@@ -66,7 +68,7 @@ namespace WindowsFormsApp1
             {
                 for (int i = 0; i < coordinates.GetLength(0); i++)
                 {
-                    coordinates[i, 1] += 1;
+                    currentCoordinates[i, 1] += 1;
                 }
             }
         }
@@ -77,7 +79,7 @@ namespace WindowsFormsApp1
             {
                 for (int i = 0; i < coordinates.GetLength(0); i++)
                 {
-                    coordinates[i, 1] -= 1;
+                    currentCoordinates[i, 1] -= 1;
                 }
             }
         }
@@ -85,9 +87,43 @@ namespace WindowsFormsApp1
 
     public class One : Pieces
     {
-        public override void CreateCoordinates(int x, System.Drawing.SolidBrush color)
+        public override void CreateCoordinates(int x, int y, System.Drawing.SolidBrush color)
         {
-            coordinates = new int[,] { { 0, x }, { 1, x }, { 2, x }, { 3, x } };
+
+            coordinates = new int[][,]
+            {
+                new int[,]
+                {
+                    { x, y },
+                    { x, y+1 },
+                    { x, y+2 },
+                    { x, y+3 }
+                },
+                new int[,]
+                {
+                    { x-1, y+2 },
+                    { x, y+2 },
+                    { x+1, y+2 },
+                    { x+2, y+2 }
+                },
+                new int[,]
+                {
+                    { x+1, y },
+                    { x+1, y+1 },
+                    { x+1, y+2 },
+                    { x+1, y+3 }
+                },
+                new int[,]
+                {
+                    { x-1, y+1 },
+                    { x, y+1 },
+                    { x+1, y+1 },
+                    { x+2, y+1 }
+                }
+            };
+            currentCoordinates = coordinates[0];
+
+
             this.color = color;
         }
 
@@ -95,27 +131,120 @@ namespace WindowsFormsApp1
 
     public class L : Pieces
     {
-        public override void CreateCoordinates(int x, System.Drawing.SolidBrush color)
+        public override void CreateCoordinates(int x, int y, System.Drawing.SolidBrush color)
         {
-            coordinates = new int[,] { { 0, x }, { 1, x }, { 2, x }, { 2, x + 1 } };
+            coordinates = new int[][,]
+            {
+                new int[,]
+                {
+                    { x, y },
+                    { x, y+1 },
+                    { x, y+2 },
+                    { x+1, y+2 }
+                },
+                new int[,]
+                {
+                    { x, y },
+                    { x, y+1 },
+                    { x+1, y },
+                    { x+2, y }
+                },
+                new int[,]
+                {
+                    { x+1, y },
+                    { x+2, y },
+                    { x+3, y+1 },
+                    { x+3, y+2 }
+                },
+                new int[,]
+                {
+                    { x, y+2 },
+                    { x+1, y+2 },
+                    { x+2, y+2 },
+                    { x+2, y+1 }
+                }
+            };
+            currentCoordinates = coordinates[0];
             this.color = color;
         }
     }
 
     public class R : Pieces
     {
-        public override void CreateCoordinates(int x, System.Drawing.SolidBrush color)
+        public override void CreateCoordinates(int x, int y, System.Drawing.SolidBrush color)
         {
-            coordinates = new int[,] { { 0, x }, { 0, x + 1 }, { 1, x }, { 1, x + 1 } };
+            coordinates = new int[][,]
+            {
+                new int[,]
+                {
+                    { x, y },
+                    { x, y+1 },
+                    { x+1, y },
+                    { x+1, y+1 }
+                },
+                new int[,]
+                {
+                    { x, y },
+                    { x, y+1 },
+                    { x+1, y },
+                    { x+1, y+1 }
+                },
+                new int[,]
+                {
+                    { x, y },
+                    { x, y+1 },
+                    { x+1, y },
+                    { x+1, y+1 }
+                },
+                new int[,]
+                {
+                    { x, y },
+                    { x, y+1 },
+                    { x+1, y },
+                    { x+1, y+1 }
+                }
+            };
+            currentCoordinates = coordinates[0];
             this.color = color;
         }
     }
 
     public class S : Pieces
     {
-        public override void CreateCoordinates(int x, System.Drawing.SolidBrush color)
+        public override void CreateCoordinates(int x, int y, System.Drawing.SolidBrush color)
         {
-            coordinates = new int[,] { { 0, x + 1 }, { 0, x + 2 }, { 1, x }, { 1, x + 1 } };
+            coordinates = new int[][,]
+            {
+                new int[,]
+                {
+                    { x, y },
+                    { x, y+1 },
+                    { x+1, y+1 },
+                    { x+1, y+2 }
+                },
+                new int[,]
+                {
+                    { x+1, y },
+                    { x+2, y },
+                    { x, y+1 },
+                    { x+1, y+1 }
+                },
+                new int[,]
+                {
+                    { x, y },
+                    { x, y+1 },
+                    { x+1, y+1 },
+                    { x+1, y+2 }
+                },
+                new int[,]
+                {
+                    { x+1, y },
+                    { x+2, y },
+                    { x, y+1 },
+                    { x+1, y+1 }
+                }
+            };
+            currentCoordinates = coordinates[0];
             this.color = color;
         }
 
@@ -123,12 +252,43 @@ namespace WindowsFormsApp1
 
     public class T : Pieces
     {
-        public override void CreateCoordinates(int x, System.Drawing.SolidBrush color)
+        public override void CreateCoordinates(int x, int y, System.Drawing.SolidBrush color)
         {
-            coordinates = new int[,] { { 1, x + 1 }, { 0, x }, { 0, x + 1 }, { 0, x + 2 } };
+            coordinates = new int[][,]
+            {
+                new int[,]
+                {
+                    { x+1, y },
+                    { x, y+1 },
+                    { x+1, y+1 },
+                    { x+2, y+1 }
+                },
+                new int[,]
+                {
+                    { x+1, y },
+                    { x+1, y+1 },
+                    { x+1, y+2 },
+                    { x+2, y+1 }
+                },
+                new int[,]
+                {
+                    { x+1, y+2 },
+                    { x, y+1 },
+                    { x+1, y+1 },
+                    { x+2, y+1 }
+                },
+                new int[,]
+                {
+                    { x+1, y },
+                    { x+1, y+1 },
+                    { x+1, y+2 },
+                    { x, y+1 }
+                }
+            };
+            currentCoordinates = coordinates[0];
             this.color = color;
         }
-        
+
     }
 
 }

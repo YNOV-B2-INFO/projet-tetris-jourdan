@@ -13,11 +13,14 @@ using System.Windows.Media.Imaging;
 
 namespace WindowsFormsApp1
 { 
+
     public partial class Form1 : Form
     {
         private Pieces currentPiece;
         private bool runing = false;
         private bool playedOnce = false;
+        int[,] grid = new int[20, 10];
+
 
         Utils utils = new Utils();
 
@@ -30,14 +33,13 @@ namespace WindowsFormsApp1
 
         private async void Run()
         {
-            int[,] grid = new int[20, 10];
             Random rand = new Random();
             int position = rand.Next(0, 9);
 
 
             
             currentPiece = utils.CreatePieceObject();
-            currentPiece.CreateCoordinates(position, utils.GenerateBrush());
+            currentPiece.CreateCoordinates(position, 0, utils.GenerateBrush());
             utils.AddPieceInGrid(currentPiece, grid);
             //utils.DisplayGrid(grid)
             
@@ -137,12 +139,42 @@ namespace WindowsFormsApp1
         {
 
         }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
-            utils.DisplayPieceGraphics(currentPiece, pictureBox1);
+            DisplayGridTerminal(grid);
+            utils.DisplayGrid(grid,currentPiece, pictureBox1);
             currentPiece.GoDown();
+            UpdateGrid();
             this.Refresh();
+        
         }
+        private void UpdateGrid()
+        {
+            int[,] coordinates = currentPiece.currentCoordinates;
+            int pieceNumber = currentPiece.pieceNumber;
+
+            for (int i = 0; i < currentPiece.coordinates.GetLength(0); i++)
+            {
+               int x = coordinates[i, 0];
+               int y = coordinates[i, 1];
+
+                grid[x, y] = pieceNumber;
+                
+            }
+        }
+        public void DisplayGridTerminal(int[,] grid)
+        {
+            for (int i = 0; i < grid.GetLength(0); i++)
+            {
+                for (int j = 0; j < grid.GetLength(1); j++)
+                {
+                    Console.Write(grid[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+            Console.WriteLine();
+        }
+
     }
 }

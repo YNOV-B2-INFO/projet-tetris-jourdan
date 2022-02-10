@@ -51,42 +51,36 @@ namespace WindowsFormsApp1
 
         public void AddPieceInGrid(Pieces currentPiece, int[,] grid)
         {
-            int[,] coordinates = currentPiece.coordinates;
+            int[,] coordinates = currentPiece.currentCoordinates;
             int pieceNumber = currentPiece.pieceNumber;
 
             for (int i = 0; i < coordinates.GetLength(0); i++)
             {
-                int x = coordinates[i, 0];
-                int y = coordinates[i, 1];
+                int x = coordinates[i, 1];
+                int y = coordinates[i, 0];
 
                 grid[x, y] = pieceNumber;
             }
         }
 
-        public void DisplayGrid(int[,] grid)
+        public void DisplayGrid(int[,] grid, Pieces currentPiece, PictureBox pictureBox1)
         {
+            Bitmap draw = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            Graphics canvas = Graphics.FromImage(draw);
+            int[,] coordinates = currentPiece.currentCoordinates;
+            System.Drawing.SolidBrush myBrush = currentPiece.color;
+
             for (int i = 0; i < grid.GetLength(0); i++)
             {
                 for (int j = 0; j < grid.GetLength(1); j++)
                 {
-                    Console.Write(grid[i, j] + " ");
+                    if (grid[i,j] != 0)
+                    {
+                        canvas.FillRectangle(myBrush, i * 32,j * 32, 32, 32);
+                        pictureBox1.Image = draw;
+                    }
                 }
-                Console.WriteLine();
-            }
-        }
 
-        public void DisplayPieceGraphics(Pieces currentPiece, PictureBox pictureBox1)
-        {
-            Bitmap draw = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            Graphics canvas = Graphics.FromImage(draw);
-            int[,] coordinates = currentPiece.coordinates;
-            System.Drawing.SolidBrush myBrush = currentPiece.color;
-
-
-            for (int i = 0; i < coordinates.GetLength(0); i++)
-            {
-                canvas.FillRectangle(myBrush, coordinates[i, 1] * 32, coordinates[i, 0] * 32, 32, 32);
-                pictureBox1.Image = draw;
             }
         }
 
