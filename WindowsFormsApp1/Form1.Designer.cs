@@ -31,6 +31,7 @@ namespace WindowsFormsApp1
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.QuitBtn = new System.Windows.Forms.Button();
             this.OptionBtn = new System.Windows.Forms.Button();
             this.PlayBtn = new System.Windows.Forms.Button();
@@ -40,10 +41,10 @@ namespace WindowsFormsApp1
             // 
             // QuitBtn
             // 
-            this.QuitBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(39)))), ((int)(((byte)(42)))));
+            this.QuitBtn.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.QuitBtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.QuitBtn.Location = new System.Drawing.Point(620, 858);
-            this.QuitBtn.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.QuitBtn.Location = new System.Drawing.Point(779, 555);
+            this.QuitBtn.Margin = new System.Windows.Forms.Padding(6);
             this.QuitBtn.Name = "QuitBtn";
             this.QuitBtn.Size = new System.Drawing.Size(205, 70);
             this.QuitBtn.TabIndex = 3;
@@ -53,10 +54,10 @@ namespace WindowsFormsApp1
             // 
             // OptionBtn
             // 
-            this.OptionBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(39)))), ((int)(((byte)(42)))));
+            this.OptionBtn.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.OptionBtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.OptionBtn.Location = new System.Drawing.Point(620, 709);
-            this.OptionBtn.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.OptionBtn.Location = new System.Drawing.Point(779, 389);
+            this.OptionBtn.Margin = new System.Windows.Forms.Padding(6);
             this.OptionBtn.Name = "OptionBtn";
             this.OptionBtn.Size = new System.Drawing.Size(205, 70);
             this.OptionBtn.TabIndex = 4;
@@ -66,10 +67,10 @@ namespace WindowsFormsApp1
             // 
             // PlayBtn
             // 
-            this.PlayBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(39)))), ((int)(((byte)(42)))));
+            this.PlayBtn.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.PlayBtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.PlayBtn.Location = new System.Drawing.Point(620, 550);
-            this.PlayBtn.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.PlayBtn.Location = new System.Drawing.Point(779, 230);
+            this.PlayBtn.Margin = new System.Windows.Forms.Padding(6);
             this.PlayBtn.Name = "PlayBtn";
             this.PlayBtn.Size = new System.Drawing.Size(205, 70);
             this.PlayBtn.TabIndex = 5;
@@ -80,10 +81,10 @@ namespace WindowsFormsApp1
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Location = new System.Drawing.Point(22, 131);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBox1.Location = new System.Drawing.Point(75, 15);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(587, 1122);
+            this.pictureBox1.Size = new System.Drawing.Size(565, 872);
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
@@ -92,12 +93,15 @@ namespace WindowsFormsApp1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(847, 1386);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(1743, 923);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.PlayBtn);
             this.Controls.Add(this.OptionBtn);
             this.Controls.Add(this.QuitBtn);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ForeColor = System.Drawing.SystemColors.Control;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -137,7 +141,7 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Button QuitBtn;
         private System.Windows.Forms.Button OptionBtn;
         private System.Windows.Forms.Button PlayBtn;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private PictureBox pictureBox1;
     }
 }
 

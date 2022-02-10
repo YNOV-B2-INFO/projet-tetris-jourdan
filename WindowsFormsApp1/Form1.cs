@@ -30,5 +30,6 @@ namespace WindowsFormsApp1
             e.Graphics.FillRectangle(Brushes.Black, 40, 40, 50, 20);
             e.Graphics.FillRectangle(Brushes.Black, 40, 40, 20, 50);
         }
+
     }
 }
