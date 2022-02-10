@@ -22,7 +22,6 @@ namespace WindowsFormsApp1
 
         Utils utils = new Utils();
 
-
         public Form1()
         {
             this.KeyPreview = true;
@@ -39,15 +38,10 @@ namespace WindowsFormsApp1
             utils.AddPieceInGrid(currentPiece, grid);
         }
 
-        
-
-
         private void Form1_Load(object sender, EventArgs e)
         {
 
         }
-
-        
 
         private void PlayBtn_Click_1(object sender, EventArgs e)
         {
@@ -118,7 +112,6 @@ namespace WindowsFormsApp1
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-
         private void Form1_Paint(object sender, PaintEventArgs e)
         {            
             
@@ -134,25 +127,14 @@ namespace WindowsFormsApp1
 
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void Timer1_Tick(object sender, EventArgs e)
         {
             utils.DisplayGridGraphics(currentPiece, grid, pictureBox1);
-
-
-
             currentPiece.prevCoordinates = currentPiece.coordinates;
-
-
-
-
-
-
             currentPiece.DisplayPrevCoordinates();
             utils.RemovePrevCoordinates(currentPiece, grid);
             currentPiece.GoDown();
-            currentPiece.DisplayPrevCoordinates();
-
-
+            currentPiece.DisplayCoordinates();
             utils.UpdateGrid(currentPiece, grid);
             this.Refresh();
         }
