@@ -126,9 +126,6 @@ namespace WindowsFormsApp1
                 }
             }
             pictureBox1.Image = draw;
-
-
-            
         }
 
         public System.Drawing.SolidBrush GenerateBrush()
