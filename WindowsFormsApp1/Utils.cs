@@ -63,6 +63,29 @@ namespace WindowsFormsApp1
             }
         }
 
+        public void UpdateGrid(Pieces currentPiece, int[,] grid)
+        {
+            int[,] coordinates = currentPiece.coordinates;
+            int[,] prevCoordinates = currentPiece.prevCoordinates;
+            int pieceNumber = currentPiece.pieceNumber;
+
+            for (int i = 0; i < prevCoordinates.GetLength(0); i++)
+            {
+                int x = prevCoordinates[i, 0];
+                int y = prevCoordinates[i, 1];
+
+                grid[x, y] = 0;
+            }
+
+            for (int i = 0; i < coordinates.GetLength(0); i++)
+            {
+                int x = coordinates[i, 0];
+                int y = coordinates[i, 1];
+
+                grid[x, y] = pieceNumber;
+            }
+        }
+
         public void DisplayGrid(int[,] grid)
         {
             for (int i = 0; i < grid.GetLength(0); i++)
@@ -89,6 +112,31 @@ namespace WindowsFormsApp1
                 pictureBox1.Image = draw;
             }
         }
+
+
+
+        public void DisplayGridGraphics(Pieces currentPiece, int[,] grid, PictureBox pictureBox1)
+        {
+            System.Drawing.SolidBrush myBrush = currentPiece.color;
+            Bitmap draw = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            Graphics canvas = Graphics.FromImage(draw);
+            for (int i = 0; i < grid.GetLength(0); i++)
+            {
+                for (int j = 0; j < grid.GetLength(1); j++)
+                {
+                    if (grid[i,j] != 0)
+                    {
+                        canvas.FillRectangle(myBrush, j * 32, i * 32, 32, 32);
+                    }
+                }
+            }
+            pictureBox1.Image = draw;
+
+
+            
+        }
+
+
 
         public System.Drawing.SolidBrush GenerateBrush()
         {

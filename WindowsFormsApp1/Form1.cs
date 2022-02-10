@@ -18,6 +18,7 @@ namespace WindowsFormsApp1
         private Pieces currentPiece;
         private bool runing = false;
         private bool playedOnce = false;
+        int[,] grid = new int[20, 10];
 
         Utils utils = new Utils();
 
@@ -30,7 +31,7 @@ namespace WindowsFormsApp1
 
         private async void Run()
         {
-            int[,] grid = new int[20, 10];
+            
             Random rand = new Random();
             int position = rand.Next(0, 9);
 
@@ -140,8 +141,13 @@ namespace WindowsFormsApp1
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            utils.DisplayPieceGraphics(currentPiece, pictureBox1);
+            //utils.DisplayPieceGraphics(currentPiece, pictureBox1);
+            utils.DisplayGridGraphics(currentPiece, grid, pictureBox1);
             currentPiece.GoDown();
+            //currentPiece.DisplayPrevCoordinates();
+            //currentPiece.DisplayCoordinates();
+            utils.UpdateGrid(currentPiece, grid);
+            Console.WriteLine(currentPiece.coordinates);
             this.Refresh();
         }
     }
