@@ -54,29 +54,33 @@ namespace WindowsFormsApp1
             int[,] coordinates = currentPiece.currentCoordinates;
             int pieceNumber = currentPiece.pieceNumber;
 
+            Console.WriteLine("----------coordinates when create piece----------");
             for (int i = 0; i < coordinates.GetLength(0); i++)
             {
+
                 int x = coordinates[i, 1];
                 int y = coordinates[i, 0];
-
+                Console.WriteLine("x = " + x + " y = " + y);
                 grid[x, y] = pieceNumber;
             }
+                Console.WriteLine("");
         }
 
         public void DisplayGrid(int[,] grid, Pieces currentPiece, PictureBox pictureBox1)
         {
             Bitmap draw = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             Graphics canvas = Graphics.FromImage(draw);
-            int[,] coordinates = currentPiece.currentCoordinates;
             System.Drawing.SolidBrush myBrush = currentPiece.color;
 
+            Console.WriteLine("----------coordinates when piece created----------");
             for (int i = 0; i < grid.GetLength(0); i++)
             {
                 for (int j = 0; j < grid.GetLength(1); j++)
                 {
                     if (grid[i,j] != 0)
                     {
-                        canvas.FillRectangle(myBrush, i * 32,j * 32, 32, 32);
+                        Console.WriteLine("i = " + i + " j = " + j);
+                        canvas.FillRectangle(myBrush, j * 32,i * 32, 32, 32);
                         pictureBox1.Image = draw;
                     }
                 }
@@ -109,4 +113,6 @@ namespace WindowsFormsApp1
             return myBrush;
         }
     }
+
+
 }

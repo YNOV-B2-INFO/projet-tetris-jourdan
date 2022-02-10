@@ -31,7 +31,7 @@ namespace WindowsFormsApp1
             InitializeComponent();
         }
 
-        private async void Run()
+        private void Run()
         {
             Random rand = new Random();
             int position = rand.Next(0, 9);
@@ -141,7 +141,7 @@ namespace WindowsFormsApp1
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
-            DisplayGridTerminal(grid);
+            //DisplayGridTerminal(grid);
             utils.DisplayGrid(grid,currentPiece, pictureBox1);
             currentPiece.GoDown();
             UpdateGrid();

@@ -42,10 +42,9 @@
             // 
             this.QuitBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(39)))), ((int)(((byte)(42)))));
             this.QuitBtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.QuitBtn.Location = new System.Drawing.Point(715, 597);
-            this.QuitBtn.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.QuitBtn.Location = new System.Drawing.Point(390, 323);
             this.QuitBtn.Name = "QuitBtn";
-            this.QuitBtn.Size = new System.Drawing.Size(205, 70);
+            this.QuitBtn.Size = new System.Drawing.Size(112, 38);
             this.QuitBtn.TabIndex = 3;
             this.QuitBtn.Text = "QUIT";
             this.QuitBtn.UseVisualStyleBackColor = false;
@@ -55,10 +54,9 @@
             // 
             this.OptionBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(39)))), ((int)(((byte)(42)))));
             this.OptionBtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.OptionBtn.Location = new System.Drawing.Point(715, 448);
-            this.OptionBtn.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.OptionBtn.Location = new System.Drawing.Point(390, 243);
             this.OptionBtn.Name = "OptionBtn";
-            this.OptionBtn.Size = new System.Drawing.Size(205, 70);
+            this.OptionBtn.Size = new System.Drawing.Size(112, 38);
             this.OptionBtn.TabIndex = 4;
             this.OptionBtn.Text = "OPTION";
             this.OptionBtn.UseVisualStyleBackColor = false;
@@ -68,10 +66,9 @@
             // 
             this.PlayBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(39)))), ((int)(((byte)(42)))));
             this.PlayBtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.PlayBtn.Location = new System.Drawing.Point(715, 289);
-            this.PlayBtn.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.PlayBtn.Location = new System.Drawing.Point(390, 157);
             this.PlayBtn.Name = "PlayBtn";
-            this.PlayBtn.Size = new System.Drawing.Size(205, 70);
+            this.PlayBtn.Size = new System.Drawing.Size(112, 38);
             this.PlayBtn.TabIndex = 5;
             this.PlayBtn.Text = "PLAY";
             this.PlayBtn.UseVisualStyleBackColor = false;
@@ -81,10 +78,9 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(58, 43);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBox1.Location = new System.Drawing.Point(32, 23);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(567, 801);
+            this.pictureBox1.Size = new System.Drawing.Size(320, 320);
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_1);
@@ -96,16 +92,16 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1359, 901);
+            this.ClientSize = new System.Drawing.Size(741, 488);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.PlayBtn);
             this.Controls.Add(this.OptionBtn);
             this.Controls.Add(this.QuitBtn);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);

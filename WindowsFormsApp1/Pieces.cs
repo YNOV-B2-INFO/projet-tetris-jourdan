@@ -98,7 +98,7 @@ namespace WindowsFormsApp1
                     { x, y+1 },
                     { x, y+2 },
                     { x, y+3 }
-                },
+                }/*,
                 new int[,]
                 {
                     { x-1, y+2 },
@@ -119,7 +119,7 @@ namespace WindowsFormsApp1
                     { x, y+1 },
                     { x+1, y+1 },
                     { x+2, y+1 }
-                }
+                }*/
             };
             currentCoordinates = coordinates[0];
 
@@ -141,7 +141,7 @@ namespace WindowsFormsApp1
                     { x, y+1 },
                     { x, y+2 },
                     { x+1, y+2 }
-                },
+                }/*,
                 new int[,]
                 {
                     { x, y },
@@ -162,7 +162,7 @@ namespace WindowsFormsApp1
                     { x+1, y+2 },
                     { x+2, y+2 },
                     { x+2, y+1 }
-                }
+                }*/
             };
             currentCoordinates = coordinates[0];
             this.color = color;
@@ -181,7 +181,7 @@ namespace WindowsFormsApp1
                     { x, y+1 },
                     { x+1, y },
                     { x+1, y+1 }
-                },
+                }/*,
                 new int[,]
                 {
                     { x, y },
@@ -202,7 +202,7 @@ namespace WindowsFormsApp1
                     { x, y+1 },
                     { x+1, y },
                     { x+1, y+1 }
-                }
+                }*/
             };
             currentCoordinates = coordinates[0];
             this.color = color;
@@ -221,7 +221,7 @@ namespace WindowsFormsApp1
                     { x, y+1 },
                     { x+1, y+1 },
                     { x+1, y+2 }
-                },
+                }/*,
                 new int[,]
                 {
                     { x+1, y },
@@ -242,7 +242,7 @@ namespace WindowsFormsApp1
                     { x+2, y },
                     { x, y+1 },
                     { x+1, y+1 }
-                }
+                }*/
             };
             currentCoordinates = coordinates[0];
             this.color = color;
@@ -262,7 +262,7 @@ namespace WindowsFormsApp1
                     { x, y+1 },
                     { x+1, y+1 },
                     { x+2, y+1 }
-                },
+                }/*,
                 new int[,]
                 {
                     { x+1, y },
@@ -283,7 +283,7 @@ namespace WindowsFormsApp1
                     { x+1, y+1 },
                     { x+1, y+2 },
                     { x, y+1 }
-                }
+                }*/
             };
             currentCoordinates = coordinates[0];
             this.color = color;
