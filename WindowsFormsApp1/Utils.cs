@@ -90,13 +90,57 @@ namespace WindowsFormsApp1
             }
         }
 
+        public bool LineIsFull(int[,] grid)
+        {
+            for (int i = 0; i < grid.GetLength(0); i++)
+            {
+                if (CheckLine(grid,i))
+                {
+                    Console.WriteLine("LINE IS FULL");
+                    RemoveLine(grid,i);
+                }
+            }
+            return true;
+        }
+
+        public bool CheckLine(int[,] grid, int y)
+        {
+            for (int j = 0; j < grid.GetLength(1); j++)
+            {
+                if (grid[y, j] == 0)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public void RemoveLine(int[,] grid, int line)
+        {
+            for (int j = 0; j < grid.GetLength(1); j++)
+            {
+                grid[line, j] = 0;
+            }
+            for (int i = line; i < 0; i--)
+            {
+                for (int j = 0; j < grid.GetLength(1); j++)
+                {
+                    grid[i, j] = grid[i - 1, j];
+                }
+            }
+            for (int j = 0; j < grid.GetLength(1); j++)
+            {
+                grid[0, j] = 0;
+            }
+        }
+
         public void DisplayGrid(int[,] grid)
         {
             for (int i = 0; i < grid.GetLength(0); i++)
             {
                 for (int j = 0; j < grid.GetLength(1); j++)
                 {
-                    Console.Write(grid[j, i] + " ");
+                    Console.Write(grid[i, j] + " ");
                 }
                 Console.WriteLine();
             }
@@ -107,6 +151,7 @@ namespace WindowsFormsApp1
             System.Drawing.SolidBrush myBrush = currentPiece.color;
             Bitmap draw = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             Graphics canvas = Graphics.FromImage(draw);
+
             for (int i = 0; i < grid.GetLength(0); i++)
             {
                 for (int j = 0; j < grid.GetLength(1); j++)

@@ -91,7 +91,7 @@ namespace WindowsFormsApp1
                 int x = coordinates[i, 0];
                 if (y == previousY && y < 19)
                 {
-                    hitbox.Add(new int[] { x, y + 1 });
+                    hitbox.Add(new int[] { x, y + 1});
                 }
             }
             return hitbox;

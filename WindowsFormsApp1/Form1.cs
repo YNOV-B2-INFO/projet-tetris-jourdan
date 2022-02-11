@@ -18,7 +18,7 @@ namespace WindowsFormsApp1
         private Pieces currentPiece;
         private bool runing = false;
         private bool playedOnce = false;
-        int[,] grid = new int[10, 20];
+        int[,] grid = new int[20, 10];
 
         Utils utils = new Utils();
 
@@ -150,12 +150,14 @@ namespace WindowsFormsApp1
             }
             else
             {
-            utils.DisplayGridGraphics(currentPiece, grid, pictureBox1);
-            currentPiece.prevCoordinates = currentPiece.coordinates;
-            utils.RemovePrevCoordinates(currentPiece, grid);
-            currentPiece.GoDown(grid);
-            utils.UpdateGrid(currentPiece, grid);
-            this.Refresh();
+                utils.DisplayGridGraphics(currentPiece, grid, pictureBox1);
+                currentPiece.prevCoordinates = currentPiece.coordinates;
+                utils.RemovePrevCoordinates(currentPiece, grid);
+                currentPiece.GoDown(grid);
+                utils.UpdateGrid(currentPiece, grid);
+                utils.LineIsFull(grid);
+                utils.DisplayGrid(grid);
+                this.Refresh();
             }
         }
     }
