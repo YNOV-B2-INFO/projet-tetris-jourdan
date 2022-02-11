@@ -31,7 +31,7 @@ namespace WindowsFormsApp1
         private async void Run()
         {
             Random rand = new Random();
-            int position = rand.Next(0, 9);
+            int position = rand.Next(4, 6);
 
             currentPiece = utils.CreatePieceObject();
             currentPiece.CreateCoordinates(position, utils.GenerateBrush());
