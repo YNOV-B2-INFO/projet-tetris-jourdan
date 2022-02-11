@@ -72,8 +72,6 @@ namespace WindowsFormsApp1
             {
                 int x = coordinates[i, 0];
                 int y = coordinates[i, 1];
-                Console.WriteLine("x : " + x);
-                Console.WriteLine("y : " + y);
                 if (y < 20)
                 {
                     grid[x, y] = pieceNumber;
@@ -88,7 +86,7 @@ namespace WindowsFormsApp1
             {
                 int x = prevCoordinates[i, 0];
                 int y = prevCoordinates[i, 1];
-                 grid[x, y] = 0;
+                grid[x, y] = 0;
             }
         }
 

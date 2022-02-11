@@ -23,7 +23,7 @@ namespace WindowsFormsApp1
                 int x = coordinates[i, 0];
                 int y = coordinates[i, 1];
 
-                Console.WriteLine("x = " + x + " y = " +  y);
+                Console.WriteLine("x = " + x + " y = " + y);
             }
         }
 
@@ -39,8 +39,9 @@ namespace WindowsFormsApp1
             }
         }
 
-        public bool PossibleGoDown()
+       /*public bool PossibleGoDown(int[,] grid)
         {
+            List<int[]> hitbox = getHitbox();
             for (int i = 0; i < coordinates.GetLength(0); i++)
             {
                 if (coordinates[i, 1] + 1 >= 20)
@@ -49,7 +50,53 @@ namespace WindowsFormsApp1
                 }
             }
             return true;
+        }*/
+        
+        public bool PossibleGoDown(int[,] grid)
+        {
+            List<int[]> hitbox = getHitbox();
+            for (int i = 0; i < coordinates.GetLength(0); i++)
+            {
+                if (coordinates[i, 1] + 1 >= 20)
+                {
+                    return false;
+                }
+                foreach (int[] box in hitbox)
+                {
+                    if (grid[box[0], box[1]] != 0) 
+                    {
+                         return false;
+                    }
+                }
+            }
+            return true;
         }
+
+        private List<int[]> getHitbox()
+        {
+            List<int[]> hitbox = new List<int[]>();
+            int previousY = 0;
+
+            for (int i = 0; i < coordinates.GetLength(0); i++)
+            {
+                int y = coordinates[i, 1];
+                if (y > previousY)
+                {
+                    previousY = y;
+                }
+            }
+            for (int i = 0; i < coordinates.GetLength(0); i++)
+            {
+                int y = coordinates[i, 1];
+                int x = coordinates[i, 0];
+                if (y == previousY && y < 19)
+                {
+                    hitbox.Add(new int[] { x, y + 1 });
+                }
+            }
+            return hitbox;
+        }
+
 
         private bool PossibleGoRight()
         {
@@ -75,9 +122,9 @@ namespace WindowsFormsApp1
             return true;
         }
 
-        public void GoDown()
+        public void GoDown(int[,] grid)
         {
-            if (PossibleGoDown())
+            if (PossibleGoDown(grid))
             {
                 for (int i = 0; i < coordinates.GetLength(0); i++)
                 {

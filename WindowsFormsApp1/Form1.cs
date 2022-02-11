@@ -144,7 +144,7 @@ namespace WindowsFormsApp1
 
         private void refresh()
         {
-            if (!currentPiece.PossibleGoDown())
+            if (!currentPiece.PossibleGoDown(grid))
             {
                 Run();
             }
@@ -152,9 +152,8 @@ namespace WindowsFormsApp1
             {
             utils.DisplayGridGraphics(currentPiece, grid, pictureBox1);
             currentPiece.prevCoordinates = currentPiece.coordinates;
-            
             utils.RemovePrevCoordinates(currentPiece, grid);
-            currentPiece.GoDown();
+            currentPiece.GoDown(grid);
             utils.UpdateGrid(currentPiece, grid);
             this.Refresh();
             }
