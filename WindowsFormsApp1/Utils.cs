@@ -1,20 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System;
-using System.Threading;
-using static System.Drawing.Image;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Media.Imaging;
 
 namespace WindowsFormsApp1
 {
@@ -49,91 +35,6 @@ namespace WindowsFormsApp1
             return currentPiece;
         }
 
-        public void AddPieceInGrid(Pieces currentPiece, int[,] grid)
-        {
-            int[,] coordinates = currentPiece.coordinates;
-            int pieceNumber = currentPiece.pieceNumber;
-
-            for (int i = 0; i < coordinates.GetLength(0); i++)
-            {
-                int x = coordinates[i, 0];
-                int y = coordinates[i, 1];
-
-                grid[x, y] = pieceNumber;
-            }
-        }
-
-        public void UpdateGrid(Pieces currentPiece, int[,] grid)
-        {
-            int[,] coordinates = currentPiece.coordinates;
-            int pieceNumber = currentPiece.pieceNumber;
-            
-            for (int i = 0; i < coordinates.GetLength(0); i++)
-            {
-                int x = coordinates[i, 0];
-                int y = coordinates[i, 1];
-                if (y < 20)
-                {
-                    grid[x, y] = pieceNumber;
-                }
-            }
-        }
-        
-        public void RemovePrevCoordinates(Pieces currentPiece, int[,] grid)
-        {
-            int[,] prevCoordinates = currentPiece.prevCoordinates;
-            for (int i = 0; i < prevCoordinates.GetLength(0); i++)
-            {
-                int x = prevCoordinates[i, 0];
-                int y = prevCoordinates[i, 1];
-                grid[x, y] = 0;
-            }
-        }
-
-        public bool LineIsFull(int[,] grid)
-        {
-            for (int i = 0; i < grid.GetLength(0); i++)
-            {
-                if (CheckLine(grid,i))
-                {
-                    Console.WriteLine("LINE IS FULL");
-                    RemoveLine(grid,i);
-                }
-            }
-            return true;
-        }
-
-        public bool CheckLine(int[,] grid, int y)
-        {
-            for (int j = 0; j < grid.GetLength(1); j++)
-            {
-                if (grid[y, j] == 0)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        public void RemoveLine(int[,] grid, int line)
-        {
-            for (int j = 0; j < grid.GetLength(1); j++)
-            {
-                grid[line, j] = 0;
-            }
-            for (int i = line; i < 0; i--)
-            {
-                for (int j = 0; j < grid.GetLength(1); j++)
-                {
-                    grid[i, j] = grid[i - 1, j];
-                }
-            }
-            for (int j = 0; j < grid.GetLength(1); j++)
-            {
-                grid[0, j] = 0;
-            }
-        }
-
         public void DisplayGrid(int[,] grid)
         {
             for (int i = 0; i < grid.GetLength(0); i++)
@@ -152,17 +53,50 @@ namespace WindowsFormsApp1
             Bitmap draw = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             Graphics canvas = Graphics.FromImage(draw);
 
-            for (int i = 0; i < grid.GetLength(0); i++)
+            for (int y = 0; y < grid.GetLength(0); y++)
             {
-                for (int j = 0; j < grid.GetLength(1); j++)
+                for (int x = 0; x < grid.GetLength(1); x++)
                 {
-                    if (grid[i,j] != 0)
+                    if (grid[y,x] != 0)
                     {
-                        canvas.FillRectangle(myBrush, i * 32, j * 32, 32, 32);
+                        canvas.FillRectangle(myBrush, x * 32, y * 32, 32, 32);
                     }
                 }
             }
             pictureBox1.Image = draw;
+        }
+
+        public void Moove(string direction, Pieces currentPiece, Grid grid, PictureBox pictureBox1, Form form1)
+        {
+            switch (direction)
+            {
+                case "left":
+                    DisplayGridGraphics(currentPiece, grid.GetGrid(), pictureBox1);
+                    grid.RemovePrevCoordinates(currentPiece.coordinates);
+                    currentPiece.GoLeft();
+                    grid.SetPieceWithCoordinates(currentPiece.coordinates, currentPiece.pieceNumber);
+                    grid.TestAllLines();
+                    form1.Refresh();
+                    break;
+                case "right":
+                    DisplayGridGraphics(currentPiece, grid.GetGrid(), pictureBox1);
+                    grid.RemovePrevCoordinates(currentPiece.coordinates);
+                    currentPiece.GoRight();
+                    grid.SetPieceWithCoordinates(currentPiece.coordinates, currentPiece.pieceNumber);
+                    grid.TestAllLines();
+                    form1.Refresh();
+                    break;
+                case "down":
+                    DisplayGridGraphics(currentPiece, grid.GetGrid(), pictureBox1);
+                    grid.RemovePrevCoordinates(currentPiece.coordinates);
+                    currentPiece.GoDown(grid.GetGrid());
+                    grid.SetPieceWithCoordinates(currentPiece.coordinates, currentPiece.pieceNumber);
+                    grid.TestAllLines();
+                    form1.Refresh();
+                    break;
+                default:
+                    break;
+            }
         }
 
         public System.Drawing.SolidBrush GenerateBrush()

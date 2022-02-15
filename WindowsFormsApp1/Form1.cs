@@ -18,7 +18,8 @@ namespace WindowsFormsApp1
         private Pieces currentPiece;
         private bool runing = false;
         private bool playedOnce = false;
-        int[,] grid = new int[20, 10];
+        //int[,] grid = new int[20, 10];
+        private Grid grid = new Grid();
 
         Utils utils = new Utils();
 
@@ -28,14 +29,15 @@ namespace WindowsFormsApp1
             InitializeComponent();
         }
 
-        private async void Run()
+        private void CreateNewPiece()
         {
             Random rand = new Random();
             int position = rand.Next(4, 6);
 
             currentPiece = utils.CreatePieceObject();
             currentPiece.CreateCoordinates(position, utils.GenerateBrush());
-            utils.AddPieceInGrid(currentPiece, grid);
+            grid.SetPieceWithCoordinates(currentPiece.coordinates, currentPiece.pieceNumber);
+            //utils.AddPieceInGrid(currentPiece, grid);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -47,7 +49,7 @@ namespace WindowsFormsApp1
         {
             if (!playedOnce)
             {
-                Run();
+                CreateNewPiece();
                 playedOnce = true;
             }
 
@@ -100,23 +102,13 @@ namespace WindowsFormsApp1
             //capture left arrow key
             if (keyData == Keys.Left)
             {
-                utils.DisplayGridGraphics(currentPiece, grid, pictureBox1);
-                currentPiece.prevCoordinates = currentPiece.coordinates;
-                utils.RemovePrevCoordinates(currentPiece, grid);
-                currentPiece.GoLeft();
-                utils.UpdateGrid(currentPiece, grid);
-                this.Refresh();
+                utils.Moove("left", currentPiece, grid, pictureBox1, this);
                 return true;
             }
             //capture right arrow key
             if (keyData == Keys.Right)
             {
-                utils.DisplayGridGraphics(currentPiece, grid, pictureBox1);
-                currentPiece.prevCoordinates = currentPiece.coordinates;
-                utils.RemovePrevCoordinates(currentPiece, grid);
-                currentPiece.GoRight();
-                utils.UpdateGrid(currentPiece, grid);
-                this.Refresh();
+                utils.Moove("right", currentPiece, grid, pictureBox1, this);
                 return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
@@ -144,20 +136,13 @@ namespace WindowsFormsApp1
 
         private void refresh()
         {
-            if (!currentPiece.PossibleGoDown(grid))
+            if (!currentPiece.PossibleGoDown(grid.GetGrid()))
             {
-                Run();
+                CreateNewPiece();
             }
             else
             {
-                utils.DisplayGridGraphics(currentPiece, grid, pictureBox1);
-                currentPiece.prevCoordinates = currentPiece.coordinates;
-                utils.RemovePrevCoordinates(currentPiece, grid);
-                currentPiece.GoDown(grid);
-                utils.UpdateGrid(currentPiece, grid);
-                utils.LineIsFull(grid);
-                utils.DisplayGrid(grid);
-                this.Refresh();
+                utils.Moove("down", currentPiece, grid, pictureBox1, this);
             }
         }
     }
