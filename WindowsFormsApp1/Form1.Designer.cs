@@ -86,7 +86,7 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 500;
+            this.timer1.Interval = 300;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // Form1

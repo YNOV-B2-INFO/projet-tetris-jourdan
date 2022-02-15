@@ -10,18 +10,8 @@ public class Grid
         return grid;
     }
 
-    public void displayPrevCoord()
-    {
-        Console.WriteLine("----------prev coordinates----------");
-        for (int x = 0; x < this.prevCoordinates.GetLength(0); x++)
-        {
-            Console.WriteLine("x = " + this.prevCoordinates[x, 0] + " y = " + this.prevCoordinates[x, 1]);
-        }
-    }
-
     public void SetPieceWithCoordinates(int[,] coordinates, int pieceNumber)
     {
-        Console.WriteLine("----------set piece with coordinates----------");
         for (int i = 0; i < coordinates.GetLength(0); i++)
         {
             int x = coordinates[i, 0];
@@ -30,7 +20,6 @@ public class Grid
             this.grid[y, x] = pieceNumber;
         }
         this.prevCoordinates = coordinates;
-        this.displayPrevCoord();
     }
 
     private bool IsLineFull(int lineNumber)
@@ -53,7 +42,7 @@ public class Grid
             if (this.IsLineFull(y))
             {
                 Console.WriteLine("LINE IS FULL");
-                //del line here
+                DeleteLine(y);
             }
         }
         return true;
@@ -64,26 +53,36 @@ public class Grid
         //delete the line passed in parameter 
         //make all lines on top go down 
 
-        /*for (int j = 0; j < grid.GetLength(1); j++)
+        //del the full line
+        for (int j = 0; j < grid.GetLength(1); j++)
         {
-            grid[line, j] = 0;
+            grid[lineNumber, j] = 0;
         }
-        for (int i = line; i < 0; i--)
+        Console.Write("SUPPRIME TA MERE");
+        
+        //oon descend ce qui est au dessus de line number 
+        for (int i = lineNumber; i > 0; i--)
         {
+            Console.WriteLine(i);
             for (int j = 0; j < grid.GetLength(1); j++)
             {
                 grid[i, j] = grid[i - 1, j];
             }
         }
+        Console.Write("DESCEND TA MERE");
+
+
+        //delete the top line 
         for (int j = 0; j < grid.GetLength(1); j++)
         {
             grid[0, j] = 0;
-        }*/
+        }
+        Console.Write("SUPP PREMIERE TA MERE");
+
     }
-        
+
     public void RemovePrevCoordinates(int[,] coordinates)
     {
-        Console.WriteLine("----------remove prev coordinates----------");
         for (int i = 0; i < coordinates.GetLength(0); i++)
         {
             int x = coordinates[i, 0];

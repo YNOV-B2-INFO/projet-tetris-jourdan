@@ -59,19 +59,16 @@ namespace WindowsFormsApp1
             {
                 if (coordinates[i, 1] + 1 >= 20)
                 {
-                    Console.WriteLine("not possible 1");
                     return false;
                 }
                 foreach (int[] box in hitbox)
                 {
                     if (grid[box[1], box[0]] != 0) 
                     {
-                        Console.WriteLine("not possible 2");
                         return false;
                     }
                 }
             }
-            Console.WriteLine("possible");
             return true;
         }
 

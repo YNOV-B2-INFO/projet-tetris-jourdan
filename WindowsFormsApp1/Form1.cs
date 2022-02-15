@@ -131,10 +131,10 @@ namespace WindowsFormsApp1
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            refresh(); 
+            Refresh();
         }
 
-        private void refresh()
+        private void Refresh()
         {
             if (!currentPiece.PossibleGoDown(grid.GetGrid()))
             {
