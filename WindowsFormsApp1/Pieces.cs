@@ -8,7 +8,7 @@ namespace WindowsFormsApp1
 {
     public abstract class Pieces
     {
-        public abstract void CreateCoordinates(int x, int y, String orientation, System.Drawing.SolidBrush color);
+        public abstract void CreateCoordinates(int x, int y, String orientation);
         public int[,] prevCoordinates;
         public int[,] coordinates;
         public String orientation = "top";
@@ -168,7 +168,7 @@ namespace WindowsFormsApp1
                 newOrientation = allOrientations[Array.IndexOf(allOrientations, orientation) + 1];
             }
             orientation = newOrientation;
-            CreateCoordinates(x, y, newOrientation, this.color);
+            CreateCoordinates(x, y, newOrientation);
             
         }
 
@@ -191,7 +191,7 @@ namespace WindowsFormsApp1
 
     public class One : Pieces
     {
-        public override void CreateCoordinates(int x, int y, String orientation, System.Drawing.SolidBrush color)
+        public override void CreateCoordinates(int x, int y, String orientation)
         {
             switch (orientation)
             {
@@ -230,15 +230,15 @@ namespace WindowsFormsApp1
                         { x+2, y+1 }
                     };
                     break;
-                    this.color = color;
             }
+                    this.color = new System.Drawing.SolidBrush(System.Drawing.Color.Red);
         }
 
     }
 
     public class L : Pieces
     {
-        public override void CreateCoordinates(int x, int y, String orientation, System.Drawing.SolidBrush color)
+        public override void CreateCoordinates(int x, int y, String orientation)
         {
 
             switch (orientation)
@@ -264,9 +264,9 @@ namespace WindowsFormsApp1
                 case "bottom":
                     coordinates = new int[,] {
                         { x+1, y },
-                        { x+2, y },
-                        { x+3, y+1 },
-                        { x+3, y+2 }
+                        { x+1, y+1 },
+                        { x+1, y+2 },
+                        { x, y+2 }
                     };
                     break;
 
@@ -279,13 +279,13 @@ namespace WindowsFormsApp1
                     };
                     break;
             }
-            this.color = color;
+            this.color = new System.Drawing.SolidBrush(System.Drawing.Color.Blue);
         }
     }
 
     public class R : Pieces
     {
-        public override void CreateCoordinates(int x, int y, String orientation, System.Drawing.SolidBrush color)
+        public override void CreateCoordinates(int x, int y, String orientation)
         {
             switch (orientation)
             {
@@ -325,13 +325,13 @@ namespace WindowsFormsApp1
                     };
                     break;
             }
-            this.color = color;
+            this.color = new System.Drawing.SolidBrush(System.Drawing.Color.Green);
         }
     }
 
     public class S : Pieces
     {
-        public override void CreateCoordinates(int x, int y, String orientation, System.Drawing.SolidBrush color)
+        public override void CreateCoordinates(int x, int y, String orientation)
         {
             switch (orientation)
             {
@@ -370,56 +370,59 @@ namespace WindowsFormsApp1
                         { x+1, y+1 }
                     };
                     break;
-                    this.color = color;
             }
+            this.color = new System.Drawing.SolidBrush(System.Drawing.Color.Silver);
         }
 
     }
 
     public class T : Pieces
     {
-        public override void CreateCoordinates(int x, int y, String orientation, System.Drawing.SolidBrush color)
+        public override void CreateCoordinates(int x, int y, String orientation)
         {
             switch (orientation)
             {
                 case "top":
-                    coordinates = new int[,] {
-                        { x, y },
+                    coordinates = new int[,] 
+                    {
+                        { x+1, y },
                         { x, y+1 },
                         { x+1, y+1 },
-                        { x+1, y+2 }
+                        { x+2, y+1 }
                     };
                     break;
 
                 case "right":
-                    coordinates = new int[,] {
+                    coordinates = new int[,] 
+                    {
                         { x+1, y },
-                        { x+2, y },
-                        { x, y+1 },
-                        { x+1, y+1 }
+                        { x+1, y+1 },
+                        { x+1, y+2 },
+                        { x+2, y+1 }
                     };
                     break;
 
                 case "bottom":
-                    coordinates = new int[,] {
-                        { x, y },
+                    coordinates = new int[,] 
+                    {
+                        { x+1, y+2 },
                         { x, y+1 },
                         { x+1, y+1 },
-                        { x+1, y+2 }
+                        { x+2, y+1 }
                     };
                     break;
 
                 case "left":
-                    coordinates = new int[,] {
+                    coordinates = new int[,] 
+                    {
                         { x+1, y },
-                        { x+2, y },
-                        { x, y+1 },
-                        { x+1, y+1 }
+                        { x+1, y+1 },
+                        { x+1, y+2 },
+                        { x, y+1 }
                     };
                     break;
-                    this.color = color;
             }
+            this.color = new System.Drawing.SolidBrush(System.Drawing.Color.Purple);
         }
-        
     }
 }

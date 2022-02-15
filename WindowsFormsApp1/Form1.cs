@@ -18,8 +18,8 @@ namespace WindowsFormsApp1
         private Pieces currentPiece;
         private bool runing = false;
         private bool playedOnce = false;
-        //int[,] grid = new int[20, 10];
         private Grid grid = new Grid();
+
 
         Utils utils = new Utils();
 
@@ -35,9 +35,8 @@ namespace WindowsFormsApp1
             int position = rand.Next(4, 6);
 
             currentPiece = utils.CreatePieceObject();
-            currentPiece.CreateCoordinates(position, 0, "top", utils.GenerateBrush());
+            currentPiece.CreateCoordinates(position, 0, "top");
             grid.SetPieceWithCoordinates(currentPiece.coordinates, currentPiece.pieceNumber);
-            //utils.AddPieceInGrid(currentPiece, grid);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -139,6 +138,9 @@ namespace WindowsFormsApp1
             if (!currentPiece.PossibleGoDown(grid.GetGrid()))
             {
                 CreateNewPiece();
+                grid.TestAllLines();
+                utils.DisplayGrid(grid.GetGrid());
+                this.Refresh();
             }
             else
             {

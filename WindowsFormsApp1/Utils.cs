@@ -49,17 +49,36 @@ namespace WindowsFormsApp1
 
         public void DisplayGridGraphics(Pieces currentPiece, int[,] grid, PictureBox pictureBox1)
         {
-            System.Drawing.SolidBrush myBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Red);
+            System.Drawing.SolidBrush myBrush = currentPiece.color;
             Bitmap draw = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             Graphics canvas = Graphics.FromImage(draw);
+            System.Drawing.SolidBrush[] allBrushes = new System.Drawing.SolidBrush[]
+            {
+                new System.Drawing.SolidBrush(System.Drawing.Color.Red),
+                new System.Drawing.SolidBrush(System.Drawing.Color.Blue),
+                new System.Drawing.SolidBrush(System.Drawing.Color.Green),
+                new System.Drawing.SolidBrush(System.Drawing.Color.Yellow),
+                new System.Drawing.SolidBrush(System.Drawing.Color.DeepPink)
+            };
+
+
 
             for (int y = 0; y < grid.GetLength(0); y++)
             {
                 for (int x = 0; x < grid.GetLength(1); x++)
                 {
+                    switch (grid[y, x])
+                    {
+                        case 0:
+                            break;
+                        case 1:
+
+                        default:
+                            break;
+                    }
                     if (grid[y,x] != 0)
                     {
-                        canvas.FillRectangle(myBrush, x * 32, y * 32, 32, 32);
+                        canvas.FillRectangle(allBrushes[grid[y,x]], x * 32, y * 32, 32, 32);
                     }
                 }
             }
@@ -75,7 +94,6 @@ namespace WindowsFormsApp1
                     grid.RemovePrevCoordinates(currentPiece.coordinates);
                     currentPiece.GoLeft();
                     grid.SetPieceWithCoordinates(currentPiece.coordinates, currentPiece.pieceNumber);
-                    grid.TestAllLines();
                     form1.Refresh();
                     break;
                 case "right":
@@ -83,7 +101,6 @@ namespace WindowsFormsApp1
                     grid.RemovePrevCoordinates(currentPiece.coordinates);
                     currentPiece.GoRight();
                     grid.SetPieceWithCoordinates(currentPiece.coordinates, currentPiece.pieceNumber);
-                    grid.TestAllLines();
                     form1.Refresh();
                     break;
                 case "down":
@@ -91,7 +108,6 @@ namespace WindowsFormsApp1
                     grid.RemovePrevCoordinates(currentPiece.coordinates);
                     currentPiece.GoDown(grid.GetGrid());
                     grid.SetPieceWithCoordinates(currentPiece.coordinates, currentPiece.pieceNumber);
-                    grid.TestAllLines();
                     form1.Refresh();
                     break;
                 case "rotate":
@@ -100,37 +116,11 @@ namespace WindowsFormsApp1
                     currentPiece.Rotate();
                     currentPiece.CheckBorder();
                     grid.SetPieceWithCoordinates(currentPiece.coordinates, currentPiece.pieceNumber);
-                    grid.TestAllLines();
                     form1.Refresh();
                     break;
                 default:
                     break;
             }
-        }
-
-        public System.Drawing.SolidBrush GenerateBrush()
-        {
-            Random random = new Random();
-            int nbr = random.Next(1, 4);
-
-
-            System.Drawing.SolidBrush myBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Transparent);
-            switch (nbr)
-            {
-                case 1:
-                    myBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Red);
-                    break;
-                case 2:
-                    myBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);
-                    break;
-                case 3:
-                    myBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Blue);
-                    break;
-                case 4:
-                    myBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Green);
-                    break;
-            }
-            return myBrush;
         }
     }
 }
