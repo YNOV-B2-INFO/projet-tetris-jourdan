@@ -143,10 +143,9 @@ namespace WindowsFormsApp1
 
         public void Rotate()
         {
-            
             int x = coordinates[0, 0];
             int y = coordinates[0, 1];
-            String[] allOrientations = new String[] {"top", "right", "bottom", "left"};
+            String[] allOrientations = new String[] { "top", "right", "bottom", "left" };
 
             for (int i = 0; i < coordinates.GetLength(0); i++)
             {
@@ -161,15 +160,32 @@ namespace WindowsFormsApp1
                 }
             }
             String newOrientation;
-            if (Array.IndexOf(allOrientations, orientation) + 1 > allOrientations.Length)
+            if (orientation == "left")
             {
                 newOrientation = allOrientations[0];
             } else
             {
                 newOrientation = allOrientations[Array.IndexOf(allOrientations, orientation) + 1];
             }
+            orientation = newOrientation;
             CreateCoordinates(x, y, newOrientation, this.color);
             
+        }
+
+        public void CheckBorder()
+        {
+            int x = coordinates[0, 0];
+            for (int i = 0; i < coordinates.GetLength(0); i++)
+            {
+                if (coordinates[i, 0] > 0)
+                {
+                    x = coordinates[i, 0];
+                }
+            }
+            if (x > 9)
+            {
+                this.GoLeft();
+            }
         }
     }
 

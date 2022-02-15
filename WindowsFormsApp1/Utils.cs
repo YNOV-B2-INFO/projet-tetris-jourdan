@@ -13,7 +13,7 @@ namespace WindowsFormsApp1
             int pieceNumber = rand.Next(1, 5);
             switch (pieceNumber)
             {
-                case 0:
+                case 5:
                     currentPiece = new One();
                     break;
                 case 1:
@@ -59,7 +59,6 @@ namespace WindowsFormsApp1
                 {
                     if (grid[y,x] != 0)
                     {
-                        DisplayGrid(grid);
                         canvas.FillRectangle(myBrush, x * 32, y * 32, 32, 32);
                     }
                 }
@@ -99,6 +98,7 @@ namespace WindowsFormsApp1
                     DisplayGridGraphics(currentPiece, grid.GetGrid(), pictureBox1);
                     grid.RemovePrevCoordinates(currentPiece.coordinates);
                     currentPiece.Rotate();
+                    currentPiece.CheckBorder();
                     grid.SetPieceWithCoordinates(currentPiece.coordinates, currentPiece.pieceNumber);
                     grid.TestAllLines();
                     form1.Refresh();
