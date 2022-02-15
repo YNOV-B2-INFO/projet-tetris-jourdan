@@ -165,6 +165,37 @@ namespace WindowsFormsApp1
                 { x, 2 }, 
                 { x, 3 } 
             };
+
+            /*coordinates = new int[][,]
+            {
+                new int[,]
+                {
+                    { x, y },
+                    { x, y+1 },
+                    { x, y+2 },
+                    { x, y+3 }
+                },
+                new int[,]
+                {
+                    { x-1, y+2 },
+                    { x, y+2 },
+                    { x+1, y+2 },
+                    { x+2, y+2 }
+                },
+                new int[,]
+                {
+                    { x+1, y },
+                    { x+1, y+1 },
+                    { x+1, y+2 },
+                    { x+1, y+3 }
+                },
+                new int[,]
+                {
+                    { x-1, y+1 },
+                    { x, y+1 },
+                    { x+1, y+1 },
+                    { x+2, y+1 }
+                }*/
             this.color = color;
         }
 
@@ -180,6 +211,37 @@ namespace WindowsFormsApp1
                 { x, 2 }, 
                 { x + 1, 2} 
             };
+
+            /*coordinates = new int[][,]
+            {
+                new int[,]
+                {
+                    { x, y },
+                    { x, y+1 },
+                    { x, y+2 },
+                    { x+1, y+2 }
+                },
+                new int[,]
+                {
+                    { x, y },
+                    { x, y+1 },
+                    { x+1, y },
+                    { x+2, y }
+                },
+                new int[,]
+                {
+                    { x+1, y },
+                    { x+2, y },
+                    { x+3, y+1 },
+                    { x+3, y+2 }
+                },
+                new int[,]
+                {
+                    { x, y+2 },
+                    { x+1, y+2 },
+                    { x+2, y+2 },
+                    { x+2, y+1 }
+                }*/
             this.color = color;
         }
     }
@@ -194,6 +256,34 @@ namespace WindowsFormsApp1
                 { x, 1 }, 
                 { x + 1, 0 } 
             };
+            /*new int[,]
+                {
+                    { x, y },
+                    { x, y+1 },
+                    { x+1, y },
+                    { x+1, y+1 }
+                },
+                new int[,]
+                {
+                    { x, y },
+                    { x, y+1 },
+                    { x+1, y },
+                    { x+1, y+1 }
+                },
+                new int[,]
+                {
+                    { x, y },
+                    { x, y+1 },
+                    { x+1, y },
+                    { x+1, y+1 }
+                },
+                new int[,]
+                {
+                    { x, y },
+                    { x, y+1 },
+                    { x+1, y },
+                    { x+1, y+1 }
+                }*/
             this.color = color;
         }
     }
@@ -208,6 +298,36 @@ namespace WindowsFormsApp1
                 { x + 1, 1 }, 
                 { x + 2, 1 } 
             };
+            /*coordinates = new int[][,]
+            {
+                new int[,]
+                {
+                    { x, y },
+                    { x, y+1 },
+                    { x+1, y+1 },
+                    { x+1, y+2 }
+                },
+                new int[,]
+                {
+                    { x+1, y },
+                    { x+2, y },
+                    { x, y+1 },
+                    { x+1, y+1 }
+                },
+                new int[,]
+                {
+                    { x, y },
+                    { x, y+1 },
+                    { x+1, y+1 },
+                    { x+1, y+2 }
+                },
+                new int[,]
+                {
+                    { x+1, y },
+                    { x+2, y },
+                    { x, y+1 },
+                    { x+1, y+1 }
+                }*/
             this.color = color;
         }
 
@@ -223,6 +343,36 @@ namespace WindowsFormsApp1
                 { x + 1 , 1}, 
                 { x + 2, 1 } 
             };
+            /*coordinates = new int[][,]
+            {
+                new int[,]
+                {
+                    { x, y },
+                    { x, y+1 },
+                    { x+1, y+1 },
+                    { x+1, y+2 }
+                },
+                new int[,]
+                {
+                    { x+1, y },
+                    { x+2, y },
+                    { x, y+1 },
+                    { x+1, y+1 }
+                },
+                new int[,]
+                {
+                    { x, y },
+                    { x, y+1 },
+                    { x+1, y+1 },
+                    { x+1, y+2 }
+                },
+                new int[,]
+                {
+                    { x+1, y },
+                    { x+2, y },
+                    { x, y+1 },
+                    { x+1, y+1 }
+                }*/
             this.color = color;
         }
         
