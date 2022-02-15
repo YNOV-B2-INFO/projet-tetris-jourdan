@@ -8,10 +8,10 @@ namespace WindowsFormsApp1
 {
     public abstract class Pieces
     {
-        public abstract void CreateCoordinates(int x, System.Drawing.SolidBrush color);
+        public abstract void CreateCoordinates(int x, int y, String orientation, System.Drawing.SolidBrush color);
         public int[,] prevCoordinates;
         public int[,] coordinates;
-
+        public String orientation = "top";
         public int pieceNumber;
         public System.Drawing.SolidBrush color;
 
@@ -38,20 +38,6 @@ namespace WindowsFormsApp1
                 Console.WriteLine("x = " + x + " y = " + y);
             }
         }
-
-       /*public bool PossibleGoDown(int[,] grid)
-        {
-            List<int[]> hitbox = getHitbox();
-            for (int i = 0; i < coordinates.GetLength(0); i++)
-            {
-                if (coordinates[i, 1] + 1 >= 20)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }*/
-        
         public bool PossibleGoDown(int[,] grid)
         {
             List<int[]> hitbox = getHitbox();
@@ -63,7 +49,7 @@ namespace WindowsFormsApp1
                 }
                 foreach (int[] box in hitbox)
                 {
-                    if (grid[box[1], box[0]] != 0) 
+                    if (grid[box[1], box[0]] != 0)
                     {
                         return false;
                     }
@@ -91,7 +77,7 @@ namespace WindowsFormsApp1
                 int x = coordinates[i, 0];
                 if (y == previousY && y < 19)
                 {
-                    hitbox.Add(new int[] { x, y + 1});
+                    hitbox.Add(new int[] { x, y + 1 });
                 }
             }
             return hitbox;
@@ -130,7 +116,7 @@ namespace WindowsFormsApp1
                 {
                     coordinates[i, 1] += 1;
                 }
-            } 
+            }
         }
 
         public void GoRight()
@@ -154,228 +140,270 @@ namespace WindowsFormsApp1
                 }
             }
         }
+
+        public void Rotate()
+        {
+            
+            int x = coordinates[0, 0];
+            int y = coordinates[0, 1];
+            String[] allOrientations = new String[] {"top", "right", "bottom", "left"};
+
+            for (int i = 0; i < coordinates.GetLength(0); i++)
+            {
+                if ((coordinates[i, 1] < y))
+                {
+                    y = coordinates[i, 1];
+                }
+
+                if ((coordinates[i, 0] < x))
+                {
+                    x = coordinates[i, 0];
+                }
+            }
+            String newOrientation;
+            if (Array.IndexOf(allOrientations, orientation) + 1 > allOrientations.Length)
+            {
+                newOrientation = allOrientations[0];
+            } else
+            {
+                newOrientation = allOrientations[Array.IndexOf(allOrientations, orientation) + 1];
+            }
+            CreateCoordinates(x, y, newOrientation, this.color);
+            
+        }
     }
 
     public class One : Pieces
     {
-        public override void CreateCoordinates(int x, System.Drawing.SolidBrush color)
+        public override void CreateCoordinates(int x, int y, String orientation, System.Drawing.SolidBrush color)
         {
-            coordinates = new int[,] { 
-                { x, 0 }, { x, 1 }, 
-                { x, 2 }, 
-                { x, 3 } 
-            };
-
-            /*coordinates = new int[][,]
+            switch (orientation)
             {
-                new int[,]
-                {
-                    { x, y },
-                    { x, y+1 },
-                    { x, y+2 },
-                    { x, y+3 }
-                },
-                new int[,]
-                {
-                    { x-1, y+2 },
-                    { x, y+2 },
-                    { x+1, y+2 },
-                    { x+2, y+2 }
-                },
-                new int[,]
-                {
-                    { x+1, y },
-                    { x+1, y+1 },
-                    { x+1, y+2 },
-                    { x+1, y+3 }
-                },
-                new int[,]
-                {
-                    { x-1, y+1 },
-                    { x, y+1 },
-                    { x+1, y+1 },
-                    { x+2, y+1 }
-                }*/
-            this.color = color;
+                case "top":
+                    coordinates = new int[,] {
+                        { x, y },
+                        { x, y+1 },
+                        { x, y+2 },
+                        { x, y+3 }
+                    };
+                    break;
+
+                case "right":
+                    coordinates = new int[,] {
+                        { x-1, y+2 },
+                        { x, y+2 },
+                        { x+1, y+2 },
+                        { x+2, y+2 }
+                    };
+                    break;
+
+                case "bottom":
+                    coordinates = new int[,] {
+                       { x+1, y },
+                        { x+1, y+1 },
+                        { x+1, y+2 },
+                        { x+1, y+3 }
+                    };
+                    break;
+
+                case "left":
+                    coordinates = new int[,] {
+                        { x-1, y+1 },
+                        { x, y+1 },
+                        { x+1, y+1 },
+                        { x+2, y+1 }
+                    };
+                    break;
+                    this.color = color;
+            }
         }
 
     }
 
     public class L : Pieces
     {
-        public override void CreateCoordinates(int x, System.Drawing.SolidBrush color)
+        public override void CreateCoordinates(int x, int y, String orientation, System.Drawing.SolidBrush color)
         {
-            coordinates = new int[,] { 
-                { x, 0 }, 
-                { x, 1 }, 
-                { x, 2 }, 
-                { x + 1, 2} 
-            };
 
-            /*coordinates = new int[][,]
+            switch (orientation)
             {
-                new int[,]
-                {
-                    { x, y },
-                    { x, y+1 },
-                    { x, y+2 },
-                    { x+1, y+2 }
-                },
-                new int[,]
-                {
-                    { x, y },
-                    { x, y+1 },
-                    { x+1, y },
-                    { x+2, y }
-                },
-                new int[,]
-                {
-                    { x+1, y },
-                    { x+2, y },
-                    { x+3, y+1 },
-                    { x+3, y+2 }
-                },
-                new int[,]
-                {
-                    { x, y+2 },
-                    { x+1, y+2 },
-                    { x+2, y+2 },
-                    { x+2, y+1 }
-                }*/
+                case "top":
+                    coordinates = new int[,] {
+                        { x, y },
+                        { x, y+1 },
+                        { x, y+2 },
+                        { x+1, y+2 }
+                    };
+                    break;
+
+                case "right":
+                    coordinates = new int[,] {
+                        { x, y },
+                        { x, y+1 },
+                        { x+1, y },
+                        { x+2, y }
+                    };
+                    break;
+
+                case "bottom":
+                    coordinates = new int[,] {
+                        { x+1, y },
+                        { x+2, y },
+                        { x+3, y+1 },
+                        { x+3, y+2 }
+                    };
+                    break;
+
+                case "left":
+                    coordinates = new int[,] {
+                        { x, y+2 },
+                        { x+1, y+2 },
+                        { x+2, y+2 },
+                        { x+2, y+1 }
+                    };
+                    break;
+            }
             this.color = color;
         }
     }
 
     public class R : Pieces
     {
-        public override void CreateCoordinates(int x, System.Drawing.SolidBrush color)
+        public override void CreateCoordinates(int x, int y, String orientation, System.Drawing.SolidBrush color)
         {
-            coordinates = new int[,] { 
-                { x, 0 }, 
-                { x + 1, 1 }, 
-                { x, 1 }, 
-                { x + 1, 0 } 
-            };
-            /*new int[,]
-                {
-                    { x, y },
-                    { x, y+1 },
-                    { x+1, y },
-                    { x+1, y+1 }
-                },
-                new int[,]
-                {
-                    { x, y },
-                    { x, y+1 },
-                    { x+1, y },
-                    { x+1, y+1 }
-                },
-                new int[,]
-                {
-                    { x, y },
-                    { x, y+1 },
-                    { x+1, y },
-                    { x+1, y+1 }
-                },
-                new int[,]
-                {
-                    { x, y },
-                    { x, y+1 },
-                    { x+1, y },
-                    { x+1, y+1 }
-                }*/
+            switch (orientation)
+            {
+                case "top":
+                    coordinates = new int[,] {
+                        { x, y },
+                        { x, y+1 },
+                        { x+1, y },
+                        { x+1, y+1 }
+                    };
+                    break;
+
+                case "right":
+                    coordinates = new int[,] {
+                        { x, y },
+                        { x, y+1 },
+                        { x+1, y },
+                        { x+1, y+1 }
+                    };
+                    break;
+
+                case "bottom":
+                    coordinates = new int[,] {
+                        { x, y },
+                        { x, y+1 },
+                        { x+1, y },
+                        { x+1, y+1 }
+                    };
+                    break;
+
+                case "left":
+                    coordinates = new int[,] {
+                        { x, y },
+                        { x, y+1 },
+                        { x+1, y },
+                        { x+1, y+1 }
+                    };
+                    break;
+            }
             this.color = color;
         }
     }
 
     public class S : Pieces
     {
-        public override void CreateCoordinates(int x, System.Drawing.SolidBrush color)
+        public override void CreateCoordinates(int x, int y, String orientation, System.Drawing.SolidBrush color)
         {
-            coordinates = new int[,] { 
-                { x, 0 }, 
-                { x , 1 }, 
-                { x + 1, 1 }, 
-                { x + 2, 1 } 
-            };
-            /*coordinates = new int[][,]
+            switch (orientation)
             {
-                new int[,]
-                {
-                    { x, y },
-                    { x, y+1 },
-                    { x+1, y+1 },
-                    { x+1, y+2 }
-                },
-                new int[,]
-                {
-                    { x+1, y },
-                    { x+2, y },
-                    { x, y+1 },
-                    { x+1, y+1 }
-                },
-                new int[,]
-                {
-                    { x, y },
-                    { x, y+1 },
-                    { x+1, y+1 },
-                    { x+1, y+2 }
-                },
-                new int[,]
-                {
-                    { x+1, y },
-                    { x+2, y },
-                    { x, y+1 },
-                    { x+1, y+1 }
-                }*/
-            this.color = color;
+                case "top":
+                    coordinates = new int[,] {
+                        { x, y },
+                        { x, y+1 },
+                        { x+1, y+1 },
+                        { x+1, y+2 }
+                    };
+                    break;
+
+                case "right":
+                    coordinates = new int[,] {
+                        { x+1, y },
+                        { x+2, y },
+                        { x, y+1 },
+                        { x+1, y+1 }
+                    };
+                    break;
+
+                case "bottom":
+                    coordinates = new int[,] {
+                        { x, y },
+                        { x, y+1 },
+                        { x+1, y+1 },
+                        { x+1, y+2 }
+                    };
+                    break;
+
+                case "left":
+                    coordinates = new int[,] {
+                        { x+1, y },
+                        { x+2, y },
+                        { x, y+1 },
+                        { x+1, y+1 }
+                    };
+                    break;
+                    this.color = color;
+            }
         }
 
     }
 
     public class T : Pieces
     {
-        public override void CreateCoordinates(int x, System.Drawing.SolidBrush color)
+        public override void CreateCoordinates(int x, int y, String orientation, System.Drawing.SolidBrush color)
         {
-            coordinates = new int[,] { 
-                { x + 1, 0 }, 
-                { x, 1 }, 
-                { x + 1 , 1}, 
-                { x + 2, 1 } 
-            };
-            /*coordinates = new int[][,]
+            switch (orientation)
             {
-                new int[,]
-                {
-                    { x, y },
-                    { x, y+1 },
-                    { x+1, y+1 },
-                    { x+1, y+2 }
-                },
-                new int[,]
-                {
-                    { x+1, y },
-                    { x+2, y },
-                    { x, y+1 },
-                    { x+1, y+1 }
-                },
-                new int[,]
-                {
-                    { x, y },
-                    { x, y+1 },
-                    { x+1, y+1 },
-                    { x+1, y+2 }
-                },
-                new int[,]
-                {
-                    { x+1, y },
-                    { x+2, y },
-                    { x, y+1 },
-                    { x+1, y+1 }
-                }*/
-            this.color = color;
+                case "top":
+                    coordinates = new int[,] {
+                        { x, y },
+                        { x, y+1 },
+                        { x+1, y+1 },
+                        { x+1, y+2 }
+                    };
+                    break;
+
+                case "right":
+                    coordinates = new int[,] {
+                        { x+1, y },
+                        { x+2, y },
+                        { x, y+1 },
+                        { x+1, y+1 }
+                    };
+                    break;
+
+                case "bottom":
+                    coordinates = new int[,] {
+                        { x, y },
+                        { x, y+1 },
+                        { x+1, y+1 },
+                        { x+1, y+2 }
+                    };
+                    break;
+
+                case "left":
+                    coordinates = new int[,] {
+                        { x+1, y },
+                        { x+2, y },
+                        { x, y+1 },
+                        { x+1, y+1 }
+                    };
+                    break;
+                    this.color = color;
+            }
         }
         
     }
-
 }

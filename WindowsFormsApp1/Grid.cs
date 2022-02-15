@@ -90,4 +90,5 @@ public class Grid
             this.grid[y, x] = 0;
         }
     }
+
 }

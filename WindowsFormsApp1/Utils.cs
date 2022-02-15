@@ -49,7 +49,7 @@ namespace WindowsFormsApp1
 
         public void DisplayGridGraphics(Pieces currentPiece, int[,] grid, PictureBox pictureBox1)
         {
-            System.Drawing.SolidBrush myBrush = currentPiece.color;
+            System.Drawing.SolidBrush myBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Red);
             Bitmap draw = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             Graphics canvas = Graphics.FromImage(draw);
 
@@ -59,6 +59,7 @@ namespace WindowsFormsApp1
                 {
                     if (grid[y,x] != 0)
                     {
+                        DisplayGrid(grid);
                         canvas.FillRectangle(myBrush, x * 32, y * 32, 32, 32);
                     }
                 }
@@ -90,6 +91,14 @@ namespace WindowsFormsApp1
                     DisplayGridGraphics(currentPiece, grid.GetGrid(), pictureBox1);
                     grid.RemovePrevCoordinates(currentPiece.coordinates);
                     currentPiece.GoDown(grid.GetGrid());
+                    grid.SetPieceWithCoordinates(currentPiece.coordinates, currentPiece.pieceNumber);
+                    grid.TestAllLines();
+                    form1.Refresh();
+                    break;
+                case "rotate":
+                    DisplayGridGraphics(currentPiece, grid.GetGrid(), pictureBox1);
+                    grid.RemovePrevCoordinates(currentPiece.coordinates);
+                    currentPiece.Rotate();
                     grid.SetPieceWithCoordinates(currentPiece.coordinates, currentPiece.pieceNumber);
                     grid.TestAllLines();
                     form1.Refresh();

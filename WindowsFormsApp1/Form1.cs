@@ -35,7 +35,7 @@ namespace WindowsFormsApp1
             int position = rand.Next(4, 6);
 
             currentPiece = utils.CreatePieceObject();
-            currentPiece.CreateCoordinates(position, utils.GenerateBrush());
+            currentPiece.CreateCoordinates(position, 0, "top", utils.GenerateBrush());
             grid.SetPieceWithCoordinates(currentPiece.coordinates, currentPiece.pieceNumber);
             //utils.AddPieceInGrid(currentPiece, grid);
         }
@@ -87,7 +87,7 @@ namespace WindowsFormsApp1
             //capture up arrow key
             if (keyData == Keys.Up)
             {
-                Console.WriteLine("You pressed Up arrow key");
+                utils.Moove("rotate", currentPiece, grid, pictureBox1, this);
                 return true;
             }
             //capture down arrow key
