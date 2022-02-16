@@ -117,5 +117,8 @@
   <ItemGroup>
     <None Include="Resources\5586938%281%29%281%29.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Les Choristes - Vois sur ton chemin - Drill Remix %28Prod. Alpraz%29.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -83,7 +83,6 @@ namespace WindowsFormsApp1
             return hitbox;
         }
 
-
         private bool PossibleGoRight()
         {
             for (int i = 0; i < coordinates.GetLength(0); i++)

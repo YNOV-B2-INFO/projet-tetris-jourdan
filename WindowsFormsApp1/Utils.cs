@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-
+using System.Media;
 namespace WindowsFormsApp1
 {
     internal class Utils
@@ -122,6 +122,12 @@ namespace WindowsFormsApp1
                 default:
                     break;
             }
+        }
+
+        public void playSimpleSound()
+        {
+            SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.choriste);
+            simpleSound.PlayLooping();
         }
     }
 }

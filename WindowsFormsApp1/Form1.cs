@@ -59,6 +59,7 @@ namespace WindowsFormsApp1
             {
                 timer1.Start();
                 runing = true;
+                utils.playSimpleSound();
             }
             else
             {
