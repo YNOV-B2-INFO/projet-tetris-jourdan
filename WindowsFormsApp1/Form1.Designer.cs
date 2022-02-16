@@ -55,6 +55,7 @@
             // OptionBtn
             // 
             this.OptionBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(39)))), ((int)(((byte)(42)))));
+            this.OptionBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.OptionBtn.ForeColor = System.Drawing.SystemColors.Control;
             this.OptionBtn.Location = new System.Drawing.Point(499, 396);
             this.OptionBtn.Name = "OptionBtn";

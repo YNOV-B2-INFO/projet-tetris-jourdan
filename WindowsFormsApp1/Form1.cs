@@ -59,7 +59,6 @@ namespace WindowsFormsApp1
             {
                 timer1.Start();
                 runing = true;
-                utils.playSimpleSound();
             }
             else
             {
@@ -71,8 +70,10 @@ namespace WindowsFormsApp1
 
         private void OptionBtn_Click_1(object sender, EventArgs e)
         {
-            Console.WriteLine("You pressed OPTION btn");
-
+            timer1.Stop();
+            runing = false;
+            Form2 f2 = new Form2();
+            f2.ShowDialog();
         }
 
         private void QuitBtn_Click(object sender, EventArgs e)
