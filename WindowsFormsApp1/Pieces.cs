@@ -48,6 +48,8 @@ namespace WindowsFormsApp1
                 {
                     return false;
                 }
+
+                Console.WriteLine("-----hitbox is------");
                 foreach (int[] box in hitbox)
                 {
                     if (box[1] < 20)
@@ -97,93 +99,13 @@ namespace WindowsFormsApp1
             return hitbox;
         }
 
-        private List<int[]> getHitboxLeft()
-        {
-            List<int[]> hitbox = new List<int[]>();
-            List<int> allY = new List<int>();
-            allY.Add(coordinates[0, 1]);
-
-            for (int i = 1; i < coordinates.GetLength(0); i++)
-            {
-                if (coordinates[i, 1] != coordinates[i - 1, 1])
-                {
-                    allY.Add(coordinates[i, 1]);
-                }
-            }
-
-            foreach (var element in allY)
-            {
-
-                int lowerX = 9;
-                for (int i = coordinates.GetLength(0) - 1; i > 0; i--)
-                {
-                    int y = coordinates[i, 1];
-                    if (y == element)
-                    {
-                        int actualX = coordinates[i, 0];
-                        if (actualX < lowerX)
-                        {
-                            lowerX = actualX;
-                        }
-                    }
-                }
-                hitbox.Add(new int[] { element, lowerX - 1 });
-            }
-            return hitbox;
-        }
-
-        private List<int[]> getHitboxRight()
-        {
-            List<int[]> hitbox = new List<int[]>();
-            List<int> allY = new List<int>();
-            allY.Add(coordinates[0, 1]);
-
-            for (int i = 1; i < coordinates.GetLength(0); i++)
-            {
-                if (coordinates[i, 1] != coordinates[i - 1, 1])
-                {
-                    allY.Add(coordinates[i, 1]);
-                }
-            }
-
-            foreach (var element in allY)
-            {
-                int higherX = 0;
-                for (int i = 1; i < coordinates.GetLength(0); i++)
-                {
-                    int y = coordinates[i, 1];
-                    if (y == element)
-                    {
-                        int actualX = coordinates[i, 0];
-                        if (actualX > higherX)
-                        {
-                            higherX = actualX;
-                        }
-                    }
-                }
-                hitbox.Add(new int[] { element, higherX + 1 });
-            }
-            return hitbox;
-        }
-
         private bool PossibleGoRight(int[,] grid)
         {
-            List<int[]> hitbox = getHitboxRight();
             for (int i = 0; i < coordinates.GetLength(0); i++)
             {
                 if (coordinates[i, 0] + 1 > 9)
                 {
                     return false;
-                }
-                foreach (int[] box in hitbox)
-                {
-                    if (box[0] < 10)
-                    {
-                        if (grid[box[1], box[0]] != 0)
-                        {
-                            return false;
-                        }
-                    }
                 }
             }
             return true;
@@ -191,22 +113,11 @@ namespace WindowsFormsApp1
 
         private bool PossibleGoLeft(int[,] grid)
         {
-            List<int[]> hitbox = getHitboxLeft();
             for (int i = 0; i < coordinates.GetLength(0); i++)
             {
                 if (coordinates[i, 0] - 1 < 0)
                 {
                     return false;
-                }
-                foreach (int[] box in hitbox)
-                {
-                    if (box[0] < 10)
-                    {
-                        if (grid[box[1], box[0]] != 0)
-                        {
-                            return false;
-                        }
-                    }
                 }
             }
             return true;

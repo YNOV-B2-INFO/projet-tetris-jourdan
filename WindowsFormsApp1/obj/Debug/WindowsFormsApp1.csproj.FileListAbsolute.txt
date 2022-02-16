@@ -43,3 +43,4 @@ C:\Users\romai\source\repos\projet-tetris-jourdan\WindowsFormsApp1\obj\Debug\Win
 C:\Users\romai\source\repos\projet-tetris-jourdan\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
 C:\Users\romai\source\repos\projet-tetris-jourdan\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources
 C:\Users\louis\Documents\GitHub\projet-tetris-jourdan\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form2.resources
+C:\Users\romai\source\repos\projet-tetris-jourdan\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form2.resources

@@ -48,16 +48,10 @@ public class Grid
 
     public void DeleteLine(int lineNumber)
     {
-        //delete the line passed in parameter 
-        //make all lines on top go down 
-
-        //del the full line
         for (int j = 0; j < grid.GetLength(1); j++)
         {
             grid[lineNumber, j] = 0;
         }
-        
-        //oon descend ce qui est au dessus de line number 
         for (int i = lineNumber; i > 0; i--)
         {
             for (int j = 0; j < grid.GetLength(1); j++)
@@ -65,8 +59,6 @@ public class Grid
                 grid[i, j] = grid[i - 1, j];
             }
         }
-
-        //delete the top line 
         for (int j = 0; j < grid.GetLength(1); j++)
         {
             grid[0, j] = 0;
