@@ -43,6 +43,7 @@ namespace WindowsFormsApp1
         private void Form1_Load(object sender, EventArgs e)
         {
             pictureBox1.BackColor = Color.FromArgb(120, 127, 127, 127);
+            pictureBox2.BackColor = Color.FromArgb(120, 127, 127, 127);
 
         }
 
@@ -155,6 +156,11 @@ namespace WindowsFormsApp1
         private void label2_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+             
         }
     }
 }
