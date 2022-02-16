@@ -41,11 +41,13 @@ namespace WindowsFormsApp1
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            pictureBox1.BackColor = Color.FromArgb(120, 127, 127, 127);
 
         }
 
         private void PlayBtn_Click_1(object sender, EventArgs e)
         {
+
             if (!playedOnce)
             {
                 CreateNewPiece();
