@@ -93,14 +93,14 @@ namespace WindowsFormsApp1
                 case "left":
                     DisplayGridGraphics(currentPiece, grid.GetGrid(), pictureBox1);
                     grid.RemovePrevCoordinates(currentPiece.coordinates);
-                    currentPiece.GoLeft();
+                    currentPiece.GoLeft(grid.GetGrid());
                     grid.SetPieceWithCoordinates(currentPiece.coordinates, currentPiece.pieceNumber);
                     form1.Refresh();
                     break;
                 case "right":
                     DisplayGridGraphics(currentPiece, grid.GetGrid(), pictureBox1);
                     grid.RemovePrevCoordinates(currentPiece.coordinates);
-                    currentPiece.GoRight();
+                    currentPiece.GoRight(grid.GetGrid());
                     grid.SetPieceWithCoordinates(currentPiece.coordinates, currentPiece.pieceNumber);
                     form1.Refresh();
                     break;
@@ -115,7 +115,7 @@ namespace WindowsFormsApp1
                     DisplayGridGraphics(currentPiece, grid.GetGrid(), pictureBox1);
                     grid.RemovePrevCoordinates(currentPiece.coordinates);
                     currentPiece.Rotate();
-                    currentPiece.CheckBorder();
+                    currentPiece.CheckBorder(grid.GetGrid());
                     grid.SetPieceWithCoordinates(currentPiece.coordinates, currentPiece.pieceNumber);
                     form1.Refresh();
                     break;

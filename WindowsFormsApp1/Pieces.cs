@@ -41,7 +41,7 @@ namespace WindowsFormsApp1
 
         public bool PossibleGoDown(int[,] grid)
         {
-            List<int[]> hitbox = getHitbox();
+            List<int[]> hitbox = getHitboxDown();
             for (int i = 0; i < coordinates.GetLength(0); i++)
             {
                 if (coordinates[i, 1] + 1 >= 20)
@@ -62,22 +62,12 @@ namespace WindowsFormsApp1
             return true;
         }
 
-        private List<int[]> getHitbox()
+        private List<int[]> getHitboxDown()
         {
             List<int[]> hitbox = new List<int[]>();
             List<int> allX = new List<int>();
-
-                //parcourt ttes les cooord
-                //on les groupe par x 
-                //on garde le + grand y de chaque groupe 
-
-                //get les cooordonées de la piece 
-                //on crée une liste de x 
-                //pour chaque x, on recupere le y le + grand, on add x,y dans la liste hitbox
-
-                
-            //add tt les x différents dans allX
             allX.Add(coordinates[0, 0]);
+
             for (int i = 1; i < coordinates.GetLength(0); i++)
             {
                 if (coordinates[i, 0] != coordinates[i-1, 0])
@@ -104,32 +94,119 @@ namespace WindowsFormsApp1
                 }
                 hitbox.Add(new int[] {element, higherY + 1});
             }
-            /*foreach(var element in hitbox)
-            {
-                Console.WriteLine(element[0] + "       " + element[1]);
-            }*/
             return hitbox;
         }
 
-        private bool PossibleGoRight()
+        private List<int[]> getHitboxLeft()
         {
+            List<int[]> hitbox = new List<int[]>();
+            List<int> allY = new List<int>();
+            allY.Add(coordinates[0, 1]);
+
+            for (int i = 1; i < coordinates.GetLength(0); i++)
+            {
+                if (coordinates[i, 1] != coordinates[i - 1, 1])
+                {
+                    allY.Add(coordinates[i, 1]);
+                }
+            }
+
+            foreach (var element in allY)
+            {
+
+                int lowerX = 9;
+                for (int i = coordinates.GetLength(0) - 1; i > 0; i--)
+                {
+                    int y = coordinates[i, 1];
+                    if (y == element)
+                    {
+                        int actualX = coordinates[i, 0];
+                        if (actualX < lowerX)
+                        {
+                            lowerX = actualX;
+                        }
+                    }
+                }
+                hitbox.Add(new int[] { element, lowerX - 1 });
+            }
+            return hitbox;
+        }
+
+        private List<int[]> getHitboxRight()
+        {
+            List<int[]> hitbox = new List<int[]>();
+            List<int> allY = new List<int>();
+            allY.Add(coordinates[0, 1]);
+
+            for (int i = 1; i < coordinates.GetLength(0); i++)
+            {
+                if (coordinates[i, 1] != coordinates[i - 1, 1])
+                {
+                    allY.Add(coordinates[i, 1]);
+                }
+            }
+
+            foreach (var element in allY)
+            {
+                int higherX = 0;
+                for (int i = 1; i < coordinates.GetLength(0); i++)
+                {
+                    int y = coordinates[i, 1];
+                    if (y == element)
+                    {
+                        int actualX = coordinates[i, 0];
+                        if (actualX > higherX)
+                        {
+                            higherX = actualX;
+                        }
+                    }
+                }
+                hitbox.Add(new int[] { element, higherX + 1 });
+            }
+            return hitbox;
+        }
+
+        private bool PossibleGoRight(int[,] grid)
+        {
+            List<int[]> hitbox = getHitboxRight();
             for (int i = 0; i < coordinates.GetLength(0); i++)
             {
                 if (coordinates[i, 0] + 1 > 9)
                 {
                     return false;
                 }
+                foreach (int[] box in hitbox)
+                {
+                    if (box[0] < 10)
+                    {
+                        if (grid[box[1], box[0]] != 0)
+                        {
+                            return false;
+                        }
+                    }
+                }
             }
             return true;
         }
 
-        private bool PossibleGoLeft()
+        private bool PossibleGoLeft(int[,] grid)
         {
+            List<int[]> hitbox = getHitboxLeft();
             for (int i = 0; i < coordinates.GetLength(0); i++)
             {
                 if (coordinates[i, 0] - 1 < 0)
                 {
                     return false;
+                }
+                foreach (int[] box in hitbox)
+                {
+                    if (box[0] < 10)
+                    {
+                        if (grid[box[1], box[0]] != 0)
+                        {
+                            return false;
+                        }
+                    }
                 }
             }
             return true;
@@ -146,9 +223,9 @@ namespace WindowsFormsApp1
             }
         }
 
-        public void GoRight()
+        public void GoRight(int[,] grid)
         {
-            if (PossibleGoRight())
+            if (PossibleGoRight(grid))
             {
                 for (int i = 0; i < coordinates.GetLength(0); i++)
                 {
@@ -157,9 +234,9 @@ namespace WindowsFormsApp1
             }
         }
 
-        public void GoLeft()
+        public void GoLeft(int[,] grid)
         {
-            if (PossibleGoLeft())
+            if (PossibleGoLeft(grid))
             {
                 for (int i = 0; i < coordinates.GetLength(0); i++)
                 {
@@ -199,7 +276,7 @@ namespace WindowsFormsApp1
             
         }
 
-        public void CheckBorder()
+        public void CheckBorder(int[,] grid)
         {
             int x = coordinates[0, 0];
             for (int i = 0; i < coordinates.GetLength(0); i++)
@@ -211,7 +288,7 @@ namespace WindowsFormsApp1
             }
             if (x > 9)
             {
-                this.GoLeft();
+                this.GoLeft(grid);
             }
         }
     }
