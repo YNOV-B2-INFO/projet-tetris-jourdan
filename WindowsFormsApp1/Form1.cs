@@ -16,6 +16,7 @@ namespace WindowsFormsApp1
     public partial class Form1 : Form
     {
         private Pieces currentPiece;
+        private Pieces nextPiece;
         private bool runing = false;
         private bool playedOnce = false;
         private Grid grid = new Grid();
@@ -36,6 +37,8 @@ namespace WindowsFormsApp1
 
             currentPiece = utils.CreatePieceObject();
             currentPiece.CreateCoordinates(position, 0, "top");
+            nextPiece = utils.CreatePieceObject();
+            nextPiece.CreateCoordinates(position, 0, "top");
             grid.SetPieceWithCoordinates(currentPiece.coordinates, currentPiece.pieceNumber);
         }
 
@@ -145,12 +148,17 @@ namespace WindowsFormsApp1
                 int newScore = int.Parse(label2.Text) + 10;
                 label2.Text = newScore.ToString();
                 grid.TestAllLines();
-                CreateNewPiece();
+                currentPiece = nextPiece;
+                currentPiece.CreateCoordinates(4, 0, "top");
+                grid.SetPieceWithCoordinates(currentPiece.coordinates, currentPiece.pieceNumber);
+                nextPiece = utils.CreatePieceObject();
+                nextPiece.CreateCoordinates(4, 0, "top");
                 this.Refresh();
             }
             else
             {
                 utils.Moove("down", currentPiece, grid, pictureBox1, this);
+                utils.PreviewPiece(nextPiece, grid.GetGrid(), pictureBox2);
             }
         }
 

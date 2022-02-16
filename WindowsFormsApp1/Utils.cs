@@ -129,5 +129,30 @@ namespace WindowsFormsApp1
             SoundPlayer simpleSound = new SoundPlayer(Properties.Resources.choriste);
             simpleSound.PlayLooping();
         }
+
+        public void PreviewPiece(Pieces nextPiece, int[,] grid, PictureBox pictureBox2)
+        {
+            System.Drawing.SolidBrush myBrush = nextPiece.color;
+            Bitmap draw = new Bitmap(pictureBox2.Width, pictureBox2.Height);
+            Graphics canvas = Graphics.FromImage(draw);
+            System.Drawing.SolidBrush[] allBrushes = new System.Drawing.SolidBrush[]
+            {
+                new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(255, 243, 2, 125)),
+                new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(255, 252, 139, 80)),
+                new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(255, 83, 36, 240)),
+                new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(255, 17, 181, 228)),
+                new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(255, 86, 227, 159))
+            };
+            System.Drawing.Pen pen = new System.Drawing.Pen(System.Drawing.Color.Black);
+
+            for (int y = 0; y < nextPiece.coordinates.GetLength(0); y++)
+            {
+
+                canvas.FillRectangle(allBrushes[nextPiece.pieceNumber - 1], nextPiece.coordinates[y, 0] * 25 - 80, nextPiece.coordinates[y, 1] * 25 + 60, 25, 25);
+                canvas.DrawRectangle(pen, nextPiece.coordinates[y, 0] * 25 - 80, nextPiece.coordinates[y, 1] * 25 + 60, 25, 25);
+
+            }
+            pictureBox2.Image = draw;
+        }
     }
 }
