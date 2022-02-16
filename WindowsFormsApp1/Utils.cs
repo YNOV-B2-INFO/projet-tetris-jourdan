@@ -28,7 +28,6 @@ namespace WindowsFormsApp1
                     break;
                 case 5:
                     currentPiece = new T();
-                    Console.WriteLine("t");
                     break;
                 default:
                     break;

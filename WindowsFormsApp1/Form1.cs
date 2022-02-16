@@ -143,7 +143,7 @@ namespace WindowsFormsApp1
             if (!currentPiece.PossibleGoDown(grid.GetGrid()))
             {
                 int newScore = int.Parse(label2.Text) + 10;
-                 label2.Text = newScore.ToString();
+                label2.Text = newScore.ToString();
                 grid.TestAllLines();
                 CreateNewPiece();
                 this.Refresh();

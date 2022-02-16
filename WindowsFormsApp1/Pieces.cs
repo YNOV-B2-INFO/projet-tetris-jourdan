@@ -38,6 +38,7 @@ namespace WindowsFormsApp1
                 Console.WriteLine("x = " + x + " y = " + y);
             }
         }
+
         public bool PossibleGoDown(int[,] grid)
         {
             List<int[]> hitbox = getHitbox();
@@ -49,9 +50,12 @@ namespace WindowsFormsApp1
                 }
                 foreach (int[] box in hitbox)
                 {
-                    if (grid[box[1], box[0]] != 0)
+                    if (box[1] < 20)
                     {
-                        return false;
+                        if (grid[box[1], box[0]] != 0)
+                        {
+                            return false;
+                        }
                     }
                 }
             }
@@ -61,25 +65,49 @@ namespace WindowsFormsApp1
         private List<int[]> getHitbox()
         {
             List<int[]> hitbox = new List<int[]>();
-            int previousY = 0;
+            List<int> allX = new List<int>();
 
-            for (int i = 0; i < coordinates.GetLength(0); i++)
+                //parcourt ttes les cooord
+                //on les groupe par x 
+                //on garde le + grand y de chaque groupe 
+
+                //get les cooordonées de la piece 
+                //on crée une liste de x 
+                //pour chaque x, on recupere le y le + grand, on add x,y dans la liste hitbox
+
+                
+            //add tt les x différents dans allX
+            allX.Add(coordinates[0, 0]);
+            for (int i = 1; i < coordinates.GetLength(0); i++)
             {
-                int y = coordinates[i, 1];
-                if (y > previousY)
+                if (coordinates[i, 0] != coordinates[i-1, 0])
                 {
-                    previousY = y;
+                    allX.Add(coordinates[i, 0]);
                 }
             }
-            for (int i = 0; i < coordinates.GetLength(0); i++)
+
+            foreach (var element in allX)
             {
-                int y = coordinates[i, 1];
-                int x = coordinates[i, 0];
-                if (y == previousY && y < 19)
+
+                int higherY = 0;
+                for (int i = 1; i < coordinates.GetLength(0); i++)
                 {
-                    hitbox.Add(new int[] { x, y + 1 });
+                    int x = coordinates[i, 0];
+                    if(x == element)
+                    {
+                        int y = coordinates[i, 1];
+                        if(y > higherY)
+                        {
+                            higherY = y;
+                        }
+                    }
                 }
+                hitbox.Add(new int[] {element, higherY + 1});
             }
+            /*foreach(var element in hitbox)
+            {
+                Console.WriteLine(element[0] + "       " + element[1]);
+            }*/
             return hitbox;
         }
 
