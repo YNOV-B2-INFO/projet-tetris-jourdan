@@ -13,19 +13,19 @@ namespace WindowsFormsApp1
             int pieceNumber = rand.Next(1, 5);
             switch (pieceNumber)
             {
-                case 5:
+                case 1:
                     currentPiece = new One();
                     break;
-                case 1:
+                case 2:
                     currentPiece = new L();
                     break;
-                case 2:
+                case 3:
                     currentPiece = new R();
                     break;
-                case 3:
+                case 4:
                     currentPiece = new S();
                     break;
-                case 4:
+                case 5:
                     currentPiece = new T();
                     break;
                 default:
@@ -60,8 +60,7 @@ namespace WindowsFormsApp1
                 new System.Drawing.SolidBrush(System.Drawing.Color.Yellow),
                 new System.Drawing.SolidBrush(System.Drawing.Color.DeepPink)
             };
-
-
+            System.Drawing.Pen pen = new System.Drawing.Pen(System.Drawing.Color.Black);
 
             for (int y = 0; y < grid.GetLength(0); y++)
             {
@@ -79,6 +78,7 @@ namespace WindowsFormsApp1
                     if (grid[y,x] != 0)
                     {
                         canvas.FillRectangle(allBrushes[grid[y,x]], x * 32, y * 32, 32, 32);
+                        canvas.DrawRectangle(pen, x * 32, y * 32, 32, 32);
                     }
                 }
             }

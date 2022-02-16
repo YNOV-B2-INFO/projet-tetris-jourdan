@@ -16,7 +16,6 @@ public class Grid
         {
             int x = coordinates[i, 0];
             int y = coordinates[i, 1];
-
             this.grid[y, x] = pieceNumber;
         }
         this.prevCoordinates = coordinates;
