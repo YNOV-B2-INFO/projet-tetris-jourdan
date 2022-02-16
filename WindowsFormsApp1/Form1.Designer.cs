@@ -34,6 +34,8 @@
             this.PlayBtn = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -41,7 +43,7 @@
             // 
             this.QuitBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(39)))), ((int)(((byte)(42)))));
             this.QuitBtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.QuitBtn.Location = new System.Drawing.Point(676, 395);
+            this.QuitBtn.Location = new System.Drawing.Point(665, 595);
             this.QuitBtn.Margin = new System.Windows.Forms.Padding(4);
             this.QuitBtn.Name = "QuitBtn";
             this.QuitBtn.Size = new System.Drawing.Size(149, 47);
@@ -54,7 +56,7 @@
             // 
             this.OptionBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(39)))), ((int)(((byte)(42)))));
             this.OptionBtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.OptionBtn.Location = new System.Drawing.Point(676, 284);
+            this.OptionBtn.Location = new System.Drawing.Point(665, 487);
             this.OptionBtn.Margin = new System.Windows.Forms.Padding(4);
             this.OptionBtn.Name = "OptionBtn";
             this.OptionBtn.Size = new System.Drawing.Size(149, 47);
@@ -67,7 +69,7 @@
             // 
             this.PlayBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(39)))), ((int)(((byte)(42)))));
             this.PlayBtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.PlayBtn.Location = new System.Drawing.Point(676, 151);
+            this.PlayBtn.Location = new System.Drawing.Point(665, 370);
             this.PlayBtn.Margin = new System.Windows.Forms.Padding(4);
             this.PlayBtn.Name = "PlayBtn";
             this.PlayBtn.Size = new System.Drawing.Size(149, 47);
@@ -93,6 +95,27 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_1);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(44, 16);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "label1";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(714, 238);
+            this.label2.MinimumSize = new System.Drawing.Size(50, 50);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(50, 50);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "0";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -100,6 +123,8 @@
             this.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.bg;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1736, 896);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.PlayBtn);
             this.Controls.Add(this.OptionBtn);
@@ -114,6 +139,7 @@
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -123,6 +149,8 @@
         private System.Windows.Forms.Button PlayBtn;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
 

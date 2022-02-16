@@ -41,7 +41,6 @@ public class Grid
         {
             if (this.IsLineFull(y))
             {
-                Console.WriteLine("LINE IS FULL");
                 DeleteLine(y);
             }
         }
@@ -58,27 +57,21 @@ public class Grid
         {
             grid[lineNumber, j] = 0;
         }
-        Console.Write("SUPPRIME TA MERE");
         
         //oon descend ce qui est au dessus de line number 
         for (int i = lineNumber; i > 0; i--)
         {
-            Console.WriteLine(i);
             for (int j = 0; j < grid.GetLength(1); j++)
             {
                 grid[i, j] = grid[i - 1, j];
             }
         }
-        Console.Write("DESCEND TA MERE");
-
 
         //delete the top line 
         for (int j = 0; j < grid.GetLength(1); j++)
         {
             grid[0, j] = 0;
         }
-        Console.Write("SUPP PREMIERE TA MERE");
-
     }
 
     public void RemovePrevCoordinates(int[,] coordinates)

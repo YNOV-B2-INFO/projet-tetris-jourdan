@@ -37,6 +37,7 @@ namespace WindowsFormsApp1
             currentPiece = utils.CreatePieceObject();
             currentPiece.CreateCoordinates(position, 0, "top");
             grid.SetPieceWithCoordinates(currentPiece.coordinates, currentPiece.pieceNumber);
+            Console.WriteLine(currentPiece.pieceNumber);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -139,15 +140,21 @@ namespace WindowsFormsApp1
         {
             if (!currentPiece.PossibleGoDown(grid.GetGrid()))
             {
-                CreateNewPiece();
+                int newScore = int.Parse(label2.Text) + 10;
+                label2.Text = newScore.ToString();
                 grid.TestAllLines();
-                utils.DisplayGrid(grid.GetGrid());
+                CreateNewPiece();
                 this.Refresh();
             }
             else
             {
                 utils.Moove("down", currentPiece, grid, pictureBox1, this);
             }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
