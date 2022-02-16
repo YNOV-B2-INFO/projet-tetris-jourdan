@@ -10,7 +10,7 @@ namespace WindowsFormsApp1
         {
             Pieces currentPiece = null;
             Random rand = new Random();
-            int pieceNumber = rand.Next(1, 5);
+            int pieceNumber = rand.Next(1, 6);
             switch (pieceNumber)
             {
                 case 1:
@@ -27,6 +27,7 @@ namespace WindowsFormsApp1
                     break;
                 case 5:
                     currentPiece = new T();
+                    Console.WriteLine("t");
                     break;
                 default:
                     break;
@@ -54,11 +55,11 @@ namespace WindowsFormsApp1
             Graphics canvas = Graphics.FromImage(draw);
             System.Drawing.SolidBrush[] allBrushes = new System.Drawing.SolidBrush[]
             {
-                new System.Drawing.SolidBrush(System.Drawing.Color.Red),
-                new System.Drawing.SolidBrush(System.Drawing.Color.Blue),
-                new System.Drawing.SolidBrush(System.Drawing.Color.Green),
-                new System.Drawing.SolidBrush(System.Drawing.Color.Yellow),
-                new System.Drawing.SolidBrush(System.Drawing.Color.DeepPink)
+                new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(255, 243, 2, 125)),
+                new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(255, 252, 139, 80)),
+                new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(255, 83, 36, 240)),
+                new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(255, 17, 181, 228)),
+                new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(255, 86, 227, 159))
             };
             System.Drawing.Pen pen = new System.Drawing.Pen(System.Drawing.Color.Black);
 
@@ -77,7 +78,7 @@ namespace WindowsFormsApp1
                     }
                     if (grid[y,x] != 0)
                     {
-                        canvas.FillRectangle(allBrushes[grid[y,x]], x * 32, y * 32, 32, 32);
+                        canvas.FillRectangle(allBrushes[grid[y,x] - 1], x * 32, y * 32, 32, 32);
                         canvas.DrawRectangle(pen, x * 32, y * 32, 32, 32);
                     }
                 }

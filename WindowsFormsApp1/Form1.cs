@@ -37,13 +37,12 @@ namespace WindowsFormsApp1
             currentPiece = utils.CreatePieceObject();
             currentPiece.CreateCoordinates(position, 0, "top");
             grid.SetPieceWithCoordinates(currentPiece.coordinates, currentPiece.pieceNumber);
-            Console.WriteLine(currentPiece.pieceNumber);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            pictureBox1.BackColor = Color.FromArgb(120, 127, 127, 127);
-            pictureBox2.BackColor = Color.FromArgb(120, 127, 127, 127);
+            pictureBox1.BackColor = Color.FromArgb(240, 1, 1, 53);
+            pictureBox2.BackColor = Color.FromArgb(240, 1, 1, 53);
 
         }
 
@@ -142,7 +141,7 @@ namespace WindowsFormsApp1
             if (!currentPiece.PossibleGoDown(grid.GetGrid()))
             {
                 int newScore = int.Parse(label2.Text) + 10;
-                label2.Text = newScore.ToString();
+                 label2.Text = newScore.ToString();
                 grid.TestAllLines();
                 CreateNewPiece();
                 this.Refresh();
