@@ -113,7 +113,7 @@ namespace WindowsFormsApp1
                 default:
                     break;
             }
-            grid.SetPieceWithCoordinates(currentPiece.coordinates, currentPiece.pieceNumber);
+            grid.AddPieceWithCoordinates(currentPiece.coordinates, currentPiece.pieceNumber);
             form1.Refresh();
         }
 

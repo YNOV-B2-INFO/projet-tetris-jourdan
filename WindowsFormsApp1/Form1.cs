@@ -30,7 +30,7 @@ namespace WindowsFormsApp1
             currentPiece.CreateCoordinates(position, 0, "top");
             nextPiece = utils.CreatePieceObject();
             nextPiece.CreateCoordinates(position, 0, "top");
-            grid.SetPieceWithCoordinates(currentPiece.coordinates, currentPiece.pieceNumber);
+            grid.AddPieceWithCoordinates(currentPiece.coordinates, currentPiece.pieceNumber);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -150,7 +150,7 @@ namespace WindowsFormsApp1
                 grid.TestAllLines(label2);
                 currentPiece = nextPiece;
                 currentPiece.CreateCoordinates(4, 0, "top");
-                grid.SetPieceWithCoordinates(currentPiece.coordinates, currentPiece.pieceNumber);
+                grid.AddPieceWithCoordinates(currentPiece.coordinates, currentPiece.pieceNumber);
                 nextPiece = utils.CreatePieceObject();
                 nextPiece.CreateCoordinates(4, 0, "top");
                 this.Refresh();
