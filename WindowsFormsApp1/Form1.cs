@@ -128,15 +128,19 @@ namespace WindowsFormsApp1
             //si piece posée et ligne du haut de la grid pas que des 0 -> game over 
             if (!currentPiece.PossibleGoDown(grid.GetGrid()))
             {
+                //update the score
                 int newScore = int.Parse(label2.Text) + 10;
                 label2.Text = newScore.ToString();
 
+                //clear the grid 
                 if(int.Parse(label2.Text)>1000 && notCleared)
                 {
                     grid.ClearGrid();
                     notCleared = true;
                 }
 
+                //if the topline isnt empty,
+                //gameover 
                 if (!grid.IsLineEmpty(0))
                 {
                     timer1.Stop();
@@ -148,7 +152,9 @@ namespace WindowsFormsApp1
                     Form3 f3 = new Form3();
                     f3.ShowDialog();
 
-                } else
+                } 
+                //generate new piece 
+                else
                 {
                     grid.TestAllLines(label2);
                     currentPiece = nextPiece;
@@ -162,6 +168,7 @@ namespace WindowsFormsApp1
 
                 this.Refresh();
             }
+            //make the piece go down 
             else
             {
                 utils.Moove("down", currentPiece, grid, pictureBox1, this);
