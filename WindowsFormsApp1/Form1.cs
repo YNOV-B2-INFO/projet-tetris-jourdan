@@ -50,6 +50,7 @@ namespace WindowsFormsApp1
             {
                 CreateNewPiece();
                 playedOnce = true;
+                label2.Text = "0";
             }
 
             if (PlayBtn.Text == "PLAY")
@@ -142,6 +143,8 @@ namespace WindowsFormsApp1
                     currentPiece = null;
                     playedOnce = false;
                     grid.ClearGrid();
+                    utils.DisplayGridGraphics(grid.GetGrid(), pictureBox1);
+                    PlayBtn.Text = "PLAY";
                     Form3 f3 = new Form3();
                     f3.ShowDialog();
 
