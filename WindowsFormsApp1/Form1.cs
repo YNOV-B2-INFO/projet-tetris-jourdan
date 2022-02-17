@@ -95,14 +95,15 @@ namespace WindowsFormsApp1
             if (keyData == Keys.Up)
             {
                 utils.Moove("rotate", currentPiece, grid, pictureBox1, this);
+                this.Refresh();
                 return true;
             }
             //capture down arrow key
             if (keyData == Keys.Down)
             {
-                if (timer1.Interval - 450 > 0)
+                if (timer1.Interval - 200 > 0)
                 {
-                    timer1.Interval -= 450;
+                    timer1.Interval -= 200;
                 }
                 return true;
             }
@@ -110,6 +111,7 @@ namespace WindowsFormsApp1
             if (keyData == Keys.Left)
             {
                 utils.Moove("left", currentPiece, grid, pictureBox1, this);
+                this.Refresh();
                 return true;
             }
             //capture right arrow key
@@ -147,7 +149,7 @@ namespace WindowsFormsApp1
             {
                 int newScore = int.Parse(label2.Text) + 10;
                 label2.Text = newScore.ToString();
-                grid.TestAllLines();
+                grid.TestAllLines(label2);
                 currentPiece = nextPiece;
                 currentPiece.CreateCoordinates(4, 0, "top");
                 grid.SetPieceWithCoordinates(currentPiece.coordinates, currentPiece.pieceNumber);
@@ -170,6 +172,11 @@ namespace WindowsFormsApp1
         private void pictureBox2_Click(object sender, EventArgs e)
         {
              
+        }
+
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+
         }
     }
 }

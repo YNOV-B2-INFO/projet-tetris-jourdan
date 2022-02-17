@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 
 public class Grid
 {
@@ -34,16 +35,17 @@ public class Grid
         return true;
     }
 
-    public bool TestAllLines()
+    public void TestAllLines(Label label)
     {
         for (int y = 0; y < grid.GetLength(0); y++)
         {
             if (this.IsLineFull(y))
             {
                 DeleteLine(y);
+                int newScore = int.Parse(label.Text) + 90;
+                label.Text = newScore.ToString();
             }
         }
-        return true;
     }
 
     public void DeleteLine(int lineNumber)

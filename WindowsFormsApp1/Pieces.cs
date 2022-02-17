@@ -49,7 +49,7 @@ namespace WindowsFormsApp1
                     return false;
                 }
 
-                Console.WriteLine("-----hitbox is------");
+            }
                 foreach (int[] box in hitbox)
                 {
                     if (box[1] < 20)
@@ -60,7 +60,6 @@ namespace WindowsFormsApp1
                         }
                     }
                 }
-            }
             return true;
         }
 

@@ -11,7 +11,7 @@ namespace WindowsFormsApp1
         {
             Pieces currentPiece = null;
             Random rand = new Random();
-            int pieceNumber = rand.Next(1, 6);
+            int pieceNumber = rand.Next(1, 5);
             switch (pieceNumber)
             {
                 case 1:
