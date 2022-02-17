@@ -149,6 +149,10 @@ namespace WindowsFormsApp1
             {
                 int newScore = int.Parse(label2.Text) + 10;
                 label2.Text = newScore.ToString();
+                if(int.Parse(label2.Text)>1000)
+                {
+                    grid.clearGrid();
+                }
                 grid.TestAllLines(label2);
                 currentPiece = nextPiece;
                 currentPiece.CreateCoordinates(4, 0, "top");

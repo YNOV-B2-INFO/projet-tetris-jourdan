@@ -77,4 +77,9 @@ public class Grid
         }
     }
 
+    public void clearGrid()
+    {
+        grid = new int[20, 10];
+    }
+
 }
