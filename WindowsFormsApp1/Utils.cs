@@ -25,7 +25,7 @@ namespace WindowsFormsApp1
             //set the range of piece generation here 
             Pieces currentPiece = null;
             Random rand = new Random();
-            int pieceNumber = rand.Next(2, 5);
+            int pieceNumber = rand.Next(1, 6);
 
             //create the object here 
             switch (pieceNumber)
