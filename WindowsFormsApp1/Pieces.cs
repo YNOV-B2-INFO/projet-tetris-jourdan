@@ -8,43 +8,22 @@ namespace WindowsFormsApp1
 {
     public abstract class Pieces
     {
+        //declare the abstract functions here
         public abstract void CreateCoordinates(int x, int y, String orientation);
         public abstract void GetHitboxCoordinates();
 
+        //declare the global vars here 
         public int[,] prevCoordinates;
         public int[,] coordinates;
-        public String orientation = "top";
         public int pieceNumber;
+        public String orientation = "top";
         public int[,] hitboxLeft;
         public int[,] hitboxBottom = new int[,] { };
         public int[,] hitboxRight;
-
         public System.Drawing.SolidBrush color;
 
-        public void DisplayCoordinates()
-        {
-            Console.WriteLine("----------coordinates----------");
-            for (int i = 0; i < coordinates.GetLength(0); i++)
-            {
-                int x = coordinates[i, 0];
-                int y = coordinates[i, 1];
-
-                Console.WriteLine("x = " + x + " y = " + y);
-            }
-        }
-
-        public void DisplayPrevCoordinates()
-        {
-            Console.WriteLine("----------prev coordinates----------");
-            for (int i = 0; i < prevCoordinates.GetLength(0); i++)
-            {
-                int x = prevCoordinates[i, 0];
-                int y = prevCoordinates[i, 1];
-
-                Console.WriteLine("x = " + x + " y = " + y);
-            }
-        }
-
+        //check if the piece can go down,
+        //based on the hitbox and the size of the grid 
         public bool PossibleGoDown(int[,] grid)
         {
             this.GetHitboxCoordinates();
@@ -70,41 +49,8 @@ namespace WindowsFormsApp1
             return true;
         }
 
-        private List<int[]> getHitboxDown()
-        {
-            List<int[]> hitbox = new List<int[]>();
-            List<int> allX = new List<int>();
-            allX.Add(coordinates[0, 0]);
-
-            for (int i = 1; i < coordinates.GetLength(0); i++)
-            {
-                if (coordinates[i, 0] != coordinates[i - 1, 0])
-                {
-                    allX.Add(coordinates[i, 0]);
-                }
-            }
-
-            foreach (var element in allX)
-            {
-
-                int higherY = 0;
-                for (int i = 1; i < coordinates.GetLength(0); i++)
-                {
-                    int x = coordinates[i, 0];
-                    if (x == element)
-                    {
-                        int y = coordinates[i, 1];
-                        if (y > higherY)
-                        {
-                            higherY = y;
-                        }
-                    }
-                }
-                hitbox.Add(new int[] { element, higherY + 1 });
-            }
-            return hitbox;
-        }
-
+        //check if the piece can go right,
+        //based on the hitbox and the size of the grid 
         private bool PossibleGoRight(int[,] grid)
         {
             this.GetHitboxCoordinates();
@@ -130,6 +76,8 @@ namespace WindowsFormsApp1
             return true;
         }
 
+        //check if the piece can go Left,
+        //based on the hitbox and the size of the grid 
         private bool PossibleGoLeft(int[,] grid)
         {
             for (int i = 0; i < coordinates.GetLength(0); i++)
@@ -154,6 +102,7 @@ namespace WindowsFormsApp1
             return true;
         }
 
+        //make the piece go down if there is nothing on the road 
         public void GoDown(int[,] grid)
         {
             this.GetHitboxCoordinates();
@@ -166,6 +115,7 @@ namespace WindowsFormsApp1
             }
         }
 
+        //make the piece go right if there is nothing on the road 
         public void GoRight(int[,] grid)
         {
             this.GetHitboxCoordinates();
@@ -178,6 +128,7 @@ namespace WindowsFormsApp1
             }
         }
 
+        //make the piece go left if there is nothing on the road 
         public void GoLeft(int[,] grid)
         {
             this.GetHitboxCoordinates();
@@ -190,6 +141,7 @@ namespace WindowsFormsApp1
             }
         }
 
+        //rotate the piece 
         public void Rotate()
         {
             int x = coordinates[0, 0];
@@ -221,7 +173,8 @@ namespace WindowsFormsApp1
             CreateCoordinates(x, y, newOrientation);
         }
 
-        public bool canRotate(int[,] grid)
+        //check if the piece can rotate
+        public bool CanRotate(int[,] grid)
         {
 
             int x = coordinates[0, 0];
@@ -241,6 +194,8 @@ namespace WindowsFormsApp1
             }
             return false;
         }
+
+        //check if the piece is too close to the border 
         public void CheckBorder(int[,] grid)
         {
             int x = coordinates[0, 0];
@@ -294,10 +249,10 @@ namespace WindowsFormsApp1
 
                 case "left":
                     coordinates = new int[,] {
-                        { x-1, y+1 },
-                        { x, y+1 },
-                        { x+1, y+1 },
-                        { x+2, y+1 }
+                        { x-1, y },
+                        { x, y },
+                        { x+1, y },
+                        { x+2, y }
                     };
                     break;
             }
@@ -326,6 +281,7 @@ namespace WindowsFormsApp1
             switch (this.orientation)
             {
                 case "top":
+                case "bottom":
                     this.hitboxLeft = new int[,] {
                         { x-1, y },
                         { x-1, y+1 },
@@ -343,54 +299,23 @@ namespace WindowsFormsApp1
                     };
                     break;
                 case "right":
-                    hitboxLeft = new int[,] {
-                        { x-2, y+2 }
-                    };
-                    hitboxBottom = new int[,] {
-                        { x-1, y+3 },
-                        { x, y+3 },
-                        { x+1, y+3 },
-                        { x+2, y+3 }
-                    };
-                    hitboxRight = new int[,] {
-                        { x+3, y+2 }
-                    };
-                    break;
-                case "bottom":
-                    hitboxLeft = new int[,] {
-                        { x, y },
-                        { x, y+1 },
-                        { x, y+2 },
-                        { x, y+3 }
-                    };
-                    hitboxBottom = new int[,] {
-                        { x+1, y+4 }
-                    };
-                    hitboxRight = new int[,] {
-                        { x+2, y },
-                        { x+2, y+1 },
-                        { x+2, y+2 },
-                        { x+2, y+3 }
-                    };
-                    break;
                 case "left":
                     hitboxLeft = new int[,] {
-                        { x-2, y+1 }
+                        { x-1, y }
                     };
                     hitboxBottom = new int[,] {
-                        { x-1, y+2 },
-                        { x, y+2 },
-                        { x+1, y+2 },
-                        { x+2, y+2 }
+                        { x, y+1 },
+                        { x+1, y+1 },
+                        { x+2, y+1 },
+                        { x+3, y+1 }
                     };
                     hitboxRight = new int[,] {
-                        { x+3, y+1 }
+                        { x+4, y }
                     };
                     break;
             }
         }
     }
-
 
     public class L : Pieces
     {
@@ -508,16 +433,16 @@ namespace WindowsFormsApp1
                     break;
                 case "left":
                     hitboxLeft = new int[,] {
-                        { x-1, y+2 },
-                        { x+1, y+1 }
+                        { x-1, y+1 },
+                        { x+1, y }
                     };
                     hitboxBottom = new int[,] {
-                        { x, y+3 },
-                        { x+1, y+3 },
-                        { x+2, y+3 }
+                        { x, y+2 },
+                        { x+1, y+2 },
+                        { x+2, y+2 }
                     };
                     hitboxRight = new int[,] {
-                        { x+3, y+2 },
+                        { x+3, y },
                         { x+3, y+1 }
                     };
                     break;
@@ -534,32 +459,8 @@ namespace WindowsFormsApp1
             switch (orientation)
             {
                 case "top":
-                    coordinates = new int[,] {
-                        { x, y },
-                        { x, y+1 },
-                        { x+1, y },
-                        { x+1, y+1 }
-                    };
-                    break;
-
                 case "right":
-                    coordinates = new int[,] {
-                        { x, y },
-                        { x, y+1 },
-                        { x+1, y },
-                        { x+1, y+1 }
-                    };
-                    break;
-
                 case "bottom":
-                    coordinates = new int[,] {
-                        { x, y },
-                        { x, y+1 },
-                        { x+1, y },
-                        { x+1, y+1 }
-                    };
-                    break;
-
                 case "left":
                     coordinates = new int[,] {
                         { x, y },
@@ -718,7 +619,6 @@ namespace WindowsFormsApp1
         }
     }
 
-
     public class T : Pieces
     {
         public override void CreateCoordinates(int x, int y, String orientation)
@@ -807,33 +707,33 @@ namespace WindowsFormsApp1
                     break;
                 case "right":
                     hitboxLeft = new int[,] {
-                        { x, y },
-                        { x, y+1 },
-                        { x, y+2 }
+                        { x-1, y },
+                        { x-1, y+1 },
+                        { x-1, y+2 }
                     };
                     hitboxBottom = new int[,] {
-                        { x+1, y+3 },
-                        { x+2, y+2 }
+                        { x, y+3 },
+                        { x+1, y+2 }
                     };
                     hitboxRight = new int[,] {
-                        { x+2, y },
-                        { x+3, y+1 },
-                        { x+2, y+2 }
+                        { x+1, y },
+                        { x+2, y+1 },
+                        { x+1, y+2 }
                     };
                     break;
                 case "bottom":
                     hitboxLeft = new int[,] {
-                        { x-1, y+1 },
-                        { x, y+2 }
+                        { x-1, y },
+                        { x, y+1 }
                     };
                     hitboxBottom = new int[,] {
-                        { x, y+2 },
-                        { x+1, y+3 },
-                        { x+2, y+2 }
+                        { x, y+1 },
+                        { x+1, y+2 },
+                        { x+2, y+1 }
                     };
                     hitboxRight = new int[,] {
-                        { x+3, y+1 },
-                        { x+2, y+2 }
+                        { x+3, y },
+                        { x+2, y+1 }
                     };
                     break;
                 case "left":
@@ -843,8 +743,8 @@ namespace WindowsFormsApp1
                         { x, y+2 }
                     };
                     hitboxBottom = new int[,] {
-                        { x+1, y+3 },
-                        { x, y+2 }
+                        { x, y+2 },
+                        { x+1, y+3 }
                     };
                     hitboxRight = new int[,] {
                         { x+2, y },
@@ -855,5 +755,4 @@ namespace WindowsFormsApp1
             }
         }
     }
-
 }

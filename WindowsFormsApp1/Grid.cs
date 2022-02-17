@@ -3,16 +3,20 @@ using System.Windows.Forms;
 
 public class Grid
 {
+    //global vars
     private int[,] grid = new int[20, 10];
     private int[,] prevCoordinates;
 
+    //getter to get the grid var
     public int[,] GetGrid()
     {
         return grid;
     }
 
-    public void SetPieceWithCoordinates(int[,] coordinates, int pieceNumber)
+    //add piece in the grid based on coordinates
+    public void AddPieceWithCoordinates(int[,] coordinates, int pieceNumber)
     {
+        //run through coordinates to add them in grid 
         for (int i = 0; i < coordinates.GetLength(0); i++)
         {
             int x = coordinates[i, 0];
@@ -22,19 +26,8 @@ public class Grid
         this.prevCoordinates = coordinates;
     }
 
-    private bool IsLineFull(int lineNumber)
-    {
-        //check the line here 
-        for (int x = 0; x < this.grid.GetLength(1); x++)
-        {
-            if (this.grid[lineNumber, x] == 0)
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-
+    //test the lines one by one to see if it is full
+    //if the line is full, the func delete the lines and makes the lines on tp of it go down 
     public void TestAllLines(Label label)
     {
         for (int y = 0; y < grid.GetLength(0); y++)
@@ -48,6 +41,36 @@ public class Grid
         }
     }
 
+    //check if the line at index Y is full
+    private bool IsLineFull(int lineNumber)
+    {
+        for (int x = 0; x < this.grid.GetLength(1); x++)
+        {
+            if (this.grid[lineNumber, x] == 0)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //check if the line at index Y is empty
+    public bool IsLineEmpty(int lineNumber)
+    {
+        for (int x = 0; x < this.grid.GetLength(1); x++)
+        {
+                Console.Write(this.grid[lineNumber, x]);
+            if (this.grid[lineNumber, x] != 0)
+            {
+                return false;
+            }
+        }
+        Console.WriteLine();
+        return true;
+    }
+
+    //Delete the line at the given y index 
+    //make all the lines above the y  go down 
     public void DeleteLine(int lineNumber)
     {
         for (int j = 0; j < grid.GetLength(1); j++)
@@ -67,6 +90,7 @@ public class Grid
         }
     }
 
+    //delete the piece at the previous coordinates 
     public void RemovePrevCoordinates(int[,] coordinates)
     {
         for (int i = 0; i < coordinates.GetLength(0); i++)
@@ -77,7 +101,8 @@ public class Grid
         }
     }
 
-    public void clearGrid()
+    //Reset the grid 
+    public void ClearGrid()
     {
         grid = new int[20, 10];
     }
