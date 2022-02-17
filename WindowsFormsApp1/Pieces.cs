@@ -9,14 +9,14 @@ namespace WindowsFormsApp1
     public abstract class Pieces
     {
         public abstract void CreateCoordinates(int x, int y, String orientation);
-        public abstract void GetHitboxCoordinates(int x, int y, String orientation);
+        public abstract void GetHitboxCoordinates();
 
         public int[,] prevCoordinates;
         public int[,] coordinates;
         public String orientation = "top";
         public int pieceNumber;
         public int[,] hitboxLeft;
-        public int[,] hitboxBottom;
+        public int[,] hitboxBottom = new int[,] { };
         public int[,] hitboxRight;
 
         public System.Drawing.SolidBrush color;
@@ -47,7 +47,7 @@ namespace WindowsFormsApp1
 
         public bool PossibleGoDown(int[,] grid)
         {
-            List<int[]> hitbox = getHitboxDown();
+            this.GetHitboxCoordinates();
             for (int i = 0; i < coordinates.GetLength(0); i++)
             {
                 if (coordinates[i, 1] + 1 >= 20)
@@ -56,16 +56,17 @@ namespace WindowsFormsApp1
                 }
 
             }
-                foreach (int[] box in hitbox)
-                {
-                    if (box[1] < 20)
+            for (int i = 0; i < hitboxBottom.GetLength(0); i++)
+            {
+                    if (hitboxBottom[i,1] < 20)
                     {
-                        if (grid[box[1], box[0]] != 0)
+                        if (grid[hitboxBottom[i, 1], hitboxBottom[i, 0]] != 0)
                         {
                             return false;
                         }
                     }
-                }
+
+            }
             return true;
         }
 
@@ -106,6 +107,7 @@ namespace WindowsFormsApp1
 
         private bool PossibleGoRight(int[,] grid)
         {
+            this.GetHitboxCoordinates();
             for (int i = 0; i < coordinates.GetLength(0); i++)
             {
                 if (coordinates[i, 0] + 1 > 9)
@@ -113,6 +115,22 @@ namespace WindowsFormsApp1
                     return false;
                 }
             }
+
+            for (int i = 0; i < hitboxRight.GetLength(0); i++)
+            {
+                if (hitboxRight[i, 1] < 20)
+                {
+                    if (grid[hitboxRight[i, 1], hitboxRight[i, 0]] != 0)
+                    {
+                        return false;
+                    }
+                }
+
+            }
+            return true;
+
+
+            
             return true;
         }
 
@@ -125,11 +143,24 @@ namespace WindowsFormsApp1
                     return false;
                 }
             }
+
+            for (int i = 0; i < hitboxLeft.GetLength(0); i++)
+            {
+                if (hitboxLeft[i, 1] < 20)
+                {
+                    if (grid[hitboxLeft[i, 1], hitboxLeft[i, 0]] != 0)
+                    {
+                        return false;
+                    }
+                }
+
+            }
             return true;
         }
 
         public void GoDown(int[,] grid)
         {
+            this.GetHitboxCoordinates();
             if (PossibleGoDown(grid))
             {
                 for (int i = 0; i < coordinates.GetLength(0); i++)
@@ -141,6 +172,7 @@ namespace WindowsFormsApp1
 
         public void GoRight(int[,] grid)
         {
+            this.GetHitboxCoordinates();
             if (PossibleGoRight(grid))
             {
                 for (int i = 0; i < coordinates.GetLength(0); i++)
@@ -152,6 +184,7 @@ namespace WindowsFormsApp1
 
         public void GoLeft(int[,] grid)
         {
+            this.GetHitboxCoordinates();
             if (PossibleGoLeft(grid))
             {
                 for (int i = 0; i < coordinates.GetLength(0); i++)
@@ -255,8 +288,24 @@ namespace WindowsFormsApp1
                     this.color = new System.Drawing.SolidBrush(System.Drawing.Color.Red);
         }
 
-        public override void GetHitboxCoordinates(int x, int y, String orientation)
+        public override void GetHitboxCoordinates()
         {
+
+            int x = coordinates[0, 0];
+            int y = coordinates[0, 1];
+
+            for (int i = 0; i < coordinates.GetLength(0); i++)
+            {
+                if ((coordinates[i, 1] < y))
+                {
+                    y = coordinates[i, 1];
+                }
+
+                if ((coordinates[i, 0] < x))
+                {
+                    x = coordinates[i, 0];
+                }
+            }
 
             switch (this.orientation)
             {
@@ -374,8 +423,23 @@ namespace WindowsFormsApp1
             this.color = new System.Drawing.SolidBrush(System.Drawing.Color.Blue);
         }
 
-        public override void GetHitboxCoordinates(int x, int y, String orientation)
+        public override void GetHitboxCoordinates()
         {
+            int x = coordinates[0, 0];
+            int y = coordinates[0, 1];
+
+            for (int i = 0; i < coordinates.GetLength(0); i++)
+            {
+                if ((coordinates[i, 1] < y))
+                {
+                    y = coordinates[i, 1];
+                }
+
+                if ((coordinates[i, 0] < x))
+                {
+                    x = coordinates[i, 0];
+                }
+            }
 
             switch (this.orientation)
             {
@@ -491,8 +555,23 @@ namespace WindowsFormsApp1
             this.color = new System.Drawing.SolidBrush(System.Drawing.Color.Green);
         }
 
-        public override void GetHitboxCoordinates(int x, int y, String orientation)
+        public override void GetHitboxCoordinates()
         {
+            int x = coordinates[0, 0];
+            int y = coordinates[0, 1];
+
+            for (int i = 0; i < coordinates.GetLength(0); i++)
+            {
+                if ((coordinates[i, 1] < y))
+                {
+                    y = coordinates[i, 1];
+                }
+
+                if ((coordinates[i, 0] < x))
+                {
+                    x = coordinates[i, 0];
+                }
+            }
 
             switch (this.orientation)
             {
@@ -563,8 +642,23 @@ namespace WindowsFormsApp1
             this.color = new System.Drawing.SolidBrush(System.Drawing.Color.Silver);
         }
 
-        public override void GetHitboxCoordinates(int x, int y, String orientation)
+        public override void GetHitboxCoordinates()
         {
+            int x = coordinates[0, 0];
+            int y = coordinates[0, 1];
+
+            for (int i = 0; i < coordinates.GetLength(0); i++)
+            {
+                if ((coordinates[i, 1] < y))
+                {
+                    y = coordinates[i, 1];
+                }
+
+                if ((coordinates[i, 0] < x))
+                {
+                    x = coordinates[i, 0];
+                }
+            }
 
             switch (this.orientation)
             {
@@ -658,9 +752,24 @@ namespace WindowsFormsApp1
             this.color = new System.Drawing.SolidBrush(System.Drawing.Color.Purple);
         }
 
-        public override void GetHitboxCoordinates(int x, int y, String orientation)
+        public override void GetHitboxCoordinates()
         {
-            
+            int x = coordinates[0, 0];
+            int y = coordinates[0, 1];
+
+            for (int i = 0; i < coordinates.GetLength(0); i++)
+            {
+                if ((coordinates[i, 1] < y))
+                {
+                    y = coordinates[i, 1];
+                }
+
+                if ((coordinates[i, 0] < x))
+                {
+                    x = coordinates[i, 0];
+                }
+            }
+
             switch (this.orientation)
             {
                 case "top":
