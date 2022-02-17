@@ -9,6 +9,8 @@ namespace WindowsFormsApp1
     public abstract class Pieces
     {
         public abstract void CreateCoordinates(int x, int y, String orientation);
+        public abstract void GetHitboxCoordinates();
+
         public int[,] prevCoordinates;
         public int[,] coordinates;
         public String orientation = "top";
@@ -207,6 +209,7 @@ namespace WindowsFormsApp1
     {
         public override void CreateCoordinates(int x, int y, String orientation)
         {
+            this.orientation =  orientation;
             switch (orientation)
             {
                 case "top":
@@ -254,6 +257,7 @@ namespace WindowsFormsApp1
     {
         public override void CreateCoordinates(int x, int y, String orientation)
         {
+            this.orientation = orientation;
 
             switch (orientation)
             {
@@ -295,12 +299,84 @@ namespace WindowsFormsApp1
             }
             this.color = new System.Drawing.SolidBrush(System.Drawing.Color.Blue);
         }
+
+        public override void GetHitboxCoordinates()
+        {
+
+            switch (this.orientation)
+            {
+                case "top":
+                    hitboxLeft = new int[,] {
+                        { x-1, y },
+                        { x-1, y+1 },
+                        { x-1, y+2 }
+                    };
+                    hitboxBottom = new int[,] {
+                        { x, y+3 },
+                        { x+1, y+3 }
+                    };
+                    hitboxRight = new int[,] {
+                        { x+1, y },
+                        { x+1, y+1 },
+                        { x+2, y+2 }
+                    };
+                    break;
+                case "right":
+                    hitboxLeft = new int[,] {
+                        { x-1, y },
+                        { x-1, y+1 }
+                    };
+                    hitboxBottom = new int[,] {
+                        { x, y+2 },
+                        { x+1, y+1 },
+                        { x+2, y+1 }
+                    };
+                    hitboxRight = new int[,] {
+                        { x+1, y+1 },
+                        { x+3, y }
+                    };
+                    break;
+                case "bottom":
+                    hitboxLeft = new int[,] {
+                        { x-1, y },
+                        { x, y+1 },
+                        { x, y+2 }
+                    };
+                    hitboxBottom = new int[,] {
+                        { x, y+1 },
+                        { x+1, y+3 }
+                    };
+                    hitboxRight = new int[,] {
+                        { x+2, y },
+                        { x+2, y+1 },
+                        { x+2, y+2 }
+                    };
+                    break;
+                case "left":
+                    hitboxLeft = new int[,] {
+                        { x-1, y+2 },
+                        { x+1, y+1 }
+                    };
+                    hitboxBottom = new int[,] {
+                        { x, y+3 },
+                        { x+1, y+3 },
+                        { x+2, y+3 }
+                    };
+                    hitboxRight = new int[,] {
+                        { x+3, y+2 },
+                        { x+3, y+1 }
+                    };
+                    break;                    }
+            }
+        }
     }
 
     public class R : Pieces
     {
         public override void CreateCoordinates(int x, int y, String orientation)
         {
+            this.orientation = orientation;
+
             switch (orientation)
             {
                 case "top":
@@ -341,12 +417,39 @@ namespace WindowsFormsApp1
             }
             this.color = new System.Drawing.SolidBrush(System.Drawing.Color.Green);
         }
+
+        public override void GetHitboxCoordinates()
+        {
+
+            /*switch (this.orientation)
+            {
+                case "top":
+                case "right":
+                case "bottom":
+                case "left":
+                    hitboxLeft = new int[,] {
+                        { x-1, y },
+                        { x-1, y+1 }
+                    };
+                    hitboxBottom = new int[,] {
+                        { x, y+2 },
+                        { x+1, y+2 }
+                    };
+                    hitboxRight = new int[,] {
+                        { x+2, y },
+                        { x+2, y+1 }
+                    };
+                    break;             }
+            }*/
+        }
     }
 
     public class S : Pieces
     {
         public override void CreateCoordinates(int x, int y, String orientation)
         {
+            this.orientation = orientation;
+
             switch (orientation)
             {
                 case "top":
@@ -388,12 +491,56 @@ namespace WindowsFormsApp1
             this.color = new System.Drawing.SolidBrush(System.Drawing.Color.Silver);
         }
 
+        public override void GetHitboxCoordinates()
+        {
+
+            /*switch (this.orientation)
+            {
+                case "top":
+                case "bottom":
+                    hitboxLeft = new int[,] {
+                        { x-1, y },
+                        { x-1, y+1 },
+                        { x, y+2 }
+                    };
+                    hitboxBottom = new int[,] {
+                        { x, y+2 },
+                        { x+1, y+3 }
+                    };
+                    hitboxRight = new int[,] {
+                        { x+1, y },
+                        { x+2, y+1 },
+                        { x+2, y+2 }
+                    };
+                    break;
+
+                case "right":
+                case "left":
+                    hitboxLeft = new int[,] {
+                        { x, y },
+                        { x-1, y+1 }
+                    };
+                    hitboxBottom = new int[,] {
+                        { x, y+2 },
+                        { x+1, y+2 },
+                        { x+2, y+1 }
+                    };
+                    hitboxRight = new int[,] {
+                        { x+3, y },
+                        { x+2, y+1 }
+                    };
+                    break;
+            }*/
+        }
     }
+
 
     public class T : Pieces
     {
         public override void CreateCoordinates(int x, int y, String orientation)
         {
+            this.orientation = orientation;
+
             switch (orientation)
             {
                 case "top":
@@ -438,5 +585,77 @@ namespace WindowsFormsApp1
             }
             this.color = new System.Drawing.SolidBrush(System.Drawing.Color.Purple);
         }
+
+        public override void GetHitboxCoordinates()
+        {
+            
+            /*switch (this.orientation)
+            {
+                case "top":
+                    hitboxLeft = new int[,] {
+                        { x, y },
+                        { x-1, y+1 }
+                    };
+                    hitboxBottom = new int[,] {
+                        { x, y+2 },
+                        { x+1, y+2 },
+                        { x+2, y+2 }
+                    };
+                    hitboxRight = new int[,] {
+                        { x+2, y },
+                        { x+3, y+1 }
+                    };
+                    break;
+                case "right":
+                    hitboxLeft = new int[,] {
+                        { x, y },
+                        { x, y+1 },
+                        { x, y+2 }
+                    };
+                    hitboxBottom = new int[,] {
+                        { x+1, y+3 },
+                        { x+2, y+2 }
+                    };
+                    hitboxRight = new int[,] {
+                        { x+2, y },
+                        { x+3, y+1 },
+                        { x+2, y+2 }
+                    };
+                    break;
+                case "bottom":
+                    hitboxLeft = new int[,] {
+                        { x-1, y+1 },
+                        { x, y+2 }
+                    };
+                    hitboxBottom = new int[,] {
+                        { x, y+2 },
+                        { x+1, y+3 },
+                        { x+2, y+2 }
+                    };
+                    hitboxRight = new int[,] {
+                        { x+3, y+1 },
+                        { x+2, y+2 }
+                    };
+                    break;
+                case "left":
+                    hitboxLeft = new int[,] {
+                        { x, y },
+                        { x-1, y+1 },
+                        { x, y+2 }
+                    };
+                    hitboxBottom = new int[,] {
+                        { x+1, y+3 },
+                        { x, y+2 }
+                    };
+                    hitboxRight = new int[,] {
+                        { x+2, y },
+                        { x+2, y+1 },
+                        { x+2, y+2 }
+                    };
+                    break;                    }
+            }
+        }*/
     }
+}
+
 }
