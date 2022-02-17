@@ -6,14 +6,13 @@ namespace WindowsFormsApp1
 { 
     public partial class Form1 : Form
     {
+        //declare all global vars here 
         private Pieces currentPiece;
         private Pieces nextPiece;
-        private bool runing = false;
         private bool playedOnce = false;
         private Grid grid = new Grid();
-
-
         Utils utils = new Utils();
+        private bool notCleared = true;
 
         public Form1()
         {
@@ -21,8 +20,11 @@ namespace WindowsFormsApp1
             InitializeComponent();
         }
 
+        //create currentPiece object and its coordinates  / nextPiece object and its coordinates  
+        //add currentPiece in the grid 
         private void CreateNewPiece()
         {
+            //generate random position 
             Random rand = new Random();
             int position = rand.Next(4, 6);
 
@@ -33,56 +35,56 @@ namespace WindowsFormsApp1
             grid.AddPieceWithCoordinates(currentPiece.coordinates, currentPiece.pieceNumber);
         }
 
+        //when the form1 is loaded it sets the background of both picturebox and label
         private void Form1_Load(object sender, EventArgs e)
         {
             pictureBox1.BackColor = Color.FromArgb(240, 1, 1, 53);
             pictureBox2.BackColor = Color.FromArgb(240, 1, 1, 53);
-
+            label2.BackColor = Color.FromArgb(240, 1, 1, 53);
         }
 
+        //manage the playBtn (play pause)
         private void PlayBtn_Click_1(object sender, EventArgs e)
         {
-
             if (!playedOnce)
             {
                 CreateNewPiece();
                 playedOnce = true;
             }
 
-            if (!runing)
+            if (PlayBtn.Text == "PLAY")
             {
                 timer1.Start();
-                runing = true;
+                PlayBtn.Text = "PAUSE";
             }
             else
             {
                 timer1.Stop();
-                runing = false;
+                PlayBtn.Text = "PLAY";
             }
 
         }
 
+        //pause the game and display option menu 
         private void OptionBtn_Click_1(object sender, EventArgs e)
         {
             timer1.Stop();
-            runing = false;
+            PlayBtn.Text = "PLAY";
             Form2 f2 = new Form2();
             f2.ShowDialog();
         }
 
+        //quit the game when quit is pressed
         private void QuitBtn_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //retrieve the chars here 
-        }
-
+        //manage arrow keys
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            //capture up arrow key
+            //if key up and the piece can rotate 
+            //rotate the piece and refresh 
             if (keyData == Keys.Up)
             {
                 if (currentPiece.CanRotate(grid.GetGrid()))
@@ -92,29 +94,59 @@ namespace WindowsFormsApp1
                     return true;
                 }
             }
-            //capture down arrow key
-            if (keyData == Keys.Down)
-            {
-                if (timer1.Interval - 200 > 0)
-                {
-                    timer1.Interval -= 200;
-                }
-                return true;
-            }
-            //capture left arrow key
+
+            //if key left and the piece can go left 
+            //moove left the piece and refresh 
             if (keyData == Keys.Left)
             {
                 utils.Moove("left", currentPiece, grid, pictureBox1, this);
                 this.Refresh();
                 return true;
             }
-            //capture right arrow key
+
+            //if key right and the piece can go right 
+            //moove right the piece and refresh 
             if (keyData == Keys.Right)
             {
                 utils.Moove("right", currentPiece, grid, pictureBox1, this);
                 return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        //each timer tick, refresh the page 
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            //check if the piece is in place,
+            //increase the score, 
+            //if the score > 1000 clear the grid 
+            //create the new piece,
+            //refresh 
+            //else moove the piece down 
+            if (!currentPiece.PossibleGoDown(grid.GetGrid()))
+            {
+                int newScore = int.Parse(label2.Text) + 10;
+                label2.Text = newScore.ToString();
+
+                if(int.Parse(label2.Text)>1000 && notCleared)
+                {
+                    grid.ClearGrid();
+                    notCleared = true;
+                }
+
+                grid.TestAllLines(label2);
+                currentPiece = nextPiece;
+                currentPiece.CreateCoordinates(4, 0, "top");
+                grid.AddPieceWithCoordinates(currentPiece.coordinates, currentPiece.pieceNumber);
+                nextPiece = utils.CreatePieceObject();
+                nextPiece.CreateCoordinates(4, 0, "top");
+                this.Refresh();
+            }
+            else
+            {
+                utils.Moove("down", currentPiece, grid, pictureBox1, this);
+                utils.DisplayOnePiece(nextPiece, pictureBox2);
+            }
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -132,36 +164,6 @@ namespace WindowsFormsApp1
 
         }
 
-        private void Timer1_Tick(object sender, EventArgs e)
-        {
-            Refresh();
-        }
-
-        private void Refresh()
-        {
-            if (!currentPiece.PossibleGoDown(grid.GetGrid()))
-            {
-                int newScore = int.Parse(label2.Text) + 10;
-                label2.Text = newScore.ToString();
-                if(int.Parse(label2.Text)>1000)
-                {
-                    //grid.clearGrid();
-                }
-                grid.TestAllLines(label2);
-                currentPiece = nextPiece;
-                currentPiece.CreateCoordinates(4, 0, "top");
-                grid.AddPieceWithCoordinates(currentPiece.coordinates, currentPiece.pieceNumber);
-                nextPiece = utils.CreatePieceObject();
-                nextPiece.CreateCoordinates(4, 0, "top");
-                this.Refresh();
-            }
-            else
-            {
-                utils.Moove("down", currentPiece, grid, pictureBox1, this);
-                utils.DisplayOnePiece(nextPiece, pictureBox2);
-            }
-        }
-
         private void label2_Click(object sender, EventArgs e)
         {
             
@@ -175,6 +177,10 @@ namespace WindowsFormsApp1
         private void Form1_KeyUp(object sender, KeyEventArgs e)
         {
 
+        }
+
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
         }
     }
 }

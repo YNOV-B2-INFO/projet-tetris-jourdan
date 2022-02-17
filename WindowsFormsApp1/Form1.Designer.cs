@@ -44,9 +44,10 @@
             // 
             this.QuitBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(39)))), ((int)(((byte)(42)))));
             this.QuitBtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.QuitBtn.Location = new System.Drawing.Point(499, 483);
+            this.QuitBtn.Location = new System.Drawing.Point(665, 594);
+            this.QuitBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.QuitBtn.Name = "QuitBtn";
-            this.QuitBtn.Size = new System.Drawing.Size(112, 38);
+            this.QuitBtn.Size = new System.Drawing.Size(149, 47);
             this.QuitBtn.TabIndex = 3;
             this.QuitBtn.Text = "QUIT";
             this.QuitBtn.UseVisualStyleBackColor = false;
@@ -57,9 +58,10 @@
             this.OptionBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(39)))), ((int)(((byte)(42)))));
             this.OptionBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.OptionBtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.OptionBtn.Location = new System.Drawing.Point(499, 396);
+            this.OptionBtn.Location = new System.Drawing.Point(665, 487);
+            this.OptionBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.OptionBtn.Name = "OptionBtn";
-            this.OptionBtn.Size = new System.Drawing.Size(112, 38);
+            this.OptionBtn.Size = new System.Drawing.Size(149, 47);
             this.OptionBtn.TabIndex = 4;
             this.OptionBtn.Text = "OPTION";
             this.OptionBtn.UseVisualStyleBackColor = false;
@@ -69,9 +71,10 @@
             // 
             this.PlayBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(39)))), ((int)(((byte)(42)))));
             this.PlayBtn.ForeColor = System.Drawing.SystemColors.Control;
-            this.PlayBtn.Location = new System.Drawing.Point(499, 301);
+            this.PlayBtn.Location = new System.Drawing.Point(665, 370);
+            this.PlayBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.PlayBtn.Name = "PlayBtn";
-            this.PlayBtn.Size = new System.Drawing.Size(112, 38);
+            this.PlayBtn.Size = new System.Drawing.Size(149, 47);
             this.PlayBtn.TabIndex = 5;
             this.PlayBtn.Text = "PLAY";
             this.PlayBtn.UseVisualStyleBackColor = false;
@@ -86,9 +89,10 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(116, 14);
+            this.pictureBox1.Location = new System.Drawing.Point(155, 17);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(320, 640);
+            this.pictureBox1.Size = new System.Drawing.Size(426, 787);
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_1);
@@ -96,11 +100,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(536, 193);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.MinimumSize = new System.Drawing.Size(38, 41);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(715, 238);
+            this.label2.MinimumSize = new System.Drawing.Size(51, 50);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 41);
+            this.label2.Size = new System.Drawing.Size(51, 50);
             this.label2.TabIndex = 8;
             this.label2.Text = "0";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -109,21 +113,21 @@
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox2.Location = new System.Drawing.Point(482, 14);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox2.Location = new System.Drawing.Point(643, 17);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(150, 162);
+            this.pictureBox2.Size = new System.Drawing.Size(200, 199);
             this.pictureBox2.TabIndex = 9;
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::WindowsFormsApp1.Properties.Resources._5586938_1__1_;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1302, 728);
+            this.ClientSize = new System.Drawing.Size(1736, 896);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox1);
@@ -131,7 +135,7 @@
             this.Controls.Add(this.OptionBtn);
             this.Controls.Add(this.QuitBtn);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
