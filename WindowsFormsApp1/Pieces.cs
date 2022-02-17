@@ -251,7 +251,77 @@ namespace WindowsFormsApp1
                     this.color = new System.Drawing.SolidBrush(System.Drawing.Color.Red);
         }
 
+        public override void GetHitboxCoordinates()
+        {
+
+            switch (this.orientation)
+            {
+                case "top":
+                    hitboxLeft = new int[,] {
+                        { x-1, y },
+                        { x-1, y+1 },
+                        { x-1, y+2 },
+                        { x-1, y+3 }
+                    };
+                    hitboxBottom = new int[,] {
+                        { x, y+4 }
+                    };
+                    hitboxRight = new int[,] {
+                        { x+1, y },
+                        { x+1, y+1 },
+                        { x+1, y+2 },
+                        { x+1, y+3 }
+                    };
+                    break;
+                case "right":
+                    hitboxLeft = new int[,] {
+                        { x-2, y+2 }
+                    };
+                    hitboxBottom = new int[,] {
+                        { x-1, y+3 },
+                        { x, y+3 },
+                        { x+1, y+3 },
+                        { x+2, y+3 }
+                    };
+                    hitboxRight = new int[,] {
+                        { x+3, y+2 }
+                    };
+                    break;
+                case "bottom":
+                    hitboxLeft = new int[,] {
+                        { x, y },
+                        { x, y+1 },
+                        { x, y+2 },
+                        { x, y+3 }
+                    };
+                    hitboxBottom = new int[,] {
+                        { x+1, y+4 }
+                    };
+                    hitboxRight = new int[,] {
+                        { x+2, y },
+                        { x+2, y+1 },
+                        { x+2, y+2 },
+                        { x+2, y+3 }
+                    };
+                    break;
+                case "left":
+                    hitboxLeft = new int[,] {
+                        { x-2, y+1 }
+                    };
+                    hitboxBottom = new int[,] {
+                        { x-1, y+2 },
+                        { x, y+2 },
+                        { x+1, y+2 },
+                        { x+2, y+2 }
+                    };
+                    hitboxRight = new int[,] {
+                        { x+3, y+1 }
+                    };
+                    break;
+            }
+        }
     }
+}
 
     public class L : Pieces
     {
