@@ -58,13 +58,13 @@ namespace WindowsFormsApp1
             }
             for (int i = 0; i < hitboxBottom.GetLength(0); i++)
             {
-                    if (hitboxBottom[i,1] < 20)
+                if (hitboxBottom[i, 1] < 20)
+                {
+                    if (grid[hitboxBottom[i, 1], hitboxBottom[i, 0]] != 0)
                     {
-                        if (grid[hitboxBottom[i, 1], hitboxBottom[i, 0]] != 0)
-                        {
-                            return false;
-                        }
+                        return false;
                     }
+                }
 
             }
             return true;
@@ -78,7 +78,7 @@ namespace WindowsFormsApp1
 
             for (int i = 1; i < coordinates.GetLength(0); i++)
             {
-                if (coordinates[i, 0] != coordinates[i-1, 0])
+                if (coordinates[i, 0] != coordinates[i - 1, 0])
                 {
                     allX.Add(coordinates[i, 0]);
                 }
@@ -91,16 +91,16 @@ namespace WindowsFormsApp1
                 for (int i = 1; i < coordinates.GetLength(0); i++)
                 {
                     int x = coordinates[i, 0];
-                    if(x == element)
+                    if (x == element)
                     {
                         int y = coordinates[i, 1];
-                        if(y > higherY)
+                        if (y > higherY)
                         {
                             higherY = y;
                         }
                     }
                 }
-                hitbox.Add(new int[] {element, higherY + 1});
+                hitbox.Add(new int[] { element, higherY + 1 });
             }
             return hitbox;
         }
@@ -127,10 +127,6 @@ namespace WindowsFormsApp1
                 }
 
             }
-            return true;
-
-
-            
             return true;
         }
 
@@ -216,15 +212,35 @@ namespace WindowsFormsApp1
             if (orientation == "left")
             {
                 newOrientation = allOrientations[0];
-            } else
+            }
+            else
             {
                 newOrientation = allOrientations[Array.IndexOf(allOrientations, orientation) + 1];
             }
             orientation = newOrientation;
             CreateCoordinates(x, y, newOrientation);
-            
         }
 
+        public bool canRotate(int[,] grid)
+        {
+
+            int x = coordinates[0, 0];
+            for (int i = 0; i < coordinates.GetLength(0); i++)
+            {
+                if (coordinates[i, 0] > 0)
+                {
+                    x = coordinates[i, 0];
+                }
+            }
+            if (x < 9 && x > 0)
+            {
+                if (PossibleGoRight(grid))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         public void CheckBorder(int[,] grid)
         {
             int x = coordinates[0, 0];
@@ -246,7 +262,7 @@ namespace WindowsFormsApp1
     {
         public override void CreateCoordinates(int x, int y, String orientation)
         {
-            this.orientation =  orientation;
+            this.orientation = orientation;
             switch (orientation)
             {
                 case "top":
@@ -285,7 +301,7 @@ namespace WindowsFormsApp1
                     };
                     break;
             }
-                    this.color = new System.Drawing.SolidBrush(System.Drawing.Color.Red);
+            this.color = new System.Drawing.SolidBrush(System.Drawing.Color.Red);
         }
 
         public override void GetHitboxCoordinates()
@@ -504,8 +520,9 @@ namespace WindowsFormsApp1
                         { x+3, y+2 },
                         { x+3, y+1 }
                     };
-                    break;                    }
+                    break;
             }
+        }
     }
 
     public class R : Pieces
@@ -591,8 +608,9 @@ namespace WindowsFormsApp1
                         { x+2, y },
                         { x+2, y+1 }
                     };
-                    break;             }
+                    break;
             }
+        }
     }
 
     public class S : Pieces
@@ -710,7 +728,7 @@ namespace WindowsFormsApp1
             switch (orientation)
             {
                 case "top":
-                    coordinates = new int[,] 
+                    coordinates = new int[,]
                     {
                         { x+1, y },
                         { x, y+1 },
@@ -720,7 +738,7 @@ namespace WindowsFormsApp1
                     break;
 
                 case "right":
-                    coordinates = new int[,] 
+                    coordinates = new int[,]
                     {
                         { x+1, y },
                         { x+1, y+1 },
@@ -730,7 +748,7 @@ namespace WindowsFormsApp1
                     break;
 
                 case "bottom":
-                    coordinates = new int[,] 
+                    coordinates = new int[,]
                     {
                         { x+1, y+2 },
                         { x, y+1 },
@@ -740,7 +758,7 @@ namespace WindowsFormsApp1
                     break;
 
                 case "left":
-                    coordinates = new int[,] 
+                    coordinates = new int[,]
                     {
                         { x+1, y },
                         { x+1, y+1 },
@@ -833,8 +851,9 @@ namespace WindowsFormsApp1
                         { x+2, y+1 },
                         { x+2, y+2 }
                     };
-                    break;                    }
+                    break;
             }
+        }
     }
 
 }
