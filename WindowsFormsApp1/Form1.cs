@@ -151,7 +151,7 @@ namespace WindowsFormsApp1
                 label2.Text = newScore.ToString();
                 if(int.Parse(label2.Text)>1000)
                 {
-                    grid.clearGrid();
+                    //grid.clearGrid();
                 }
                 grid.TestAllLines(label2);
                 currentPiece = nextPiece;

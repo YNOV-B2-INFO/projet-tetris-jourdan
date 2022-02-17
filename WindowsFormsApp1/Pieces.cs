@@ -9,12 +9,16 @@ namespace WindowsFormsApp1
     public abstract class Pieces
     {
         public abstract void CreateCoordinates(int x, int y, String orientation);
-        public abstract void GetHitboxCoordinates();
+        public abstract void GetHitboxCoordinates(int x, int y, String orientation);
 
         public int[,] prevCoordinates;
         public int[,] coordinates;
         public String orientation = "top";
         public int pieceNumber;
+        public int[,] hitboxLeft;
+        public int[,] hitboxBottom;
+        public int[,] hitboxRight;
+
         public System.Drawing.SolidBrush color;
 
         public void DisplayCoordinates()
@@ -251,13 +255,13 @@ namespace WindowsFormsApp1
                     this.color = new System.Drawing.SolidBrush(System.Drawing.Color.Red);
         }
 
-        public override void GetHitboxCoordinates()
+        public override void GetHitboxCoordinates(int x, int y, String orientation)
         {
 
             switch (this.orientation)
             {
                 case "top":
-                    hitboxLeft = new int[,] {
+                    this.hitboxLeft = new int[,] {
                         { x-1, y },
                         { x-1, y+1 },
                         { x-1, y+2 },
@@ -321,7 +325,7 @@ namespace WindowsFormsApp1
             }
         }
     }
-}
+
 
     public class L : Pieces
     {
@@ -370,7 +374,7 @@ namespace WindowsFormsApp1
             this.color = new System.Drawing.SolidBrush(System.Drawing.Color.Blue);
         }
 
-        public override void GetHitboxCoordinates()
+        public override void GetHitboxCoordinates(int x, int y, String orientation)
         {
 
             switch (this.orientation)
@@ -438,7 +442,6 @@ namespace WindowsFormsApp1
                     };
                     break;                    }
             }
-        }
     }
 
     public class R : Pieces
@@ -488,10 +491,10 @@ namespace WindowsFormsApp1
             this.color = new System.Drawing.SolidBrush(System.Drawing.Color.Green);
         }
 
-        public override void GetHitboxCoordinates()
+        public override void GetHitboxCoordinates(int x, int y, String orientation)
         {
 
-            /*switch (this.orientation)
+            switch (this.orientation)
             {
                 case "top":
                 case "right":
@@ -510,8 +513,7 @@ namespace WindowsFormsApp1
                         { x+2, y+1 }
                     };
                     break;             }
-            }*/
-        }
+            }
     }
 
     public class S : Pieces
@@ -561,10 +563,10 @@ namespace WindowsFormsApp1
             this.color = new System.Drawing.SolidBrush(System.Drawing.Color.Silver);
         }
 
-        public override void GetHitboxCoordinates()
+        public override void GetHitboxCoordinates(int x, int y, String orientation)
         {
 
-            /*switch (this.orientation)
+            switch (this.orientation)
             {
                 case "top":
                 case "bottom":
@@ -600,7 +602,7 @@ namespace WindowsFormsApp1
                         { x+2, y+1 }
                     };
                     break;
-            }*/
+            }
         }
     }
 
@@ -656,10 +658,10 @@ namespace WindowsFormsApp1
             this.color = new System.Drawing.SolidBrush(System.Drawing.Color.Purple);
         }
 
-        public override void GetHitboxCoordinates()
+        public override void GetHitboxCoordinates(int x, int y, String orientation)
         {
             
-            /*switch (this.orientation)
+            switch (this.orientation)
             {
                 case "top":
                     hitboxLeft = new int[,] {
@@ -724,8 +726,6 @@ namespace WindowsFormsApp1
                     };
                     break;                    }
             }
-        }*/
     }
-}
 
 }
