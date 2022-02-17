@@ -85,7 +85,7 @@ namespace WindowsFormsApp1
             //capture up arrow key
             if (keyData == Keys.Up)
             {
-                if (currentPiece.canRotate(grid.GetGrid()))
+                if (currentPiece.CanRotate(grid.GetGrid()))
                 {
                     utils.Moove("rotate", currentPiece, grid, pictureBox1, this);
                     this.Refresh();
