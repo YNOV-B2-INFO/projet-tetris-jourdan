@@ -1,15 +1,6 @@
 ﻿using System;
-using System.Threading;
-using static System.Drawing.Image;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Media.Imaging;
 
 namespace WindowsFormsApp1
 { 
@@ -164,7 +155,7 @@ namespace WindowsFormsApp1
             else
             {
                 utils.Moove("down", currentPiece, grid, pictureBox1, this);
-                utils.PreviewPiece(nextPiece, grid.GetGrid(), pictureBox2);
+                utils.DisplayOnePiece(nextPiece, pictureBox2);
             }
         }
 
