@@ -249,10 +249,10 @@ namespace WindowsFormsApp1
 
                 case "left":
                     coordinates = new int[,] {
-                        { x-1, y+1 },
-                        { x, y+1 },
-                        { x+1, y+1 },
-                        { x+2, y+1 }
+                        { x-1, y },
+                        { x, y },
+                        { x+1, y },
+                        { x+2, y }
                     };
                     break;
             }
@@ -281,6 +281,7 @@ namespace WindowsFormsApp1
             switch (this.orientation)
             {
                 case "top":
+                case "bottom":
                     this.hitboxLeft = new int[,] {
                         { x-1, y },
                         { x-1, y+1 },
@@ -298,48 +299,18 @@ namespace WindowsFormsApp1
                     };
                     break;
                 case "right":
-                    hitboxLeft = new int[,] {
-                        { x-2, y+2 }
-                    };
-                    hitboxBottom = new int[,] {
-                        { x-1, y+3 },
-                        { x, y+3 },
-                        { x+1, y+3 },
-                        { x+2, y+3 }
-                    };
-                    hitboxRight = new int[,] {
-                        { x+3, y+2 }
-                    };
-                    break;
-                case "bottom":
-                    hitboxLeft = new int[,] {
-                        { x, y },
-                        { x, y+1 },
-                        { x, y+2 },
-                        { x, y+3 }
-                    };
-                    hitboxBottom = new int[,] {
-                        { x+1, y+4 }
-                    };
-                    hitboxRight = new int[,] {
-                        { x+2, y },
-                        { x+2, y+1 },
-                        { x+2, y+2 },
-                        { x+2, y+3 }
-                    };
-                    break;
                 case "left":
                     hitboxLeft = new int[,] {
-                        { x-2, y+1 }
+                        { x-1, y }
                     };
                     hitboxBottom = new int[,] {
-                        { x-1, y+2 },
-                        { x, y+2 },
-                        { x+1, y+2 },
-                        { x+2, y+2 }
+                        { x, y+1 },
+                        { x+1, y+1 },
+                        { x+2, y+1 },
+                        { x+3, y+1 }
                     };
                     hitboxRight = new int[,] {
-                        { x+3, y+1 }
+                        { x+4, y }
                     };
                     break;
             }
@@ -462,16 +433,16 @@ namespace WindowsFormsApp1
                     break;
                 case "left":
                     hitboxLeft = new int[,] {
-                        { x-1, y+2 },
-                        { x+1, y+1 }
+                        { x-1, y+1 },
+                        { x+1, y }
                     };
                     hitboxBottom = new int[,] {
-                        { x, y+3 },
-                        { x+1, y+3 },
-                        { x+2, y+3 }
+                        { x, y+2 },
+                        { x+1, y+2 },
+                        { x+2, y+2 }
                     };
                     hitboxRight = new int[,] {
-                        { x+3, y+2 },
+                        { x+3, y },
                         { x+3, y+1 }
                     };
                     break;
@@ -488,32 +459,8 @@ namespace WindowsFormsApp1
             switch (orientation)
             {
                 case "top":
-                    coordinates = new int[,] {
-                        { x, y },
-                        { x, y+1 },
-                        { x+1, y },
-                        { x+1, y+1 }
-                    };
-                    break;
-
                 case "right":
-                    coordinates = new int[,] {
-                        { x, y },
-                        { x, y+1 },
-                        { x+1, y },
-                        { x+1, y+1 }
-                    };
-                    break;
-
                 case "bottom":
-                    coordinates = new int[,] {
-                        { x, y },
-                        { x, y+1 },
-                        { x+1, y },
-                        { x+1, y+1 }
-                    };
-                    break;
-
                 case "left":
                     coordinates = new int[,] {
                         { x, y },
@@ -760,33 +707,33 @@ namespace WindowsFormsApp1
                     break;
                 case "right":
                     hitboxLeft = new int[,] {
-                        { x, y },
-                        { x, y+1 },
-                        { x, y+2 }
+                        { x-1, y },
+                        { x-1, y+1 },
+                        { x-1, y+2 }
                     };
                     hitboxBottom = new int[,] {
-                        { x+1, y+3 },
-                        { x+2, y+2 }
+                        { x, y+3 },
+                        { x+1, y+2 }
                     };
                     hitboxRight = new int[,] {
-                        { x+2, y },
-                        { x+3, y+1 },
-                        { x+2, y+2 }
+                        { x+1, y },
+                        { x+2, y+1 },
+                        { x+1, y+2 }
                     };
                     break;
                 case "bottom":
                     hitboxLeft = new int[,] {
-                        { x-1, y+1 },
-                        { x, y+2 }
+                        { x-1, y },
+                        { x, y+1 }
                     };
                     hitboxBottom = new int[,] {
-                        { x, y+2 },
-                        { x+1, y+3 },
-                        { x+2, y+2 }
+                        { x, y+1 },
+                        { x+1, y+2 },
+                        { x+2, y+1 }
                     };
                     hitboxRight = new int[,] {
-                        { x+3, y+1 },
-                        { x+2, y+2 }
+                        { x+3, y },
+                        { x+2, y+1 }
                     };
                     break;
                 case "left":
@@ -796,8 +743,8 @@ namespace WindowsFormsApp1
                         { x, y+2 }
                     };
                     hitboxBottom = new int[,] {
-                        { x+1, y+3 },
-                        { x, y+2 }
+                        { x, y+2 },
+                        { x+1, y+3 }
                     };
                     hitboxRight = new int[,] {
                         { x+2, y },
