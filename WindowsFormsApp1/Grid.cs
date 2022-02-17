@@ -54,6 +54,21 @@ public class Grid
         return true;
     }
 
+    //check if the line at index Y is empty
+    public bool IsLineEmpty(int lineNumber)
+    {
+        for (int x = 0; x < this.grid.GetLength(1); x++)
+        {
+                Console.Write(this.grid[lineNumber, x]);
+            if (this.grid[lineNumber, x] != 0)
+            {
+                return false;
+            }
+        }
+        Console.WriteLine();
+        return true;
+    }
+
     //Delete the line at the given y index 
     //make all the lines above the y  go down 
     public void DeleteLine(int lineNumber)

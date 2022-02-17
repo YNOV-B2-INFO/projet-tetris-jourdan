@@ -123,6 +123,8 @@ namespace WindowsFormsApp1
             //create the new piece,
             //refresh 
             //else moove the piece down 
+
+            //si piece posée et ligne du haut de la grid pas que des 0 -> game over 
             if (!currentPiece.PossibleGoDown(grid.GetGrid()))
             {
                 int newScore = int.Parse(label2.Text) + 10;
@@ -134,12 +136,27 @@ namespace WindowsFormsApp1
                     notCleared = true;
                 }
 
-                grid.TestAllLines(label2);
-                currentPiece = nextPiece;
-                currentPiece.CreateCoordinates(4, 0, "top");
-                grid.AddPieceWithCoordinates(currentPiece.coordinates, currentPiece.pieceNumber);
-                nextPiece = utils.CreatePieceObject();
-                nextPiece.CreateCoordinates(4, 0, "top");
+                if (!grid.IsLineEmpty(0))
+                {
+                    timer1.Stop();
+                    currentPiece = null;
+                    playedOnce = false;
+                    grid.ClearGrid();
+                    Form3 f3 = new Form3();
+                    f3.ShowDialog();
+
+                } else
+                {
+                    grid.TestAllLines(label2);
+                    currentPiece = nextPiece;
+                    currentPiece.CreateCoordinates(4, 0, "top");
+                    grid.AddPieceWithCoordinates(currentPiece.coordinates, currentPiece.pieceNumber);
+                    nextPiece = utils.CreatePieceObject();
+                    nextPiece.CreateCoordinates(4, 0, "top");
+
+                }
+
+
                 this.Refresh();
             }
             else
